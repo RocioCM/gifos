@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIFOS</title>
+    <link rel="icon" href="../images/logo-mobile-modo-noct.svg">
+    <link rel="stylesheet" href="../scss/styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500&display=swap" > 
+</head>
+<body>
+
+    <header class="header-bar">
+        <a class="logo" href=""><picture>
+            <source media="(max-width: 1199px)" srcset="../images/logo-mobile.svg">
+            <img src="../images/logo-desktop.svg" alt="logo">
+        </picture></a>
+        <div class="menu">
+            <input type="checkbox" class="hamb-checkbox desktop-hidden">
+            <img class="hamb-icon desktop-hidden" src="../images/burger.svg" alt="Burguer Menu icon">
+            <img class="close-icon desktop-hidden" src="../images/close.svg" alt="Close Menu icon">
+            <nav>
+                <ul>
+                    <li><label class="theme-switch" for="theme-switch">Modo Nocturno</label><input type="checkbox" id="theme-switch"></li>
+                    <li><a href="#">Favoritos</a></li>
+                    <li><a href="#">Mis GIFOS</a></li>
+                    <li class="btn-create mobile-hidden"><a href="create/index.html"><img src="../images/button-crear-gifo.svg" alt="Crear GIFO"></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <section class="search-section">
+        <h1 class="color-blue">Inspírate, busca, guarda y crea los mejores <span class="color-aqua">GIFOS</span></h1>
+        <img class="heading-img" src="../images/ilustra_header.svg" alt="Felices personas buscando gifos">
+        <div id="search-ctn">
+            <label for="search" class="search-bar" id="search-bar"> 
+                <button class="clear-search-button"><img src="../images/close.svg" alt="Clear"></button>
+                <input class="search-input" type="text" name="search" id="search" placeholder="Busca GIFOS y más"> 
+                <button class="search-button"><img src="../images/icon-search.svg" alt="search"></button>
+            </label>
+            <div class="search-suggestions">
+                <template>
+                    <article class="suggestion">
+                        <img src="../images/icon-search.svg" alt="search">
+                        <p></p>
+                    </article>
+                </template>
+                <article class="suggestion">
+                    <img src="../images/icon-search.svg" alt="search">
+                    <p>Holi</p>
+                </article>
+                <article class="suggestion">
+                    <img src="../images/icon-search.svg" alt="search">
+                    <p>Chauchas</p>
+                </article>
+            </div>
+        </div>
+        <h3 class="color-blue trending-h3">Trending:</h3>
+        <p class="color-blue" id="trending-topics-ctn"></p>
+    </section>
+
+    <section class="searched-section">
+        <h2 class="searched-title" id="searched"></h2>
+        <div class="search-results-ctn gifs-ctn">
+
+        </div>
+        <button class="more-button">VER MÁS</button>
+        <div> <!-- not found section-->
+            <img src="" alt="">
+            <h3></h3>
+        </div>
+    </section>
+
+    <section class="favorites-section">
+        <img src="../images/icon-favoritos.svg" alt="corazon">
+        <h2 class="section-title">Favoritos</h2>
+        <div class="favorites-ctn gifs-ctn">
+
+        </div>
+        <button class="more-button">VER MÁS</button>
+    </section>
+
+    <section class="my-gifos-section">
+        <img src="../images/icon-mis-gifos.svg"  alt="">
+        <h2 class="section-title" >Mis GIFOS</h2>
+        <div class="my-gifos-ctn gifs-ctn">
+
+        </div>
+        <button class="more-button">VER MÁS</button>
+    </section>
+    
+
+
+    <aside class="aside-trendings">
+        <h2 class="section-title">Trending GIFOS:</h2>
+        <p class="aside-p">Mirá los últimos GIFOS de nuestra comunidad</p>
+        <div class="flex-row">
+            <img class="arrow-left mobile-hidden" src="../images/button-slider-left.svg" alt="slide left">
+            <div class="scrollable">
+                <div id="trending-cards-ctn">
+                    <template id="trending-cards-template">
+                        <article class="gif-card">
+                            <img src="" alt="">
+                            <div class="card-buttons-ctn">
+                                <img src="../images/icon-fav-hover.svg" alt="favorite">
+                                <img src="../images/icon-download-hover.svg" alt="download">
+                                <a href=""><img src="../images/icon-max-hover.svg" alt="fullscreen"></a>
+                            </div>
+                            <div class="gif-data">
+                                <p class="gif-user"></p>
+                                <p class="gif-title"></p>
+                            </div>
+                            <div class="filter"></div>
+                        </article>
+                    </template>
+                </div>
+            </div>
+            <img class="arrow-right mobile-hidden" src="../images/Button-Slider-right.svg" alt="slider right">
+        </div>
+        <section class="fullscreen-gif hidden">
+            <template>
+                <i class="fas fa-times"></i>
+                <img src="" alt="">
+                <div>
+                    <p>User</p>
+                    <h3>Título GIFO</h3>
+                    <i>Corazom</i>
+                    <i>Download button</i>
+                </div>
+            </template>
+        </section>
+    </aside>
+
+
+
+    <footer class="footer">
+        <p>Compartir en:</p>
+        <nav>
+            <a href="https://twitter.com/giphy?lang=es" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.instagram.com/giphy/?hl=es-la" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://es-la.facebook.com/GIPHY/" target="_blank"><i class="fa fa-instagram"></i></a>
+        </nav>
+        <p>&copy; GIFOS 2020 All Rights Reserved.</p>
+    </footer>
+    <script src="https://kit.fontawesome.com/3e257e7947.js" crossorigin="anonymous"></script>
+    <script src="../scripts/script.js"></script>
+</body>
+</html>
+
+
+<!-- <picture>
+    <source media="(max-width: px)" srcset="">
+    <source media="(max-width: px)" srcset="">
+    <img src="" alt="">
+</picture>  -->
+
+<!-- <script src="https://kit.fontawesome.com/3e257e7947.js" crossorigin="anonymous"></script>  -->
+
+<!-- Alternative footer: -->
+<!-- <nav>
+        <a href="https://twitter.com/giphy?lang=es" target="_blank"><img class="social-icon" src="../images/icon_facebook.svg" alt="facebook"></a>
+        <a href="https://www.instagram.com/giphy/?hl=es-la" target="_blank"><img class="social-icon" src="../images/icon-twitter.svg" alt="twitter"></a>
+        <a href="https://es-la.facebook.com/GIPHY/" target="_blank"><img class="social-icon" src="../images/icon_instagram.svg" alt="instagram"></a>
+    </nav> -->
+
+<!-- El gif del gatito en moto: -->
+<!-- <article class="gif-card"> 
+        <img src="../cat.gif" alt="Cat Gif"> 
+        <div class="card-buttons-ctn">
+            <img src="../images/icon-fav-hover.svg" alt="favorite">
+            <img src="../images/icon-download-hover.svg" alt="download">
+            <a href=""><img src="../images/icon-max-hover.svg" alt="fullscreen"></a>
+        </div>
+        <div class="gif-data">
+            <p class="gif-user">Me</p>
+            <p class="gif-title">Kitten</p>
+        </div>
+        <div class="filter"></div>
+    </article> -->

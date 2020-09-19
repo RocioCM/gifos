@@ -1,0 +1,128 @@
+/*---HEADER---*/
+
+.header-bar {
+    width: 100vw;
+    height: 15vh;
+    position: fixed;
+    top: 0%;
+    background-color: var(--bg-color-1);
+    border-top: 5px solid var(--main-color-1);
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;  
+    padding: 0 6vw;
+
+    /*---HEADER-MENÚ---*/
+    nav {
+        width: 100vw;
+        height: 90vh;
+        position: absolute;
+        display: none;
+        right: -6vw; /*Sería 0 de no ser por el padding de su padre respecto al header.*/
+        background-color: rgba(87,46,229,0.9);
+    }
+    ul {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-evenly;
+        list-style-type: none;
+        padding: 0;
+        * {
+            font: 700 15px / 15px var(--main-font-2);
+            letter-spacing: 0;
+            color:#FFFFFF;
+        }
+        li::after {
+            content: "";
+            display: block;
+            opacity: 0.5;
+            border: 1px solid #FFFFFF;
+            width: 40px;
+            margin: 1rem auto;
+        }
+    }
+}
+
+.logo {
+    align-self: center;
+}
+.menu {
+    width: 100vw;
+    position: relative;
+}
+
+.hamb-checkbox:checked~nav {
+    display: initial;
+    top: 100%;
+}
+
+/*---HAMBURGUER-ICON---*/
+.hamb-icon, .close-icon, .hamb-checkbox { 
+    position: absolute;
+    right: 0;
+    top: calc(6.5vh - 0.5rem);
+    width: 1rem;
+    height: 1rem;
+}
+.close-icon, .hamb-checkbox:checked~.hamb-icon, .hamb-checkbox {
+    opacity: 0%;
+}
+.hamb-checkbox {
+    cursor: pointer;
+    z-index: 1;
+} 
+.hamb-checkbox:checked~.close-icon {
+    opacity: 100%;
+}
+
+
+
+/*THEMING*/
+
+#theme-switch:checked {
+    --bg-color-1: red;
+}
+#theme-switch {
+    display: none;
+}
+
+.theme-switch {
+    cursor: pointer;
+}
+
+@media screen and (min-width: 1024px) { //En realidad podría ser a 1200, pero por ahora lo dejo en 1024.
+    .header-bar {
+        height: 12vh;
+        .menu {
+            width: 40vw;
+            align-self: center; 
+        }
+        nav {
+            display: initial;
+            position: initial;
+            background-color: initial;
+        }
+        ul {
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            * {
+                color: var(--main-color-1);
+                text-transform: uppercase;
+                margin: auto;
+            }
+            li::after {
+                display: none;
+            }
+        }
+        li:not(.btn-create) {
+            &:hover * {
+                line-height: 15px;
+                border-bottom: 2px solid var(--main-color-2);
+            }
+            &:active * {
+                color: #9CAFC3;
+                border-bottom: none;
+            }
+        }
+    }
+}

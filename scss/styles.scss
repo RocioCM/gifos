@@ -1,0 +1,23 @@
+@import '_variables';
+@import '_header';
+@import '_general';
+
+@import '_footer';
+@import '_aside';
+/* Siempre que quiera que se actualice el Live Server, tengo que actualizar este archivo.*/
+/*                 */  
+      
+.mobile-hidden {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) { //En realidad podría ser a 1200, pero por ahora lo dejo en 1024.
+    .mobile-hidden {
+        display: initial;
+    }
+    .desktop-hidden {
+        display: none;
+    }
+}
+
+  

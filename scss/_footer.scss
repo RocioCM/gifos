@@ -1,0 +1,41 @@
+.footer {
+    border-bottom: 5px solid var(--main-color-1);
+
+    nav {
+        width: 100px;
+        display: flex;
+        justify-content: space-between;
+        margin: auto;
+    }
+    p {
+        font: 400 14px / 20px var(--main-font-1);
+        letter-spacing: 0;
+        margin-top: 30px;
+    }
+    .fa {
+        color: #CDD6E0;
+    }
+}
+
+@media screen and (min-width: 720px) {
+    .footer {
+        height: 13vh;
+        padding: 0 11vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p {
+            margin: 0;
+        }
+        nav {
+            margin-left: 1.5rem;
+        }
+        .fa:hover { //doesnt WOOOOOOORK!
+            color: var(--main-color-1);
+            //fill: var(--main-color-1);
+            //background-image: "../images/icon-twitter-hover";
+            //background-color: red;
+        }
+    }
+    
+}

@@ -1,0 +1,433 @@
+@charset "UTF-8";
+:root {
+  --main-color-1: #572EE5;
+  --main-color-2: #50E3C2;
+  --bg-color-1: #FFFFFF;
+  --bg-color-2: #F3F5F8;
+  --font-color-1: #000000;
+  --font-color-2: #FFFFFF;
+  --main-font-1: "Roboto";
+  --main-font-2: "Montserrat";
+  --bg-dark-color-1: #37383C;
+  --bg-dark-color-2: #222326;
+  --dark-font-color: #FFFFFF; }
+
+/*---HEADER---*/
+.header-bar {
+  width: 100vw;
+  height: 15vh;
+  position: fixed;
+  top: 0%;
+  background-color: var(--bg-color-1);
+  border-top: 5px solid var(--main-color-1);
+  display: flex;
+  justify-content: space-between;
+  z-index: 10;
+  padding: 0 6vw;
+  /*---HEADER-MENÚ---*/ }
+  .header-bar nav {
+    width: 100vw;
+    height: 90vh;
+    position: absolute;
+    display: none;
+    right: -6vw;
+    /*Sería 0 de no ser por el padding de su padre respecto al header.*/
+    background-color: rgba(87, 46, 229, 0.9); }
+  .header-bar ul {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0; }
+    .header-bar ul * {
+      font: 700 15px/15px var(--main-font-2);
+      letter-spacing: 0;
+      color: #FFFFFF; }
+    .header-bar ul li::after {
+      content: "";
+      display: block;
+      opacity: 0.5;
+      border: 1px solid #FFFFFF;
+      width: 40px;
+      margin: 1rem auto; }
+
+.logo {
+  align-self: center; }
+
+.menu {
+  width: 100vw;
+  position: relative; }
+
+.hamb-checkbox:checked ~ nav {
+  display: initial;
+  top: 100%; }
+
+/*---HAMBURGUER-ICON---*/
+.hamb-icon, .close-icon, .hamb-checkbox {
+  position: absolute;
+  right: 0;
+  top: calc(6.5vh - 0.5rem);
+  width: 1rem;
+  height: 1rem; }
+
+.close-icon, .hamb-checkbox:checked ~ .hamb-icon, .hamb-checkbox {
+  opacity: 0%; }
+
+.hamb-checkbox {
+  cursor: pointer;
+  z-index: 1; }
+
+.hamb-checkbox:checked ~ .close-icon {
+  opacity: 100%; }
+
+/*THEMING*/
+#theme-switch:checked {
+  --bg-color-1: red; }
+
+#theme-switch {
+  display: none; }
+
+.theme-switch {
+  cursor: pointer; }
+
+@media screen and (min-width: 1024px) {
+  .header-bar {
+    height: 12vh; }
+    .header-bar .menu {
+      width: 40vw;
+      align-self: center; }
+    .header-bar nav {
+      display: initial;
+      position: initial;
+      background-color: initial; }
+    .header-bar ul {
+      flex-flow: row nowrap;
+      justify-content: space-between; }
+      .header-bar ul * {
+        color: var(--main-color-1);
+        text-transform: uppercase;
+        margin: auto; }
+      .header-bar ul li::after {
+        display: none; }
+    .header-bar li:not(.btn-create):hover * {
+      line-height: 15px;
+      border-bottom: 2px solid var(--main-color-2); }
+    .header-bar li:not(.btn-create):active * {
+      color: #9CAFC3;
+      border-bottom: none; } }
+* {
+  font-family: var(--main-font-1), var(--main-font-2), Helvetica, sans-serif;
+  box-sizing: border-box;
+  text-align: center; }
+
+button {
+  cursor: pointer; }
+
+a {
+  text-decoration: none;
+  color: initial; }
+
+body {
+  margin: 0;
+  padding: 0; }
+
+main {
+  margin-top: 15vh; }
+
+.heading-img {
+  max-width: 75vw;
+  display: block;
+  margin: auto; }
+
+h1 {
+  font: 700 25px/33px var(--main-font-2);
+  width: 76vw;
+  max-width: 440px;
+  margin: 0.5rem auto 2rem; }
+
+#search-ctn {
+  border: 2px solid var(--main-color-1);
+  border-radius: 30px;
+  width: 90vw;
+  max-width: 550px;
+  margin: 0 auto; }
+
+.search-bar {
+  border-radius: 30px;
+  width: auto;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 12px; }
+
+.search-input {
+  font: 400 16px/19px var(--main-font-1);
+  color: #000000;
+  text-align: left;
+  padding: 1rem 0.5rem 1rem 2rem;
+  border: none;
+  background-color: #FFFFFF00;
+  width: 90%; }
+
+.search-button, .clear-search-button {
+  background-color: #FFFFFF00;
+  border: none; }
+
+.clear-search-button {
+  display: none; }
+
+.search-suggestions {
+  background-color: #FFFFFF00; }
+
+.search-suggestions::before {
+  content: "";
+  display: block;
+  opacity: 0.5;
+  border: 1px solid #9CAFC3;
+  width: 92%;
+  margin: auto; }
+
+.suggestion {
+  text-align: start; }
+  .suggestion img {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin: 0 0.3rem 0 1.2rem; }
+  .suggestion p {
+    font: 400 16px/19px var(--main-font-1);
+    color: #9CAFC3;
+    display: inline-block; }
+
+.color-aqua {
+  color: var(--main-color-2); }
+
+.color-blue, footer i:hover {
+  color: var(--main-color-1); }
+
+#theme-switch {
+  cursor: pointer; }
+
+#trending-topics-ctn {
+  font: 500 14px/25px var(--main-font-2);
+  max-width: 60vw;
+  margin: 0 auto 3rem;
+  text-transform: capitalize; }
+
+.trending-h3 {
+  font: 700 16px/25px var(--main-font-2);
+  margin: 2rem auto 0; }
+
+.section-title {
+  font: 700 20px/30px var(--main-font-2);
+  margin: 0 auto 0.5rem;
+  color: var(--main-color-1); }
+
+.fullscreen-gif {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 8vh 8vw;
+  display: grid; }
+
+.more-button {
+  font: 700 13px var(--main-font-2);
+  background-color: #FFFFFF00;
+  letter-spacing: 0;
+  border: 1px solid var(--main-color-1);
+  border-radius: 25px;
+  padding: 1rem 2rem;
+  color: var(--main-color-1); }
+
+/*---SEARCH SECTION---*/
+.search-section {
+  margin-top: 15vh;
+  /*Por la barra de arriba.*/ }
+
+@media screen and (min-width: 1200px) {
+  h1 {
+    font-size: 40px;
+    line-height: 50px;
+    max-width: 650px; }
+
+  .trending-h3 {
+    font-size: 18px; }
+
+  #trending-topics-ctn {
+    font-size: 16px; } }
+/*SOLO-POR-AHORA-SETTINGS*/
+.scrollable {
+  width: inherit;
+  overflow-x: scroll; }
+
+.searched-section, .favorites-section, .my-gifos-section {
+  margin-bottom: 5rem;
+  display: none; }
+
+.hidden {
+  display: none; }
+
+.active-search {
+  flex-direction: row-reverse; }
+  .active-search .clear-search-button {
+    display: initial; }
+  .active-search .search-input {
+    padding-left: 0; }
+  .active-search .search-button {
+    padding-left: 4px; }
+
+.search-button img {
+  color: red;
+  fill: red; }
+
+/* Dato: #trending-topics es id y no clase porque después la llamo y relleno desde JS.
+<i class="fa fa-search"></i> Lo dejo acá por si lo necesitás: la lupita.
+*/
+.footer {
+  border-bottom: 5px solid var(--main-color-1); }
+  .footer nav {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto; }
+  .footer p {
+    font: 400 14px/20px var(--main-font-1);
+    letter-spacing: 0;
+    margin-top: 30px; }
+  .footer .fa {
+    color: #CDD6E0; }
+
+@media screen and (min-width: 720px) {
+  .footer {
+    height: 13vh;
+    padding: 0 11vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .footer p {
+      margin: 0; }
+    .footer nav {
+      margin-left: 1.5rem; }
+    .footer .fa:hover {
+      color: var(--main-color-1); } }
+.aside-trendings {
+  background-color: var(--bg-color-2);
+  padding: 3rem 0 5rem;
+  width: inherit; }
+
+.aside-p {
+  font: 400 16px/23px var(--main-font-1);
+  margin: auto 11vw 2rem; }
+
+@media screen and (min-width: 1200px) {
+  .aside-trendings {
+    padding-bottom: 10rem; }
+
+  .aside-trendings > .section-title {
+    font-size: 30px;
+    line-height: 60px; }
+
+  .aside-p {
+    font-size: 18px; } }
+#trending-cards-ctn {
+  display: flex;
+  height: 190px;
+  width: max-content; }
+
+.gif-card {
+  position: relative;
+  height: inherit;
+  width: auto; }
+  .gif-card img {
+    height: inherit; }
+
+.card-buttons-ctn, .filter, .gif-data {
+  display: none; }
+
+.scrollable {
+  width: inherit;
+  overflow: scroll hidden; }
+
+/*SOLO-POR-AHORA-SETTINGS?*/
+#trending-cards-ctn {
+  margin-left: 22px; }
+
+.gif-card {
+  margin-right: 22px; }
+
+@media screen and (min-width: 1024px) {
+  #trending-cards-ctn {
+    height: 35vh;
+    min-height: 190px; }
+
+  .filter {
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-color-1);
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0; }
+
+  .card-buttons-ctn {
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+    z-index: 1; }
+    .card-buttons-ctn img {
+      opacity: 0.7;
+      cursor: pointer; }
+    .card-buttons-ctn img:hover {
+      opacity: 1; }
+
+  .gif-card:hover > .filter, .gif-card:hover > .card-buttons-ctn, .gif-card:hover > .gif-data {
+    display: initial; }
+
+  .gif-data {
+    color: var(--font-color-2);
+    position: absolute;
+    left: 5%;
+    bottom: 10%;
+    z-index: 1; }
+    .gif-data p {
+      text-align: left;
+      margin: 0.3rem 0 0; }
+
+  .gif-user {
+    font: 400 15px var(--main-font-1); }
+
+  .gif-title {
+    font: 500 16px var(--main-font-1); }
+
+  .scrollable {
+    width: 78vw;
+    overflow: hidden; }
+
+  .flex-row {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 5vw; }
+
+  /*SOLO-POR-AHORA/BARATO-SETTINGS?*/
+  #trending-cards-ctn {
+    margin-left: 0; }
+
+  .gif-card {
+    margin-right: 2vw; }
+
+  .arrow-right:hover, .arrow-left:hover {
+    background-color: #FFFFFF; } }
+/* Siempre que quiera que se actualice el Live Server, tengo que actualizar este archivo.*/
+/*                 */
+.mobile-hidden {
+  display: none; }
+
+@media screen and (min-width: 1024px) {
+  .mobile-hidden {
+    display: initial; }
+
+  .desktop-hidden {
+    display: none; } }
+
+/*# sourceMappingURL=styles.css.map */

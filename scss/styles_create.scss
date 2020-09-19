@@ -1,0 +1,22 @@
+@import '_variables';
+@import '_header';
+@import '_footer';
+
+body {
+    height: 100vh;
+}
+.main {
+    height: auto;
+}
+.mobile-hidden {
+    display: none;
+}
+
+@media screen and (min-width: 1024px) { //En realidad podría ser a 1200, pero por ahora lo dejo en 1024.
+    .mobile-hidden {
+        display: initial;
+    }
+    .desktop-hidden {
+        display: none;
+    }
+}

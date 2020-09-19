@@ -1,0 +1,217 @@
+* {
+    font-family: var(--main-font-1), var(--main-font-2), Helvetica, sans-serif;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+    color: initial;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    margin-top: 15vh;
+}  
+
+.heading-img {
+    max-width: 75vw;
+    display: block;
+    margin: auto;
+}
+
+
+
+h1 {
+    font: 700 25px / 33px var(--main-font-2);
+    width: 76vw;
+    max-width: 440px;
+    margin: 0.5rem auto 2rem;
+}
+
+#search-ctn {
+    border: 2px solid var(--main-color-1);
+    border-radius: 30px;
+    width: 90vw;
+    max-width: 550px;
+    margin: 0 auto;
+}
+.search-bar {
+    border-radius: 30px;
+    width: auto; 
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+}
+.search-input {
+    font: 400 16px / 19px var(--main-font-1);
+    color: #000000;
+    text-align: left;
+    padding: 1rem 0.5rem 1rem 2rem;
+    border: none;
+    background-color: #FFFFFF00;
+    width: 90%;
+}
+.search-button, .clear-search-button {
+    background-color: #FFFFFF00;
+    border: none;
+}
+.clear-search-button {
+    display: none;
+}
+
+.search-suggestions {
+    background-color: #FFFFFF00;
+    //display: none;
+}
+.search-suggestions::before {
+    content: "";
+    display: block;
+    opacity: 0.5;
+    border: 1px solid #9CAFC3;
+    width: 92%;
+    margin: auto;
+}
+.suggestion {
+    text-align: start;
+    img {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        margin: 0 0.3rem 0 1.2rem;
+    }
+    p {
+        font: 400 16px / 19px var(--main-font-1);
+        color: #9CAFC3;
+        display: inline-block;
+    }
+}
+
+
+
+
+.color-aqua {
+    color: var(--main-color-2);
+}
+
+.color-blue, footer i:hover {
+    color: var(--main-color-1);
+}
+
+
+#theme-switch {
+    cursor: pointer;
+}
+
+#trending-topics-ctn {
+    font: 500 14px / 25px var(--main-font-2);
+    max-width: 60vw;
+    margin: 0 auto 3rem;
+    text-transform: capitalize;
+}
+.trending-h3 {
+    font: 700 16px / 25px var(--main-font-2);
+    margin: 2rem auto 0;
+}
+
+.section-title {
+    font: 700 20px / 30px var(--main-font-2);
+    margin: 0 auto 0.5rem;
+    color: var(--main-color-1);
+}
+
+
+
+.fullscreen-gif {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 8vh 8vw;
+    display: grid;
+}
+
+.more-button {
+    font: 700 13px var(--main-font-2);
+    background-color: #FFFFFF00;
+    letter-spacing: 0;
+    border: 1px solid var(--main-color-1);
+    border-radius: 25px;
+    padding: 1rem 2rem;
+    color: var(--main-color-1);
+}
+
+
+/*---SEARCH SECTION---*/
+.search-section {
+    margin-top: 15vh; /*Por la barra de arriba.*/
+}
+
+
+
+@media screen and (min-width: 1200px) {
+    h1 {
+        font-size: 40px;
+        line-height: 50px;
+        max-width: 650px;
+    }
+    .trending-h3 {
+        font-size: 18px;
+    }
+    #trending-topics-ctn {
+        font-size: 16px;
+    }
+}
+
+
+
+
+
+
+
+/*SOLO-POR-AHORA-SETTINGS*/
+.scrollable {
+    width: inherit;
+    overflow-x: scroll;
+}
+
+.searched-section, .favorites-section,  .my-gifos-section {
+    margin-bottom: 5rem;
+    display: none; ///
+}
+
+
+.hidden { //Son cosas que como todavía no les doy funcionalidad,quiero que se las tomen.
+    display: none;
+}
+
+.active-search { 
+    flex-direction: row-reverse;
+    .clear-search-button {
+        display: initial;
+    }
+    .search-input {
+        padding-left: 0;
+    }
+    .search-button {
+        padding-left: 4px;
+    }
+}
+
+.search-button img { //Neither works.
+    color: red;
+    fill: red;
+}
+
+
+
+/* Dato: #trending-topics es id y no clase porque después la llamo y relleno desde JS.
+<i class="fa fa-search"></i> Lo dejo acá por si lo necesitás: la lupita.
+*/
