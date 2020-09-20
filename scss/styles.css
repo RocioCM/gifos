@@ -134,23 +134,42 @@ body {
 main {
   margin-top: 15vh; }
 
-.heading-img {
-  max-width: 75vw;
-  display: block;
-  margin: auto; }
+.color-aqua {
+  color: var(--main-color-2); }
 
+.color-blue {
+  color: var(--main-color-1); }
+
+.hidden {
+  display: none; }
+
+.mobile-hidden {
+  display: none; }
+
+@media screen and (min-width: 1024px) {
+  .mobile-hidden {
+    display: initial; }
+
+  .desktop-hidden {
+    display: none; } }
 h1 {
   font: 700 25px/33px var(--main-font-2);
   width: 76vw;
   max-width: 440px;
   margin: 0.5rem auto 2rem; }
 
+.heading-img {
+  max-width: 75vw;
+  display: block;
+  margin: auto; }
+
 #search-ctn {
   border: 2px solid var(--main-color-1);
   border-radius: 30px;
   width: 90vw;
   max-width: 550px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  overflow: hidden; }
 
 .search-bar {
   border-radius: 30px;
@@ -175,6 +194,15 @@ h1 {
 .clear-search-button {
   display: none; }
 
+.active-search {
+  flex-direction: row-reverse; }
+  .active-search .clear-search-button {
+    display: initial; }
+  .active-search .search-input {
+    padding-left: 0; }
+  .active-search .search-button {
+    padding-left: 4px; }
+
 .search-suggestions {
   background-color: #FFFFFF00; }
 
@@ -188,6 +216,9 @@ h1 {
 
 .suggestion {
   text-align: start; }
+  .suggestion:hover {
+    background-color: #F2F4F7E6;
+    cursor: pointer; }
   .suggestion img {
     width: 16px;
     height: 16px;
@@ -197,15 +228,6 @@ h1 {
     font: 400 16px/19px var(--main-font-1);
     color: #9CAFC3;
     display: inline-block; }
-
-.color-aqua {
-  color: var(--main-color-2); }
-
-.color-blue, footer i:hover {
-  color: var(--main-color-1); }
-
-#theme-switch {
-  cursor: pointer; }
 
 #trending-topics-ctn {
   font: 500 14px/25px var(--main-font-2);
@@ -222,13 +244,6 @@ h1 {
   margin: 0 auto 0.5rem;
   color: var(--main-color-1); }
 
-.fullscreen-gif {
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  padding: 8vh 8vw;
-  display: grid; }
-
 .more-button {
   font: 700 13px var(--main-font-2);
   background-color: #FFFFFF00;
@@ -238,10 +253,15 @@ h1 {
   padding: 1rem 2rem;
   color: var(--main-color-1); }
 
-/*---SEARCH SECTION---*/
-.search-section {
-  margin-top: 15vh;
-  /*Por la barra de arriba.*/ }
+#theme-switch {
+  cursor: pointer; }
+
+.fullscreen-gif {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 8vh 8vw;
+  display: grid; }
 
 @media screen and (min-width: 1200px) {
   h1 {
@@ -255,60 +275,19 @@ h1 {
   #trending-topics-ctn {
     font-size: 16px; } }
 /*SOLO-POR-AHORA-SETTINGS*/
-.scrollable {
-  width: inherit;
-  overflow-x: scroll; }
-
 .searched-section, .favorites-section, .my-gifos-section {
   margin-bottom: 5rem;
   display: none; }
-
-.hidden {
-  display: none; }
-
-.active-search {
-  flex-direction: row-reverse; }
-  .active-search .clear-search-button {
-    display: initial; }
-  .active-search .search-input {
-    padding-left: 0; }
-  .active-search .search-button {
-    padding-left: 4px; }
 
 .search-button img {
   color: red;
   fill: red; }
 
-/* Dato: #trending-topics es id y no clase porque después la llamo y relleno desde JS.
+/*
+COMMENTS: 
+En el _footer hay unos comentarios feotes.
 <i class="fa fa-search"></i> Lo dejo acá por si lo necesitás: la lupita.
 */
-.footer {
-  border-bottom: 5px solid var(--main-color-1); }
-  .footer nav {
-    width: 100px;
-    display: flex;
-    justify-content: space-between;
-    margin: auto; }
-  .footer p {
-    font: 400 14px/20px var(--main-font-1);
-    letter-spacing: 0;
-    margin-top: 30px; }
-  .footer .fa {
-    color: #CDD6E0; }
-
-@media screen and (min-width: 720px) {
-  .footer {
-    height: 13vh;
-    padding: 0 11vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; }
-    .footer p {
-      margin: 0; }
-    .footer nav {
-      margin-left: 1.5rem; }
-    .footer .fa:hover {
-      color: var(--main-color-1); } }
 .aside-trendings {
   background-color: var(--bg-color-2);
   padding: 3rem 0 5rem;
@@ -331,12 +310,14 @@ h1 {
 #trending-cards-ctn {
   display: flex;
   height: 190px;
-  width: max-content; }
+  width: max-content;
+  margin-left: 22px; }
 
 .gif-card {
   position: relative;
   height: inherit;
-  width: auto; }
+  width: auto;
+  margin-right: 22px; }
   .gif-card img {
     height: inherit; }
 
@@ -347,17 +328,11 @@ h1 {
   width: inherit;
   overflow: scroll hidden; }
 
-/*SOLO-POR-AHORA-SETTINGS?*/
-#trending-cards-ctn {
-  margin-left: 22px; }
-
-.gif-card {
-  margin-right: 22px; }
-
 @media screen and (min-width: 1024px) {
   #trending-cards-ctn {
     height: 35vh;
-    min-height: 190px; }
+    min-height: 190px;
+    margin-left: 0; }
 
   .filter {
     width: 100%;
@@ -409,25 +384,37 @@ h1 {
     justify-content: space-between;
     margin: 0 5vw; }
 
-  /*SOLO-POR-AHORA/BARATO-SETTINGS?*/
-  #trending-cards-ctn {
-    margin-left: 0; }
-
   .gif-card {
     margin-right: 2vw; }
 
   .arrow-right:hover, .arrow-left:hover {
     background-color: #FFFFFF; } }
-/* Siempre que quiera que se actualice el Live Server, tengo que actualizar este archivo.*/
-/*                 */
-.mobile-hidden {
-  display: none; }
+.footer {
+  border-bottom: 5px solid var(--main-color-1); }
+  .footer nav {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+    margin: auto; }
+  .footer p {
+    font: 400 14px/20px var(--main-font-1);
+    letter-spacing: 0;
+    margin-top: 30px; }
+  .footer .fa {
+    color: #CDD6E0; }
 
-@media screen and (min-width: 1024px) {
-  .mobile-hidden {
-    display: initial; }
-
-  .desktop-hidden {
-    display: none; } }
+@media screen and (min-width: 720px) {
+  .footer {
+    height: 13vh;
+    padding: 0 11vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .footer p {
+      margin: 0; }
+    .footer nav {
+      margin-left: 1.5rem; }
+    .footer .fa:hover {
+      color: var(--main-color-1); } }
 
 /*# sourceMappingURL=styles.css.map */

@@ -1,34 +1,48 @@
+//---GENERAL-SETTINGS---//
+
 * {
     font-family: var(--main-font-1), var(--main-font-2), Helvetica, sans-serif;
     box-sizing: border-box;
     text-align: center;
 }
-
 button {
     cursor: pointer;
 }
-
 a {
     text-decoration: none;
     color: initial;
 }
-
 body {
     margin: 0;
     padding: 0;
 }
-
 main {
     margin-top: 15vh;
 }  
 
-.heading-img {
-    max-width: 75vw;
-    display: block;
-    margin: auto;
+.color-aqua {
+    color: var(--main-color-2);
+}
+.color-blue {
+    color: var(--main-color-1);
 }
 
+.hidden { //Elementos que se muestran/ocultan desde JS.
+    display: none;
+}
+.mobile-hidden { //Elementos ocultos en vista mobile.
+    display: none;
+}
 
+@media screen and (min-width: 1024px) { //En realidad podría ser a 1200, pero por ahora lo dejo en 1024.
+    .mobile-hidden {
+        display: initial;
+    }
+    .desktop-hidden { //Elementos ocultos en vista desktop.
+        display: none;
+    }
+}
+//---SEARCH-SECTION-STYLING--//
 
 h1 {
     font: 700 25px / 33px var(--main-font-2);
@@ -36,6 +50,13 @@ h1 {
     max-width: 440px;
     margin: 0.5rem auto 2rem;
 }
+.heading-img {
+    max-width: 75vw;
+    display: block;
+    margin: auto;
+}
+
+//-SEARCH-BAR-//
 
 #search-ctn {
     border: 2px solid var(--main-color-1);
@@ -43,6 +64,7 @@ h1 {
     width: 90vw;
     max-width: 550px;
     margin: 0 auto;
+    overflow: hidden;
 }
 .search-bar {
     border-radius: 30px;
@@ -68,9 +90,22 @@ h1 {
     display: none;
 }
 
+.active-search { 
+    flex-direction: row-reverse;
+    .clear-search-button {
+        display: initial;
+    }
+    .search-input {
+        padding-left: 0;
+    }
+    .search-button {
+        padding-left: 4px;
+    }
+}
+
+//-SEARCH-SUGGESTIONS-//
 .search-suggestions {
     background-color: #FFFFFF00;
-    //display: none;
 }
 .search-suggestions::before {
     content: "";
@@ -82,6 +117,10 @@ h1 {
 }
 .suggestion {
     text-align: start;
+    &:hover {
+        background-color: #F2F4F7E6;
+        cursor: pointer;
+    }
     img {
         width: 16px;
         height: 16px;
@@ -95,22 +134,7 @@ h1 {
     }
 }
 
-
-
-
-.color-aqua {
-    color: var(--main-color-2);
-}
-
-.color-blue, footer i:hover {
-    color: var(--main-color-1);
-}
-
-
-#theme-switch {
-    cursor: pointer;
-}
-
+//-TRENDING-TOPICS-TITLES-SIZING-//
 #trending-topics-ctn {
     font: 500 14px / 25px var(--main-font-2);
     max-width: 60vw;
@@ -122,22 +146,17 @@ h1 {
     margin: 2rem auto 0;
 }
 
+
+
+
+
+//---RANDOM-NOT-ALREADY-DONE-SECTIONS-STYLES---//
+
 .section-title {
     font: 700 20px / 30px var(--main-font-2);
     margin: 0 auto 0.5rem;
     color: var(--main-color-1);
 }
-
-
-
-.fullscreen-gif {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 8vh 8vw;
-    display: grid;
-}
-
 .more-button {
     font: 700 13px var(--main-font-2);
     background-color: #FFFFFF00;
@@ -148,15 +167,24 @@ h1 {
     color: var(--main-color-1);
 }
 
+#theme-switch {
+    cursor: pointer;
+}
 
-/*---SEARCH SECTION---*/
-.search-section {
-    margin-top: 15vh; /*Por la barra de arriba.*/
+.fullscreen-gif {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 8vh 8vw;
+    display: grid;
 }
 
 
 
+
+
 @media screen and (min-width: 1200px) {
+    //---TITLES-RESIZING--//
     h1 {
         font-size: 40px;
         line-height: 50px;
@@ -177,32 +205,11 @@ h1 {
 
 
 /*SOLO-POR-AHORA-SETTINGS*/
-.scrollable {
-    width: inherit;
-    overflow-x: scroll;
-}
+
 
 .searched-section, .favorites-section,  .my-gifos-section {
     margin-bottom: 5rem;
     display: none; ///
-}
-
-
-.hidden { //Son cosas que como todavía no les doy funcionalidad,quiero que se las tomen.
-    display: none;
-}
-
-.active-search { 
-    flex-direction: row-reverse;
-    .clear-search-button {
-        display: initial;
-    }
-    .search-input {
-        padding-left: 0;
-    }
-    .search-button {
-        padding-left: 4px;
-    }
 }
 
 .search-button img { //Neither works.
@@ -211,7 +218,8 @@ h1 {
 }
 
 
-
-/* Dato: #trending-topics es id y no clase porque después la llamo y relleno desde JS.
+/*
+COMMENTS: 
+En el _footer hay unos comentarios feotes.
 <i class="fa fa-search"></i> Lo dejo acá por si lo necesitás: la lupita.
 */

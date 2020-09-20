@@ -30,12 +30,14 @@
     display: flex;
     height: 190px;
     width: max-content;
+    margin-left: 22px; ///
 }
 
 .gif-card {
     position: relative;
     height: inherit;
     width: auto;
+    margin-right: 22px; ///
     img {
         height: inherit;
     }
@@ -51,20 +53,13 @@
 }
 
 
-/*SOLO-POR-AHORA-SETTINGS?*/
-#trending-cards-ctn {
-    margin-left: 22px; ///
-}
-.gif-card {
-    margin-right: 22px;
-}
-
 
 @media screen and (min-width: 1024px) {
 
     #trending-cards-ctn {
         height: 35vh;
         min-height: 190px;
+        margin-left: 0; ///
     }
     //---GIF-HOVER-SETTINGS---//
     .filter {
@@ -94,7 +89,6 @@
             display: initial;
         }
     }
-    
     .gif-data {
         color: var(--font-color-2);
         position: absolute;
@@ -113,21 +107,17 @@
         font: 500 16px var(--main-font-1);
     }
 
+    //--CARROUSEL--//
     .scrollable {
         width: 78vw;
         overflow: hidden
     }
-
     .flex-row {
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
         justify-content: space-between;
         margin: 0 5vw;
-    }
-    /*SOLO-POR-AHORA/BARATO-SETTINGS?*/
-    #trending-cards-ctn {
-        margin-left: 0; ///
     }
     .gif-card {
         margin-right: 2vw;
@@ -136,6 +126,5 @@
     .arrow-right:hover, .arrow-left:hover {
         background-color: #FFFFFF;
     }
-
 }
 
