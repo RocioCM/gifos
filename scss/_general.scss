@@ -165,6 +165,7 @@ h1 {
     border-radius: 25px;
     padding: 1rem 2rem;
     color: var(--main-color-1);
+    margin-bottom: 5rem;
 }
 
 #theme-switch {
@@ -207,11 +208,6 @@ h1 {
 /*SOLO-POR-AHORA-SETTINGS*/
 
 
-.searched-section, .favorites-section,  .my-gifos-section {
-    margin-bottom: 5rem;
-    display: none; ///
-}
-
 .search-button img { //Neither works.
     color: red;
     fill: red;
@@ -221,5 +217,4 @@ h1 {
 /*
 COMMENTS: 
 En el _footer hay unos comentarios feotes.
-<i class="fa fa-search"></i> Lo dejo acá por si lo necesitás: la lupita.
 */

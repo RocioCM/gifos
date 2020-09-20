@@ -251,7 +251,8 @@ h1 {
   border: 1px solid var(--main-color-1);
   border-radius: 25px;
   padding: 1rem 2rem;
-  color: var(--main-color-1); }
+  color: var(--main-color-1);
+  margin-bottom: 5rem; }
 
 #theme-switch {
   cursor: pointer; }
@@ -275,10 +276,6 @@ h1 {
   #trending-topics-ctn {
     font-size: 16px; } }
 /*SOLO-POR-AHORA-SETTINGS*/
-.searched-section, .favorites-section, .my-gifos-section {
-  margin-bottom: 5rem;
-  display: none; }
-
 .search-button img {
   color: red;
   fill: red; }
@@ -286,7 +283,6 @@ h1 {
 /*
 COMMENTS: 
 En el _footer hay unos comentarios feotes.
-<i class="fa fa-search"></i> Lo dejo acá por si lo necesitás: la lupita.
 */
 .aside-trendings {
   background-color: var(--bg-color-2);
