@@ -50,12 +50,9 @@ const clearSearchButton = searchBar.children[0];
 searchInput.addEventListener("input",getSuggestions); 
 
 async function getSuggestions() { //Busca las sugerencias para la frase en searchInput.
-    console.log(this.value) ///
-
     let terms = this.value.split(" ").join("+") //Une los términos para la búsqueda.
     let suggestions = await fetch(`https://api.giphy.com/v1/tags/related/${terms}?api_key=${apiKey}`)
     try {
-
         if (suggestions.status!=200) throw new Error("No se pudieron cargar sugerencias de búsqueda.");
         suggestions = await suggestions.json();
         if (suggestions.data.length==0) throw new Error("No se han encontrado sugerencias para la búsqueda.")
@@ -108,8 +105,8 @@ function disableSearchBar() {
 //>b. Realiza la búsqueda de las palabras en searchInput.
 async function makeSearch() {
     let text = searchInput.value; //Captura los términos a buscar.
-    text = text.split(" ").join("+"); //Le da el formato correcto para el fetch.
     console.log("Ahora voy a buscar esto: "+text) ///
+    text = text.split(" ").join("+"); //Le da el formato correcto para el fetch.
     let results = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${text}&limit=12`);
     results = await results.json();
     try {
@@ -132,9 +129,7 @@ async function makeSearch() {
 
 
 
-
-
-//1. Rellena el campo de trending topics. 
+//3. Rellena el campo de trending topics. 
 
 setTrendingTopics(document.getElementById("trending-topics-ctn"))
 
@@ -144,8 +139,9 @@ async function setTrendingTopics(trendingTopicsCtn) {
         if (topics.status!=200) throw new Error("No se pudieron cargar los trending topics");
 
         topics = await topics.json(); ///convierte la respuesta en json (casualmente, en una promesa).
-        topics = topics.data.splice(0,5); ///de la promesa, obtiene data, que tiene 20 términos y saca sólo 5.
-        topics.forEach(topic => addTrendingTopic(topic, trendingTopicsCtn)); //agrega al DOM todos cada topic.
+        const topicsList = topics.data.splice(0,5); ///de la promesa, obtiene data, que tiene 20 términos y saca sólo 5.
+        topicsList.forEach(topic => addTrendingTopic(topic, trendingTopicsCtn)); //agrega al DOM todos cada topic.
+        trendingTopicsCtn.lastElementChild.remove() //Elimina la última coma.
     }
     catch(error) {
         console.log(`Trending Topics: \n${error}`);
@@ -154,9 +150,15 @@ async function setTrendingTopics(trendingTopicsCtn) {
 
 function addTrendingTopic(topic, topicsCtn) { //Agrega un topic al DOM y le pone un Listener para lanzar el search cuando se lo clickea.
     let ctn = document.createElement("span");
-    ctn.textContent = `${topic}, `; 
-    ctn.addEventListener("click", ()=> console.log(ctn.textContent) /*{searchInput.value = ctn.textContent; makeSearch()}*/);
-    topicsCtn.appendChild(ctn);
+    ctn.textContent = topic; 
+    ctn.addEventListener("click", () => {
+        searchInput.value = ctn.textContent; 
+        makeSearch()}
+    );
+    topicsCtn.appendChild(ctn); //Agrega la palabra al párrafo en el DOM
+    let separator = document.createElement("span"); ///No me gusta esto, pero es lo que hay, porque no aparece el child #text después de cada span.
+    separator.textContent = ", ";
+    topicsCtn.appendChild(separator);
 }
 
 

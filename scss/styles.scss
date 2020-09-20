@@ -3,3 +3,23 @@
 @import '_general';
 @import '_aside';
 @import '_footer';
+
+
+
+//En serio necesito que estas clases sean lo último en aplicarse.
+
+.hidden { //Elementos que se muestran/ocultan desde JS.
+    display: none;
+}
+.mobile-hidden { //Elementos ocultos en vista mobile.
+    display: none;
+}
+
+@media screen and (min-width: 1024px) { //En realidad podría ser a 1200, pero por ahora lo dejo en 1024.
+    .mobile-hidden {
+        display: initial;
+    }
+    .desktop-hidden { //Elementos ocultos en vista desktop.
+        display: none;
+    }
+}
