@@ -15,6 +15,7 @@ a {
 body {
     margin: 0;
     padding: 0;
+    background-color: var(--bg-color-1);
 }
 main {
     margin-top: 15vh;
@@ -201,9 +202,34 @@ h1 {
     color: red;
     fill: red;
 }
+// #search-ctn {  ///Solo se mantiene en sticky hasta llegar al aside.
+//     position: sticky;
+//     top: 2vh;
+//     z-index: 10;
+// }
+.header-bar {
+    //background-color: rgb(56, 56, 56);
+}
 
+.create-gifo-btn {
+    display: inline-block;
+    height: 54px;
+    width: 54px;
+    background-image: var(--btn-img-create-gifo);
+    &:hover {
+        background-image: var(--btn-img-create-gifo-hover);
+    }
+    &:active {
+        background-image: var(--btn-img-create-gifo-active);
+    }
+}
 
+.dark { //Podría desde JS agregarle esta clase al body cuando el darkMode se activa.
+    --bg-color-1: var(--bg-dark-color-1);
+    ///Acá cambio todo lo demás tmbn...
+}
 /*
 COMMENTS: 
-En el _footer hay unos comentarios feotes.
+
+1. En el footer los icons quedan mochos.
 */

@@ -8,9 +8,23 @@
   --font-color-2: #FFFFFF;
   --main-font-1: "Roboto";
   --main-font-2: "Montserrat";
+  --btn-img-create-gifo: url(../images/button-crear-gifo.svg);
+  --btn-img-create-gifo-hover: url(../images/CTA-crear-gifo-hover.svg);
+  --btn-img-create-gifo-active: url(../images/CTA-crear-gifo-active.svg);
+  --icon-fb: url(../images/icon_facebook.svg);
+  --icon-fb-hover: url(../images/icon_facebook_hover.svg);
+  --icon-tw: url(../images/icon-twitter.svg);
+  --icon-tw-hover: url(../images/icon-twitter-hover.svg);
+  --icon-ig: url(../images/icon_instagram.svg);
+  --icon-ig-hover: url(../images/icon_instagram-hover.svg);
   --bg-dark-color-1: #37383C;
   --bg-dark-color-2: #222326;
-  --dark-font-color: #FFFFFF; }
+  --dark-font-color: #FFFFFF;
+  --btn-img-create-gifo--dark: url(../images/CTA-crear-gifo-modo-noc.svg);
+  --btn-img-create-gifo-hover-dark: url(../images/CTA-crear-gifo-hover-modo-noc.svg);
+  --icon-fb-hover-dark: url(../images/icon_facebook_noc.svg);
+  --icon-tw-hover-dark: url(../images/icon_twitter_noc.svg);
+  --icon-ig-hover-dark: url(../images/icon_instagram_noc.svg); }
 
 /*---HEADER---*/
 .header-bar {
@@ -129,7 +143,8 @@ a {
 
 body {
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  background-color: var(--bg-color-1); }
 
 main {
   margin-top: 15vh; }
@@ -270,9 +285,23 @@ h1 {
   color: red;
   fill: red; }
 
+.create-gifo-btn {
+  display: inline-block;
+  height: 54px;
+  width: 54px;
+  background-image: var(--btn-img-create-gifo); }
+  .create-gifo-btn:hover {
+    background-image: var(--btn-img-create-gifo-hover); }
+  .create-gifo-btn:active {
+    background-image: var(--btn-img-create-gifo-active); }
+
+.dark {
+  --bg-color-1: var(--bg-dark-color-1); }
+
 /*
 COMMENTS: 
-En el _footer hay unos comentarios feotes.
+
+1. En el footer los icons quedan mochos.
 */
 .aside-trendings {
   background-color: var(--bg-color-2);
@@ -386,8 +415,18 @@ En el _footer hay unos comentarios feotes.
     font: 400 14px/20px var(--main-font-1);
     letter-spacing: 0;
     margin-top: 30px; }
-  .footer .fa {
-    color: #CDD6E0; }
+  .footer .facebook {
+    width: 8px;
+    height: 17px;
+    background-image: var(--icon-fb); }
+  .footer .twitter {
+    width: 18px;
+    height: 17px;
+    background-image: var(--icon-tw); }
+  .footer .instagram {
+    width: 18px;
+    height: 18px;
+    background-image: var(--icon-ig); }
 
 @media screen and (min-width: 720px) {
   .footer {
@@ -400,8 +439,12 @@ En el _footer hay unos comentarios feotes.
       margin: 0; }
     .footer nav {
       margin-left: 1.5rem; }
-    .footer .fa:hover {
-      color: var(--main-color-1); } }
+    .footer .facebook:hover {
+      background-image: var(--icon-fb-hover); }
+    .footer .twitter:hover {
+      background-image: var(--icon-tw-hover); }
+    .footer .instagram:hover {
+      background-image: var(--icon-ig-hover); } }
 .hidden {
   display: none; }
 

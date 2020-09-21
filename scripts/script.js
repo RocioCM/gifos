@@ -2,40 +2,7 @@ const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
 
 
 
-//1. Busca y rellena los trending GIFs.
-
-const trendingCardsCtn = document.getElementById("trending-cards-ctn");
-const trendingCardTemplate = trendingCardsCtn.children[0].content.firstElementChild;
-//displayTrendingGifs(trendingCardsCtn);
-
-
-async function displayTrendingGifs(trendingCardsCtn) {
-    let gifs = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=10`);
-    try {
-        if (gifs.status!=200) throw new Error("No se han podido cargar los GIFs.");
-        
-        gifs = await gifs.json();
-        gifs = gifs.data ///Ahora es un array con gifs en toda regla.
-        gifs.forEach(gif => addTrendingGifToDOM(gif)); //Crea cada card y la agrega al DOM.
-    }
-    catch(error) {
-        console.log(`Trending Gifs: \n${error}`);
-    } 
-}
-
-function addTrendingGifToDOM(gif) {
-    let ctn = trendingCardTemplate.cloneNode(true);
-    ctn.id = gif.id; //Para tener el id del gif a mano cuando lo quiera guardar en favoritos.
-    ctn.children[0].src = gif.images.fixed_height_small.url; //Setea el gif. Que para variar no se muestra >:c
-    ctn.children[0].alt = gif.title;
-    let gifData = gif.title.split("GIF by "); //Obtiene el título del gif y el usuario.
-    ctn.children[2].children[0].textContent = gifData[1]; //Setea el usuario.
-    ctn.children[2].children[1].textContent = gifData[0]; //Setea el título.
-    trendingCardsCtn.appendChild(ctn);
-}
-
-
-//2. Funcionalidad de búsqueda.
+//1. Funcionalidad de búsqueda.
 const searchCtn = document.getElementById("search-ctn"); //Contenedor de la barra y las sugerencias.
 const suggestionsCtn = searchCtn.children[1]; //Contenedor de todas las sugerencias.
 const suggestionTemplate = suggestionsCtn.firstElementChild.content.firstElementChild; //Template para cada sugerencia.
@@ -45,7 +12,7 @@ const searchButton = searchBar.children[2];
 const clearSearchButton = searchBar.children[0];
 
 
-//2.1. Predicción de búsqueda (suggestions).
+//1.1. Predicción de búsqueda (suggestions).
 
 searchInput.addEventListener("input",getSuggestions); 
 
@@ -81,7 +48,7 @@ function addSuggestionToDOM(suggestion, containerTemplate) {
 }
 
 
-//2.2. Barra, Búsqueda y display de resultados.
+//1.2. Barra, Búsqueda y display de resultados.
 
 //a. Dar vuelta los botones. >
 searchBar.addEventListener("focusin", enableSearchBar);
@@ -129,7 +96,7 @@ async function makeSearch() {
 
 
 
-//3. Rellena el campo de trending topics. 
+//2. Rellena el campo de trending topics. 
 
 setTrendingTopics(document.getElementById("trending-topics-ctn"))
 
@@ -166,6 +133,37 @@ function addTrendingTopic(topic, topicsCtn) { //Agrega un topic al DOM y le pone
 
 
 
+//1. Busca y rellena los trending GIFs.
+
+const trendingCardsCtn = document.getElementById("trending-cards-ctn");
+const trendingCardTemplate = trendingCardsCtn.children[0].content.firstElementChild;
+displayTrendingGifs(trendingCardsCtn);
+
+
+async function displayTrendingGifs(trendingCardsCtn) {
+    let gifs = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=10`);
+    try {
+        if (gifs.status!=200) throw new Error("No se han podido cargar los GIFs.");
+        
+        gifs = await gifs.json();
+        gifs = gifs.data ///Ahora es un array con gifs en toda regla.
+        gifs.forEach(gif => addTrendingGifToDOM(gif)); //Crea cada card y la agrega al DOM.
+    }
+    catch(error) {
+        console.log(`Trending Gifs: \n${error}`);
+    } 
+}
+
+function addTrendingGifToDOM(gif) {
+    let ctn = trendingCardTemplate.cloneNode(true);
+    ctn.id = gif.id; //Para tener el id del gif a mano cuando lo quiera guardar en favoritos.
+    ctn.children[0].src = gif.images.fixed_height_small.url; //Setea el gif. Que para variar no se muestra >:c
+    ctn.children[0].alt = gif.title;
+    let gifData = gif.title.split("GIF by "); //Obtiene el título del gif y el usuario.
+    ctn.children[2].children[0].textContent = gifData[1]; //Setea el usuario.
+    ctn.children[2].children[1].textContent = gifData[0]; //Setea el título.
+    trendingCardsCtn.appendChild(ctn);
+}
 
 
 
@@ -176,7 +174,5 @@ function addTrendingTopic(topic, topicsCtn) { //Agrega un topic al DOM y le pone
 ////EEEEEEPA: DETALLES
 ///document.getElementById("theme-switch").addEventListener("click",() => console.log("EEEEEh, alto theme oscuro.")) ///
 //3. En addTrendingGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
-//4. Para mover el carrousel en desktop tengo que usar JS sí o sí. Y creo que va a funcionar usar: transform: translateX(-...px); (Y así hacer que se mueva.)
-//5. DESTILDATE LA LINEA QUE LLAMA AL CARROUSEL "displayTrendingGifs(...)".
-//7. Arreglar el tema de las comitas en los Trending Topics. (Y descomentar lo del EventListener y sacar el console.log).
+//4. Para mover el carrousel en desktop hay que usar JS. Y creo que va a funcionar usar: transform: translateX(-...px); (Y así hacer que se mueva.)
 //8. Implementá la búsqueda en la función search.

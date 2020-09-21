@@ -12,8 +12,21 @@
         letter-spacing: 0;
         margin-top: 30px;
     }
-    .fa {
-        color: #CDD6E0;
+
+    .facebook {
+        width: 8px;
+        height: 17px;
+        background-image: var(--icon-fb);
+    }
+    .twitter {
+        width: 18px;
+        height: 17px;
+        background-image: var(--icon-tw);
+    }
+    .instagram {
+        width: 18px;
+        height: 18px;
+        background-image: var(--icon-ig);
     }
 }
 
@@ -30,12 +43,14 @@
         nav {
             margin-left: 1.5rem;
         }
-        .fa:hover { //doesnt WOOOOOOORK!
-            color: var(--main-color-1);
-            //fill: var(--main-color-1);
-            //background-image: "../images/icon-twitter-hover";
-            //background-color: red;
+        .facebook:hover {
+            background-image: var(--icon-fb-hover);
         }
-    }
-    
+        .twitter:hover {
+            background-image: var(--icon-tw-hover);
+        }
+        .instagram:hover {
+            background-image: var(--icon-ig-hover);
+        }
+    } 
 }
