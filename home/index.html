@@ -20,10 +20,10 @@
             <img class="hamb-icon desktop-hidden" src="../images/burger.svg" alt="Burguer Menu icon">
             <img class="close-icon desktop-hidden" src="../images/close.svg" alt="Close Menu icon">
             <nav>
-                <ul>
-                    <li><label class="theme-switch" for="theme-switch">Modo Nocturno</label><input type="checkbox" id="theme-switch"></li>
-                    <li><a href="#">Favoritos</a></li>
-                    <li><a href="#">Mis GIFOS</a></li>
+                <ul id="header-links">
+                    <li>Modo Nocturno</li>
+                    <li>Favoritos</li>
+                    <li>Mis GIFOS</li>
                     <li class="btn-create mobile-hidden"><a class="create-gifo-btn" href="create/index.html"><!--<img src="../images/button-crear-gifo.svg" alt="Crear GIFO">--></a></li>
                 </ul>
             </nav>
@@ -31,16 +31,16 @@
     </header>
 
     <main>
-    <section class="search-section">
+    <section class="search-section hidden-section">
         <h1 class="color-blue">Inspírate, busca, guarda y crea los mejores <span class="color-aqua">GIFOS</span></h1>
         <img class="heading-img" src="../images/ilustra_header.svg" alt="Felices personas buscando gifos">
         <div id="search-ctn">
-            <div for="search" class="search-bar" id="search-bar"> 
+            <label for="search" class="search-bar" id="search-bar"> 
                 <button class="clear-search-button"><img src="../images/close.svg" alt="Clear"></button>
                 <input class="search-input" type="text" name="search" id="search" placeholder="Busca GIFOS y más"> 
                 <button class="search-button"><img src="../images/icon-search.svg" alt="search"></button>
-            </div>
-            <div class="search-suggestions hidden">
+            </label>
+            <div class="search-suggestions">
                 <template>
                     <article class="suggestion">
                         <img src="../images/icon-search-active.svg" alt="search">
@@ -53,34 +53,48 @@
         <p class="color-blue" id="trending-topics-ctn"></p>
     </section>
 
-    <section class="searched-section hidden">
-        <h2 class="searched-title" id="searched"></h2>
-        <div class="search-results-ctn gifs-ctn">
+    <section class="searched-section hidden-section hidden">
+        <h2 class="searched-title"></h2>
+        <div>
+            <div id="search-results-ctn" class="search-results-ctn gifs-ctn">
 
+            </div>
+            <button class="more-button">VER MÁS</button>
         </div>
-        <button class="more-button">VER MÁS</button>
-        <div> <!-- not found section-->
-            <img src="" alt="">
-            <h3></h3>
+        <div class="search-no-results"> 
+            <img src="../images/icon-busqueda-sin-resultado.svg" alt="busqueda sin resultados">
+            <h3 class="empty-sec-msg">Intenta con otra búsqueda</h3>
         </div>
     </section>
 
-    <section class="favorites-section hidden">
-        <img src="../images/icon-favoritos.svg" alt="corazon">
+    <section class="favorites-section hidden-section hidden">
+        <img class="section-icon" src="../images/icon-favoritos.svg" alt="ícono">
         <h2 class="section-title">Favoritos</h2>
-        <div class="favorites-ctn gifs-ctn">
+        <div>   
+            <div class="favorites-ctn gifs-ctn">
 
+            </div>
+            <button class="more-button">VER MÁS</button>
+        </div> 
+        <div class="empty-favorites">
+            <img src="../images/icon-fav-sin-contenido.svg" alt="Favoritos vacío">
+            <h3 class="empty-sec-msg">¡Guarda tu primer GIFO en Favoritos para que se muestre aquí!</h3>
         </div>
-        <button class="more-button">VER MÁS</button>
     </section>
 
-    <section class="my-gifos-section hidden">
-        <img src="../images/icon-mis-gifos.svg"  alt="">
+    <section class="my-gifos-section hidden-section hidden">
+        <img class="section-icon" src="../images/icon-mis-gifos.svg"  alt="ícono">
         <h2 class="section-title" >Mis GIFOS</h2>
-        <div class="my-gifos-ctn gifs-ctn">
+        <div>
+            <div class="my-gifos-ctn gifs-ctn">
 
+            </div>
+            <button class="more-button">VER MÁS</button>
         </div>
-        <button class="more-button">VER MÁS</button>
+        <div class="empty-my-gifos">
+            <img src="../images/icon-mis-gifos-sin-contenido.svg" alt="Mis Gifos vacío">
+            <h3 class="empty-sec-msg">¡Anímate a crear tu primer GIFO!</h3>
+        </div>
     </section>
     </main>
 
@@ -151,7 +165,7 @@
 
 <!-- El gif del gatito en moto: -->
 <!-- <article class="gif-card"> 
-        <img src="../cat.gif" alt="Cat Gif"> 
+        <img src="../../cat.gif" alt="Cat Gif"> 
         <div class="card-buttons-ctn">
             <img src="../images/icon-fav-hover.svg" alt="favorite">
             <img src="../images/icon-download-hover.svg" alt="download">

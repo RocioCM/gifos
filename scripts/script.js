@@ -1,5 +1,51 @@
 const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
 
+//0. Links del header funcionales.
+const navBar = document.getElementById("header-links");
+const bodyElement = document.querySelector("body"); //Usado en el theme-switch.
+const hiddenSections = document.querySelectorAll(".hidden-section");
+//Datos: hiddenSection[0] y [1] trae a search-section y searched-section respectivamente.
+//Y [2] y [3] se corresponden a las secciones de favoritos y myGifos respectivamente.
+
+
+navBar.children[0].addEventListener("click", themeSwitchToDark);
+navBar.children[1].addEventListener("click", openFavorites);
+navBar.children[2].addEventListener("click", openMyGifos);
+
+function themeSwitchToDark() {
+    this.textContent = "Modo Diurno"
+    bodyElement.classList.add("dark");
+    this.removeEventListener("click", themeSwitchToDark);
+    this.addEventListener("click",themeSwitchToLight);
+}
+function themeSwitchToLight() {
+    this.textContent = "Modo Nocturno"
+    bodyElement.classList.remove("dark");
+    this.removeEventListener("click", themeSwitchToLight);
+    this.addEventListener("click",themeSwitchToDark);
+}
+
+function openFavorites() {
+    const favoritesSection = hiddenSections[2];
+    hiddenSections.forEach(section => section.classList.add("hidden")); //Oculta todas las secciones.
+    favoritesSection.classList.remove("hidden") //Muestra sólo la sección deseada.
+
+    ////Acá hago magia para mostrar lo que corresponde dentro de favorites.
+    //
+    //
+}
+
+function openMyGifos() {
+    const myGifosSection = hiddenSections[3];
+    hiddenSections.forEach(section => section.classList.add("hidden"));
+    myGifosSection.classList.remove("hidden")
+
+    ////Acá hago magia para mostrar lo que corresponde dentro de myGifos.
+    //
+    //
+}
+
+
 
 
 //1. Funcionalidad de búsqueda.
@@ -10,14 +56,23 @@ const searchBar = searchCtn.children[0]; //Contenedor de la cruz, el input y la 
 const searchInput = searchBar.children[1]; 
 const searchButton = searchBar.children[2]; 
 const clearSearchButton = searchBar.children[0];
+const searchResultsCtn = hiddenSections[0].children[1].firstElementChild; //Contenedor de los resultados de la búsqueda.
+
 
 
 //1.1. Predicción de búsqueda (suggestions).
 
-searchInput.addEventListener("input",getSuggestions); 
+searchInput.addEventListener("keyup",getSuggestions); 
 
-async function getSuggestions() { //Busca las sugerencias para la frase en searchInput.
+async function getSuggestions(e) { //Busca las sugerencias para la frase en searchInput.
+   
+    if(e.key==="Enter" || e.keyCode===13) { //Si el usuario apretó enter, lanza la búsqueda.
+        makeSearch();
+        return;
+    };
+    
     let terms = this.value.split(" ").join("+") //Une los términos para la búsqueda.
+    console.log(terms)
     let suggestions = await fetch(`https://api.giphy.com/v1/tags/related/${terms}?api_key=${apiKey}`)
     try {
         if (suggestions.status!=200) throw new Error("No se pudieron cargar sugerencias de búsqueda.");
@@ -26,13 +81,11 @@ async function getSuggestions() { //Busca las sugerencias para la frase en searc
         suggestions = suggestions.data; //Las sugerencias están en el array data.
         if (suggestions.length>5) suggestions.splice(5,suggestions.length); //Me quedo sólo con 5 sugerencias.
         
-        suggestionsCtn.classList.remove("hidden") //Si sugerencias-ctn todavía está oculto, lo muestra.
         suggestionsCtn.innerHTML = ""; //Borra las sugerencias anteriores.
         suggestions.forEach(object => addSuggestionToDOM(object.name, suggestionTemplate));
 
     } catch (error) {
         suggestionsCtn.innerHTML = ""; //Borra las sugerencias anteriores.
-        suggestionsCtn.classList.add("hidden"); //Esconde el contenedor de sugerencias, ya que está vacío.
         console.log(`Search suggestions failed: ${error}`);
     }
 }
@@ -66,11 +119,12 @@ clearSearchButton.addEventListener("mousedown",() => searchInput.value="")
 function enableSearchBar() {searchBar.classList.add("active-search")};
 function disableSearchBar() {
     searchBar.classList.remove("active-search");
-    suggestionsCtn.classList.add("hidden");
+    suggestionsCtn.innerHTML = "";
 };
 
 //>b. Realiza la búsqueda de las palabras en searchInput.
 async function makeSearch() {
+    disableSearchBar();
     let text = searchInput.value; //Captura los términos a buscar.
     console.log("Ahora voy a buscar esto: "+text) ///
     text = text.split(" ").join("+"); //Le da el formato correcto para el fetch.
@@ -80,12 +134,21 @@ async function makeSearch() {
         if (results.message) throw new Error(results.message);
         if (results.data.lenght==0) throw new Error("No se han encontrado coincidencias con la búsqueda.")
     
-        console.log(results.data) ///
+        const gifs = results.data;
 
-        ////Inserte aquí su magia para agregar al DOM los gifs
-        //
-        //
-        //
+        const sectionTitle = searchResultsCtn.parentNode.parentNode.firstElementChild;
+        sectionTitle.textContent = searchInput.value; 
+
+        //Cuidate, que saqué temporalmente varios hidden de los containers en HTML.
+        searchResultsCtn.parentElement.classList.remove("hidden");
+        if (gifs.length===0) {
+            searchResultsCtn.parentNode.classList.add("hidden");
+            searchResultsCtn.parentNode.parentNode.children[2].classList.remove("hidden");
+            return;
+        }
+        
+        gifs.forEach(gif => addGifToDOM(gif,searchResultsCtn));
+
     } 
     catch(error) {
         console.log(`Search failed: \n${error}`);
@@ -107,25 +170,24 @@ async function setTrendingTopics(trendingTopicsCtn) {
 
         topics = await topics.json(); ///convierte la respuesta en json (casualmente, en una promesa).
         const topicsList = topics.data.splice(0,5); ///de la promesa, obtiene data, que tiene 20 términos y saca sólo 5.
-        topicsList.forEach(topic => addTrendingTopic(topic, trendingTopicsCtn)); //agrega al DOM todos cada topic.
-        trendingTopicsCtn.lastElementChild.remove() //Elimina la última coma.
+        topicsList.forEach((topic,index) => addTrendingTopic(topic, trendingTopicsCtn,index)); //agrega al DOM todos cada topic.
     }
     catch(error) {
         console.log(`Trending Topics: \n${error}`);
     }
 }
 
-function addTrendingTopic(topic, topicsCtn) { //Agrega un topic al DOM y le pone un Listener para lanzar el search cuando se lo clickea.
+function addTrendingTopic(topic, topicsCtn,index) { //Agrega un topic al DOM y le pone un Listener para lanzar el search cuando se lo clickea.
     let ctn = document.createElement("span");
     ctn.textContent = topic; 
+
+    ctn.textContent += (index!==4) ? ", " : "  ";
+
     ctn.addEventListener("click", () => {
-        searchInput.value = ctn.textContent; 
+        searchInput.value = ctn.textContent.slice(0,-2); //Lo busca sin la coma.
         makeSearch()}
     );
-    topicsCtn.appendChild(ctn); //Agrega la palabra al párrafo en el DOM
-    let separator = document.createElement("span"); ///No me gusta esto, pero es lo que hay, porque no aparece el child #text después de cada span.
-    separator.textContent = ", ";
-    topicsCtn.appendChild(separator);
+    topicsCtn.appendChild(ctn); //Agrega la palabra al párrafo en el DOM.
 }
 
 
@@ -147,32 +209,42 @@ async function displayTrendingGifs(trendingCardsCtn) {
         
         gifs = await gifs.json();
         gifs = gifs.data ///Ahora es un array con gifs en toda regla.
-        gifs.forEach(gif => addTrendingGifToDOM(gif)); //Crea cada card y la agrega al DOM.
+        gifs.forEach(gif => addGifToDOM(gif,trendingCardsCtn)); //Crea cada card y la agrega al DOM.
     }
     catch(error) {
         console.log(`Trending Gifs: \n${error}`);
     } 
 }
 
-function addTrendingGifToDOM(gif) {
+function addGifToDOM(gif, gifsCtn) {
     let ctn = trendingCardTemplate.cloneNode(true);
-    ctn.id = gif.id; //Para tener el id del gif a mano cuando lo quiera guardar en favoritos.
+    //ctn.id = gif.id; /////EEEEEh, NO PUEDO HACER ESOOOOO. Podrían repetirse. Para tener el id del gif a mano cuando lo quiera guardar en favoritos.
     ctn.children[0].src = gif.images.fixed_height_small.url; //Setea el gif. Que para variar no se muestra >:c
     ctn.children[0].alt = gif.title;
     let gifData = gif.title.split("GIF by "); //Obtiene el título del gif y el usuario.
     ctn.children[2].children[0].textContent = gifData[1]; //Setea el usuario.
     ctn.children[2].children[1].textContent = gifData[0]; //Setea el título.
-    trendingCardsCtn.appendChild(ctn);
+    gifsCtn.appendChild(ctn);
+
+    ///Agregar event Listeners a los botoneeeees!
 }
 
-
-
-
+//Funcionalidad del carrusel.
+const carrouselCtn = trendingCardsCtn.parentElement.parentElement;
+///console.log(carrouselCtn);
+carrouselCtn.firstElementChild.addEventListener("click",()=> console.log("move left"));
+carrouselCtn.lastElementChild.addEventListener("click",()=> console.log("move right"));
 
 
 
 ////EEEEEEPA: DETALLES
-///document.getElementById("theme-switch").addEventListener("click",() => console.log("EEEEEh, alto theme oscuro.")) ///
 //3. En addTrendingGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
 //4. Para mover el carrousel en desktop hay que usar JS. Y creo que va a funcionar usar: transform: translateX(-...px); (Y así hacer que se mueva.)
+//9. Agregar event listeners a los botones en addTrendingGifToDOM.
+//10. Completar funcionalidad en openMyGifosSection y openFavoritesSection.
+//11. Che, y hasta cierto punto no podría parametrizar las dos funciones del item anterior para los containers por parámetro y usar la misma función para ambos, así como "openSection"??
+
+///ESTÁS HACIENDO EL MAKESEARCH.
+//Fijate la cochinada que estás haciendo en makeSearch.
 //8. Implementá la búsqueda en la función search.
+//Bah, en realidad es darle estilos al container y solucionar el tema de que usas el mismo addtodom para todas y tienen estilos distintos, capaz lo podés solucionar desde css dandole estilos distintos dependiendo de (anidado en) el metacontainer (el container más superior)

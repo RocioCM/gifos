@@ -29,135 +29,9 @@ main {
 }
 
 
-//---SEARCH-SECTION-STYLING--//
-
-h1 {
-    font: 700 25px / 33px var(--main-font-2);
-    width: 76vw;
-    max-width: 440px;
-    margin: 0.5rem auto 2rem;
-}
-.heading-img {
-    max-width: 75vw;
-    display: block;
-    margin: auto;
-}
-
-//-SEARCH-BAR-//
-
-#search-ctn {
-    border: 2px solid var(--main-color-1);
-    border-radius: 30px;
-    width: 90vw;
-    max-width: 550px;
-    margin: 0 auto;
-    overflow: hidden;
-}
-.search-bar {
-    border-radius: 30px;
-    width: auto; 
-    display: flex;
-    justify-content: space-between;
-    padding: 0 12px;
-}
-.search-input {
-    font: 400 16px / 19px var(--main-font-1);
-    color: #000000;
-    text-align: left;
-    padding: 1rem 0.5rem 1rem 2rem;
-    border: none;
-    background-color: #FFFFFF00;
-    width: 90%;
-}
-.search-button, .clear-search-button {
-    background-color: #FFFFFF00;
-    border: none;
-}
-.clear-search-button {
-    display: none;
-}
-
-.active-search { 
-    flex-direction: row-reverse;
-    .clear-search-button {
-        display: initial;
-    }
-    .search-input {
-        padding-left: 0;
-    }
-    .search-button {
-        padding-left: 4px;
-    }
-}
-
-//-SEARCH-SUGGESTIONS-//
-.search-suggestions {
-    background-color: #FFFFFF00;
-}
-.search-suggestions::before {
-    content: "";
-    display: block;
-    opacity: 0.5;
-    border: 1px solid #9CAFC3;
-    width: 92%;
-    margin: auto;
-}
-.suggestion {
-    text-align: start;
-    &:hover {
-        background-color: #F2F4F7E6;
-        cursor: pointer;
-    }
-    img {
-        width: 16px;
-        height: 16px;
-        display: inline-block;
-        margin: 0 0.3rem 0 1.2rem;
-    }
-    p {
-        font: 400 16px / 19px var(--main-font-1);
-        color: #9CAFC3;
-        display: inline-block;
-    }
-}
-
-//-TRENDING-TOPICS-TITLES-SIZING-//
-#trending-topics-ctn {
-    font: 500 14px / 25px var(--main-font-2);
-    max-width: 60vw;
-    margin: 0 auto 3rem;
-    text-transform: capitalize;
-    span {
-        cursor: pointer;
-    }
-}
-.trending-h3 {
-    font: 700 16px / 25px var(--main-font-2);
-    margin: 2rem auto 0;
-}
-
-
-
 
 
 //---RANDOM-NOT-ALREADY-DONE-SECTIONS-STYLES---//
-
-.section-title {
-    font: 700 20px / 30px var(--main-font-2);
-    margin: 0 auto 0.5rem;
-    color: var(--main-color-1);
-}
-.more-button {
-    font: 700 13px var(--main-font-2);
-    background-color: #FFFFFF00;
-    letter-spacing: 0;
-    border: 1px solid var(--main-color-1);
-    border-radius: 25px;
-    padding: 1rem 2rem;
-    color: var(--main-color-1);
-    margin-bottom: 5rem;
-}
-
 #theme-switch {
     cursor: pointer;
 }
@@ -171,8 +45,54 @@ h1 {
 }
 
 
+.section-icon {
+    margin-top: 0.6rem;
+}
+.section-title {
+    font: 700 20px / 30px var(--main-font-2);
+    margin: 0 auto 0.5rem;
+    color: var(--main-color-1);
+}
+.more-button {
+    font: 700 13px var(--main-font-2);
+    background-color: #FFFFFF00;
+    letter-spacing: 0;
+    border: 1px solid var(--main-color-1);
+    border-radius: 25px;
+    padding: 1rem 2rem;
+    color: var(--main-color-1);
+    margin: 2rem auto 5rem;
+}
+.empty-sec-msg {
+    font: 700 18px / 22px var(--main-font-2);
+    margin: 2rem auto 8rem;
+    color: var(--main-color-2);
+    width: 90%;
+    max-width: 350px;
+}
 
 
+.searched-title {
+    font: 700 35px / 30px var(--main-font-2);
+    margin: 3rem auto 2rem;
+    color: var(--main-color-1);
+}
+.searched-section::before {
+    content: "";
+    display: block;
+    opacity: 0.5;
+    border: 1px solid #9CAFC3;
+    width: 40%;
+    margin: auto;
+}
+
+
+@media screen and (min-width: 1024px) {
+    .more-button:hover {
+        color: var(--font-color-2);
+        background-color: var(--main-color-1); 
+    }
+}
 
 @media screen and (min-width: 1200px) {
     //---TITLES-RESIZING--//
@@ -186,6 +106,10 @@ h1 {
     }
     #trending-topics-ctn {
         font-size: 16px;
+    }
+    .empty-sec-msg {
+        font: 700 22px / 25px var(--main-font-2);
+        max-width: 430px;
     }
 }
 
@@ -207,29 +131,20 @@ h1 {
 //     top: 2vh;
 //     z-index: 10;
 // }
-.header-bar {
-    //background-color: rgb(56, 56, 56);
-}
 
-.create-gifo-btn {
-    display: inline-block;
-    height: 54px;
-    width: 54px;
-    background-image: var(--btn-img-create-gifo);
-    &:hover {
-        background-image: var(--btn-img-create-gifo-hover);
-    }
-    &:active {
-        background-image: var(--btn-img-create-gifo-active);
-    }
-}
+
+
 
 .dark { //Podría desde JS agregarle esta clase al body cuando el darkMode se activa.
     --bg-color-1: var(--bg-dark-color-1);
     ///Acá cambio todo lo demás tmbn...
 }
+
+
+
+
 /*
 COMMENTS: 
 
-1. En el footer los icons quedan mochos.
+
 */

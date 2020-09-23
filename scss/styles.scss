@@ -1,12 +1,14 @@
 @import '_variables';
 @import '_header';
 @import '_general';
+@import '_search';
 @import '_aside';
 @import '_footer';
+@import '_medias';
 
 
 
-//En serio necesito que estas clases sean lo último en aplicarse.
+//En serio necesito que estas clases sean lo último en aplicarse en la cascada.
 
 .hidden { //Elementos que se muestran/ocultan desde JS.
     display: none;

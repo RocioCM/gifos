@@ -1,0 +1,106 @@
+//---SEARCH-SECTION-STYLING--//
+
+h1 {
+    font: 700 25px / 33px var(--main-font-2);
+    width: 76vw;
+    max-width: 440px;
+    margin: 0.5rem auto 2rem;
+}
+.heading-img {
+    max-width: 75vw;
+    display: block;
+    margin: auto;
+}
+
+//-SEARCH-BAR-//
+
+#search-ctn {
+    border: 2px solid var(--main-color-1);
+    border-radius: 30px;
+    width: 90vw;
+    max-width: 550px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.search-bar {
+    border-radius: 30px;
+    width: auto; 
+    display: flex;
+    justify-content: space-between;
+    padding: 0 12px;
+}
+.search-input {
+    font: 400 16px / 19px var(--main-font-1);
+    color: #000000;
+    text-align: left;
+    padding: 1rem 0.5rem 1rem 2rem;
+    border: none;
+    background-color: #FFFFFF00;
+    width: 90%;
+}
+.search-button, .clear-search-button {
+    background-color: #FFFFFF00;
+    border: none;
+}
+.clear-search-button {
+    display: none;
+}
+
+.active-search { 
+    flex-direction: row-reverse;
+    .clear-search-button {
+        display: initial;
+    }
+    .search-input {
+        padding-left: 0;
+    }
+    .search-button {
+        padding-left: 4px;
+    }
+}
+
+//-SEARCH-SUGGESTIONS-//
+.search-suggestions {
+    background-color: #FFFFFF00;
+}
+.search-suggestions > article:first-child::before {
+    content: "";
+    display: block;
+    opacity: 0.5;
+    border: 1px solid #9CAFC3;
+    width: 92%;
+    margin: auto;
+}
+.suggestion {
+    text-align: start;
+    &:hover {
+        background-color: #F2F4F7E6;
+        cursor: pointer;
+    }
+    img {
+        width: 16px;
+        height: 16px;
+        display: inline-block;
+        margin: 0 0.3rem 0 1.2rem;
+    }
+    p {
+        font: 400 16px / 19px var(--main-font-1);
+        color: #9CAFC3;
+        display: inline-block;
+    }
+}
+
+//-TRENDING-TOPICS-TITLES-SIZING-//
+#trending-topics-ctn {
+    font: 500 14px / 25px var(--main-font-2);
+    max-width: 60vw;
+    margin: 0 auto 3rem;
+    text-transform: capitalize;
+    span {
+        cursor: pointer;
+    }
+}
+.trending-h3 {
+    font: 700 16px / 25px var(--main-font-2);
+    margin: 2rem auto 0;
+}

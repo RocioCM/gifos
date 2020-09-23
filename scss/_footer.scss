@@ -29,28 +29,3 @@
         background-image: var(--icon-ig);
     }
 }
-
-@media screen and (min-width: 720px) {
-    .footer {
-        height: 13vh;
-        padding: 0 11vw;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        p {
-            margin: 0;
-        }
-        nav {
-            margin-left: 1.5rem;
-        }
-        .facebook:hover {
-            background-image: var(--icon-fb-hover);
-        }
-        .twitter:hover {
-            background-image: var(--icon-tw-hover);
-        }
-        .instagram:hover {
-            background-image: var(--icon-ig-hover);
-        }
-    } 
-}

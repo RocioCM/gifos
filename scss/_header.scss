@@ -27,10 +27,11 @@
         justify-content: space-evenly;
         list-style-type: none;
         padding: 0;
-        * {
+        li {
             font: 700 15px / 15px var(--main-font-2);
             letter-spacing: 0;
             color:#FFFFFF;
+            cursor: pointer
         }
         li::after {
             content: "";
@@ -88,41 +89,4 @@
 
 .theme-switch {
     cursor: pointer;
-}
-
-@media screen and (min-width: 1024px) { //En realidad podría ser a 1200, pero por ahora lo dejo en 1024.
-    .header-bar {
-        height: 12vh;
-        .menu {
-            width: 40vw;
-            align-self: center; 
-        }
-        nav {
-            display: initial;
-            position: initial;
-            background-color: initial;
-        }
-        ul {
-            flex-flow: row nowrap;
-            justify-content: space-between;
-            * {
-                color: var(--main-color-1);
-                text-transform: uppercase;
-                margin: auto;
-            }
-            li::after {
-                display: none;
-            }
-        }
-        li:not(.btn-create) {
-            &:hover * {
-                line-height: 15px;
-                border-bottom: 2px solid var(--main-color-2);
-            }
-            &:active * {
-                color: #9CAFC3;
-                border-bottom: none;
-            }
-        }
-    }
 }

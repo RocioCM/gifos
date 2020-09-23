@@ -53,10 +53,11 @@
     justify-content: space-evenly;
     list-style-type: none;
     padding: 0; }
-    .header-bar ul * {
+    .header-bar ul li {
       font: 700 15px/15px var(--main-font-2);
       letter-spacing: 0;
-      color: #FFFFFF; }
+      color: #FFFFFF;
+      cursor: pointer; }
     .header-bar ul li::after {
       content: "";
       display: block;
@@ -104,31 +105,6 @@
 .theme-switch {
   cursor: pointer; }
 
-@media screen and (min-width: 1024px) {
-  .header-bar {
-    height: 12vh; }
-    .header-bar .menu {
-      width: 40vw;
-      align-self: center; }
-    .header-bar nav {
-      display: initial;
-      position: initial;
-      background-color: initial; }
-    .header-bar ul {
-      flex-flow: row nowrap;
-      justify-content: space-between; }
-      .header-bar ul * {
-        color: var(--main-color-1);
-        text-transform: uppercase;
-        margin: auto; }
-      .header-bar ul li::after {
-        display: none; }
-    .header-bar li:not(.btn-create):hover * {
-      line-height: 15px;
-      border-bottom: 2px solid var(--main-color-2); }
-    .header-bar li:not(.btn-create):active * {
-      color: #9CAFC3;
-      border-bottom: none; } }
 .footer {
   border-bottom: 5px solid var(--main-color-1); }
   .footer nav {
@@ -153,23 +129,6 @@
     height: 18px;
     background-image: var(--icon-ig); }
 
-@media screen and (min-width: 720px) {
-  .footer {
-    height: 13vh;
-    padding: 0 11vw;
-    display: flex;
-    justify-content: space-between;
-    align-items: center; }
-    .footer p {
-      margin: 0; }
-    .footer nav {
-      margin-left: 1.5rem; }
-    .footer .facebook:hover {
-      background-image: var(--icon-fb-hover); }
-    .footer .twitter:hover {
-      background-image: var(--icon-tw-hover); }
-    .footer .instagram:hover {
-      background-image: var(--icon-ig-hover); } }
 body {
   height: 100vh; }
 
