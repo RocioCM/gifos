@@ -42,6 +42,13 @@ main {
     background-image: var(--icon-close);
 }
 
+%behave-horizontal { //Basically: the perfect flex row. 
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
 
 
 //---RANDOM-NOT-ALREADY-DONE-SECTIONS-STYLES---//
@@ -98,35 +105,6 @@ main {
     width: 40%;
     margin: auto;
 }
-
-
-@media screen and (min-width: 1024px) {
-    .more-button:hover {
-        color: var(--bg-color-1);
-        background-color: var(--main-color-1); 
-    }
-}
-
-@media screen and (min-width: 1200px) {
-    //---TITLES-RESIZING--//
-    h1 {
-        font-size: 40px;
-        line-height: 50px;
-        max-width: 650px;
-    }
-    .trending-h3 {
-        font-size: 18px;
-    }
-    #trending-topics-ctn {
-        font-size: 16px;
-    }
-    .empty-sec-msg {
-        font: 700 22px / 25px var(--main-font-2);
-        max-width: 430px;
-    }
-}
-
-
 
 
 

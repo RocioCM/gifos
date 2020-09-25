@@ -23,11 +23,9 @@ h1 {
     overflow: hidden;
 }
 .search-bar {
+    @extend %behave-horizontal;
     border-radius: 30px;
     width: auto; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 0 12px;
 }
 .search-input {

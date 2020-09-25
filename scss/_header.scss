@@ -1,15 +1,13 @@
 /*---HEADER---*/
 
 .header-bar {
+    @extend %behave-horizontal;  
     width: 100vw;
     height: 15vh;
     position: fixed;
     top: 0;
     background-color: var(--bg-color-1);
     border-top: 5px solid var(--page-border-color);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     z-index: 10;  
     padding: 0 6vw;
 

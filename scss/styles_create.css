@@ -1,144 +1,30 @@
-@charset "UTF-8";
-:root {
-  --violet: #572EE5;
-  --main-color-1: #572EE5;
-  --main-color-2: #50E3C2;
-  --bg-color-1: #FFFFFF;
-  --bg-color-2: #F3F5F8;
-  --font-color-1: #000000;
-  --font-color-2: #FFFFFF;
-  --main-font-1: "Roboto";
-  --main-font-2: "Montserrat";
-  --page-border-color: #572EE5;
-  --nav-bg-color: rgba(87,46,229,0.9);
-  --btn-hover-font-color: #FFFFFF;
-  --btn-img-create-gifo: url(../images/button-crear-gifo.svg);
-  --btn-img-create-gifo-hover: url(../images/CTA-crear-gifo-hover.svg);
-  --btn-img-create-gifo-active: url(../images/CTA-crear-gifo-active.svg);
-  --icon-close: url(../images/close.svg);
-  --icon-hamburguer: url(../images/burger.svg);
-  --icon-search: url(../images/icon-search.svg);
-  --icon-search-active: url(../images/icon-search-active.svg);
-  --icon-left-arrow: url(../images/button-slider-left.svg);
-  --icon-left-arrow-hover: url(../images/button-slider-left-hover.svg);
-  --icon-right-arrow: url(../images/Button-Slider-right.svg);
-  --icon-right-arrow-hover: url(../images/Button-Slider-right-hover.svg);
-  --icon-fb: url(../images/icon_facebook.svg);
-  --icon-fb-hover: url(../images/icon_facebook_hover.svg);
-  --icon-tw: url(../images/icon-twitter.svg);
-  --icon-tw-hover: url(../images/icon-twitter-hover.svg);
-  --icon-ig: url(../images/icon_instagram.svg);
-  --icon-ig-hover: url(../images/icon_instagram-hover.svg); }
+/*
+Sass::SyntaxError: ".header-bar" failed to @extend "%behave-horizontal".
+The selector "%behave-horizontal" was not found.
+Use "@extend %behave-horizontal !optional" if the extend should be able to fail.
 
-.dark {
-  --bg-color-1: #37383C;
-  --bg-color-2: #222326;
-  --font-color-1: #FFFFFF;
-  --main-color-1: #FFFFFF;
-  --page-border-color: #000000;
-  --nav-bg-color: #000000;
-  --btn-img-create-gifo: url(../images/CTA-crear-gifo-modo-noc.svg);
-  --btn-img-create-gifo-hover: url(../images/CTA-crear-gifo-hover-modo-noc.svg);
-  --icon-close: url(../images/close-modo-noct.svg);
-  --icon-hamburguer: url(../images/burger-modo-noct.svg);
-  --icon-search: url(../images/icon-search-mod-noc.svg);
-  --icon-fb-hover: url(../images/icon_facebook_noc.svg);
-  --icon-tw-hover: url(../images/icon_twitter_noc.svg);
-  --icon-ig-hover: url(../images/icon_instagram_noc.svg);
-  --icon-left-arrow: url(../images/button-slider-left-md-noct.svg);
-  --icon-left-arrow-hover: url(../images/button-slider-left-dark-hover.svg);
-  --icon-right-arrow: url(../images/button-slider-right-md-noct.svg);
-  --icon-right-arrow-hover: url(../images/Button-Slider-right-dark-hover.svg); }
 
-/*---HEADER---*/
-.header-bar {
-  width: 100vw;
-  height: 15vh;
-  position: fixed;
-  top: 0;
-  background-color: var(--bg-color-1);
-  border-top: 5px solid var(--page-border-color);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 10;
-  padding: 0 6vw;
-  /*---HEADER-MENÚ---*/ }
-  .header-bar nav {
-    width: 100vw;
-    height: 90vh;
-    position: absolute;
-    display: none;
-    left: 0;
-    top: 100%;
-    background-color: var(--nav-bg-color); }
-  .header-bar ul {
-    display: flex;
-    flex-flow: column nowrap;
-    justify-content: space-evenly;
-    list-style-type: none;
-    padding: 0; }
-    .header-bar ul li {
-      font: 700 15px/15px var(--main-font-2);
-      letter-spacing: 0;
-      color: #FFFFFF;
-      cursor: pointer; }
-    .header-bar ul li::after {
-      content: "";
-      display: block;
-      opacity: 0.5;
-      border: 1px solid #FFFFFF;
-      width: 40px;
-      margin: 1rem auto; }
-
-/*---HAMBURGUER-MENU-ICONS---*/
-.header-bar .hamb-icon {
-  background-image: var(--icon-hamburguer);
-  width: 15px;
-  height: 14px; }
-.header-bar .close-icon, .header-bar .hamb-checkbox:checked ~ .hamb-icon {
-  display: none; }
-.header-bar .hamb-checkbox:checked ~ nav, .header-bar .hamb-checkbox:checked ~ .close-icon {
-  display: initial; }
-
-.footer {
-  border-bottom: 5px solid var(--page-border-color); }
-  .footer nav {
-    width: 100px;
-    display: flex;
-    justify-content: space-between;
-    margin: auto; }
-  .footer p {
-    font: 400 14px/20px var(--main-font-1);
-    letter-spacing: 0;
-    margin-top: 30px; }
-  .footer .facebook {
-    width: 8px;
-    height: 17px;
-    background-image: var(--icon-fb); }
-  .footer .twitter {
-    width: 18px;
-    height: 17px;
-    background-image: var(--icon-tw); }
-  .footer .instagram {
-    width: 18px;
-    height: 18px;
-    background-image: var(--icon-ig); }
-
-body {
-  height: 100vh; }
-
-.main {
-  height: auto; }
-
-.mobile-hidden {
-  display: none; }
-
-@media screen and (min-width: 1024px) {
-  .mobile-hidden {
-    display: initial; }
-
-  .desktop-hidden {
-    display: none; } }
-
-/*# sourceMappingURL=styles_create.css.map */
+Backtrace:
+D:/DWFS/Proyectos/Proyecto II - GifOS/gifos/scss/_header.scss:4
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/extend.rb:56:in `block in check_extends_fired!'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/util/subset_map.rb:105:in `block in each_value'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/util/subset_map.rb:105:in `each'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/util/subset_map.rb:105:in `each_value'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/extend.rb:51:in `check_extends_fired!'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/extend.rb:16:in `visit'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:39:in `css_tree'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
+C:/Program Files/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
+C:/Program Files/Koala/bin/sass:22:in `load'
+C:/Program Files/Koala/bin/sass:22:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Sass::SyntaxError: \".header-bar\" failed to @extend \"%behave-horizontal\".\A The selector \"%behave-horizontal\" was not found.\A Use \"@extend %behave-horizontal !optional\" if the extend should be able to fail.\A "; }

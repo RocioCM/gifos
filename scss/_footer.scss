@@ -1,9 +1,8 @@
 .footer {
     border-bottom: 5px solid var(--page-border-color);
     nav {
-        width: 100px;
-        display: flex;
-        justify-content: space-between;
+        @extend %behave-horizontal;
+        width: 100px; 
         margin: auto;
     }
     p {
