@@ -11,23 +11,23 @@
 <body>
 
     <header class="header-bar">
-        <a class="logo" href=""><picture>
-            <source media="(max-width: 1199px)" srcset="../images/logo-mobile.svg">
-            <img src="../images/logo-desktop.svg" alt="logo">
-        </picture></a>
-        <div class="menu">
-            <input type="checkbox" class="hamb-checkbox desktop-hidden">
-            <img class="hamb-icon desktop-hidden" src="../images/burger.svg" alt="Burguer Menu icon">
-            <img class="close-icon desktop-hidden" src="../images/close.svg" alt="Close Menu icon">
-            <nav>
-                <ul id="header-links">
-                    <li>Modo Nocturno</li>
-                    <li>Favoritos</li>
-                    <li>Mis GIFOS</li>
-                    <li class="btn-create mobile-hidden"><a class="create-gifo-btn" href="create/index.html"></a></li>
-                </ul>
-            </nav>
-        </div>
+        <a class="logo" href="">
+            <picture>
+                <source media="(max-width: 1199px)" srcset="../images/logo-mobile.svg">
+                <img src="../images/logo-desktop.svg" alt="logo">
+            </picture>
+        </a>
+        <input type="checkbox" class="hamb-checkbox hidden" id="burguer-switch">
+        <label class="hamb-icon desktop-hidden" for="burguer-switch"></label>
+        <label class="close-icon close-btn desktop-hidden" for="burguer-switch"></label>
+        <nav>
+            <ul id="header-links">
+                <li>Modo Nocturno</li>
+                <li>Favoritos</li>
+                <li>Mis GIFOS</li>
+                <li class="btn-create mobile-hidden"><a class="create-gifo-btn" href="create/index.html"></a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -35,11 +35,11 @@
         <h1 class="color-blue">Inspírate, busca, guarda y crea los mejores <span class="color-aqua">GIFOS</span></h1>
         <img class="heading-img" src="../images/ilustra_header.svg" alt="Felices personas buscando gifos">
         <div id="search-ctn">
-            <label for="search" class="search-bar" id="search-bar"> 
+            <div class="search-bar" id="search-bar"> 
                 <button class="clear-search-button close-btn"></button>
                 <input class="search-input" type="text" name="search" id="search" placeholder="Busca GIFOS y más"> 
                 <button class="search-button"></button>
-            </label>
+            </div>
             <div class="search-suggestions">
                 <template>
                     <article class="suggestion">
@@ -54,7 +54,7 @@
     </section>
 
     <section class="searched-section hidden-section hidden">
-        <h2 class="searched-title"></h2>
+        <h2 class="searched-title">SearchedTerms</h2>
         <div>
             <div id="search-results-ctn" class="search-results-ctn gifs-ctn">
 
@@ -125,6 +125,7 @@
             </div>
             <button class="arrow-right mobile-hidden"></button>
         </div>
+
         <section class="fullscreen-gif hidden">
             <template>
                 <i class="fas fa-times"></i>
@@ -154,14 +155,6 @@
 </body>
 </html>
 
-
-<!-- <picture>
-    <source media="(max-width: px)" srcset="">
-    <source media="(max-width: px)" srcset="">
-    <img src="" alt="">
-</picture>  -->
-
-<!-- <script src="https://kit.fontawesome.com/3e257e7947.js" crossorigin="anonymous"></script>  -->
 
 <!-- El gif del gatito en moto: -->
 <!-- <article class="gif-card"> 

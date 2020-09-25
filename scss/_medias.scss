@@ -30,11 +30,9 @@
     //---HEADER-BAR---//
     .header-bar {
         height: 12vh;
-        .menu {
-            width: 40vw;
-            align-self: center; 
-        }
         nav {
+            height: min-content;
+            width: 40vw;
             display: initial;
             position: initial;
             background-color: initial;

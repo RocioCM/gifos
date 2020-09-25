@@ -53,7 +53,7 @@ const searchBar = searchCtn.children[0]; //Contenedor de la cruz, el input y la 
 const searchInput = searchBar.children[1]; 
 const searchButton = searchBar.children[2]; 
 const clearSearchButton = searchBar.children[0];
-const searchResultsCtn = hiddenSections[0].children[1].firstElementChild; //Contenedor de los resultados de la búsqueda.
+const searchResultsCtn = hiddenSections[1].children[1].firstElementChild; //Contenedor de los resultados de la búsqueda.
 
 
 
@@ -132,12 +132,13 @@ async function makeSearch() {
         if (results.data.lenght==0) throw new Error("No se han encontrado coincidencias con la búsqueda.")
     
         const gifs = results.data;
-
+        //console.log(hiddenSections[1]) //Es el contenedor .searched-section
         const sectionTitle = searchResultsCtn.parentNode.parentNode.firstElementChild;
         sectionTitle.textContent = searchInput.value; 
 
         //Cuidate, que saqué temporalmente varios hidden de los containers en HTML.
-        searchResultsCtn.parentElement.classList.remove("hidden");
+        
+        hiddenSections[1].classList.remove("hidden"); //Muestra la sección de searched-gifs.
         if (gifs.length===0) {
             searchResultsCtn.parentNode.classList.add("hidden");
             searchResultsCtn.parentNode.parentNode.children[2].classList.remove("hidden");

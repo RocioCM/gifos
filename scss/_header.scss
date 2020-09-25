@@ -4,11 +4,12 @@
     width: 100vw;
     height: 15vh;
     position: fixed;
-    top: 0%;
+    top: 0;
     background-color: var(--bg-color-1);
     border-top: 5px solid var(--page-border-color);
     display: flex;
     justify-content: space-between;
+    align-items: center;
     z-index: 10;  
     padding: 0 6vw;
 
@@ -18,7 +19,8 @@
         height: 90vh;
         position: absolute;
         display: none;
-        right: -6vw; /*Sería 0 de no ser por el padding de su padre respecto al header.*/
+        left: 0; 
+        top: 100%;
         background-color: var(--nav-bg-color);
     }
     ul {
@@ -44,49 +46,19 @@
     }
 }
 
-.logo {
-    align-self: center;
-}
-.menu {
-    width: 100vw;
-    position: relative;
-}
-
-.hamb-checkbox:checked~nav {
-    display: initial;
-    top: 100%;
-}
-
-/*---HAMBURGUER-ICON---*/
-.hamb-icon, .close-icon, .hamb-checkbox { 
-    position: absolute;
-    right: 0;
-    top: calc(6.5vh - 0.5rem);
-    width: 1rem;
-    height: 1rem;
-}
-.close-icon, .hamb-checkbox:checked~.hamb-icon, .hamb-checkbox {
-    opacity: 0%;
-}
-.hamb-checkbox {
-    cursor: pointer;
-    z-index: 1;
-} 
-.hamb-checkbox:checked~.close-icon {
-    opacity: 100%;
-}
-
-
-
-/*THEMING*/
-
-#theme-switch:checked {
-    --bg-color-1: red;
-}
-#theme-switch {
-    display: none;
-}
-
-.theme-switch {
-    cursor: pointer;
+/*---HAMBURGUER-MENU-ICONS---*/
+.header-bar {
+    .hamb-icon {
+        background-image: var(--icon-hamburguer);
+        width: 15px;
+        height: 14px; 
+    }
+    .close-icon, .hamb-checkbox:checked~.hamb-icon {
+        display: none;
+    }
+    .hamb-checkbox:checked ~ {
+        nav, .close-icon {
+            display: initial;
+        }
+    }
 }
