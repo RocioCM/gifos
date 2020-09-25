@@ -2,27 +2,24 @@ const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
 
 //0. Links del header funcionales.
 const navBar = document.getElementById("header-links");
-const bodyElement = document.querySelector("body"); //Usado en el theme-switch.
 const hiddenSections = document.querySelectorAll(".hidden-section");
 //Datos: hiddenSection[0] y [1] trae a search-section y searched-section respectivamente.
 //Y [2] y [3] se corresponden a las secciones de favoritos y myGifos respectivamente.
 
 
-navBar.children[0].addEventListener("click", themeSwitchToDark);
+navBar.children[0].addEventListener("click", themeSwitch);
 navBar.children[1].addEventListener("click", openFavorites);
 navBar.children[2].addEventListener("click", openMyGifos);
 
-function themeSwitchToDark() {
-    this.textContent = "Modo Diurno"
-    bodyElement.classList.add("dark");
-    this.removeEventListener("click", themeSwitchToDark);
-    this.addEventListener("click",themeSwitchToLight);
-}
-function themeSwitchToLight() {
-    this.textContent = "Modo Nocturno"
-    bodyElement.classList.remove("dark");
-    this.removeEventListener("click", themeSwitchToLight);
-    this.addEventListener("click",themeSwitchToDark);
+function themeSwitch() {
+    const root = document.documentElement
+    if (root.classList.contains("dark")) {
+        this.textContent = "Modo Nocturno"
+        root.classList.remove("dark");
+        return;
+    }
+    this.textContent = "Modo Diurno";
+    root.classList.add("dark");
 }
 
 function openFavorites() {

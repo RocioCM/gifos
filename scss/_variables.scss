@@ -1,4 +1,5 @@
 :root {
+    --violet: #572EE5;
     --main-color-1: #572EE5;
     --main-color-2: #50E3C2;
     --bg-color-1: #FFFFFF;
@@ -7,10 +8,24 @@
     --font-color-2: #FFFFFF;
     --main-font-1: "Roboto";
     --main-font-2: "Montserrat";
+    --page-border-color: #572EE5;
+    --nav-bg-color: rgba(87,46,229,0.9);
+    --btn-hover-font-color: #FFFFFF;
     
+    //Che, ODIO sus SVG INMODIFICABLES, EEEEEEEEEEEEEEh//
     --btn-img-create-gifo: url(../images/button-crear-gifo.svg);
     --btn-img-create-gifo-hover: url(../images/CTA-crear-gifo-hover.svg);
     --btn-img-create-gifo-active: url(../images/CTA-crear-gifo-active.svg);
+    
+    --icon-close: url(../images/close.svg);
+    --icon-hamburguer: url(../images/burger.svg);
+    --icon-search: url(../images/icon-search.svg);
+    --icon-search-active: url(../images/icon-search-active.svg);
+
+    --icon-left-arrow: url(../images/button-slider-left.svg);
+    --icon-left-arrow-hover: url(../images/button-slider-left-hover.svg);
+    --icon-right-arrow: url(../images/Button-Slider-right.svg);
+    --icon-right-arrow-hover: url(../images/Button-Slider-right-hover.svg); 
 
     --icon-fb: url(../images/icon_facebook.svg);
     --icon-fb-hover: url(../images/icon_facebook_hover.svg);
@@ -18,17 +33,32 @@
     --icon-tw-hover: url(../images/icon-twitter-hover.svg);
     --icon-ig: url(../images/icon_instagram.svg);
     --icon-ig-hover: url(../images/icon_instagram-hover.svg);
-
-
-    --bg-dark-color-1: #37383C;
-    --bg-dark-color-2: #222326;
-    --dark-font-color: #FFFFFF;
-
-    --btn-img-create-gifo--dark: url(../images/CTA-crear-gifo-modo-noc.svg);
-    --btn-img-create-gifo-hover-dark: url(../images/CTA-crear-gifo-hover-modo-noc.svg);
-
-    --icon-fb-hover-dark: url(../images/icon_facebook_noc.svg);
-    --icon-tw-hover-dark: url(../images/icon_twitter_noc.svg);
-    --icon-ig-hover-dark: url(../images/icon_instagram_noc.svg);
 }
 
+.dark { //Desde JS agrego esta clase al body cuando el darkMode se activa.
+    --bg-color-1: #37383C;
+    --bg-color-2: #222326;
+    --font-color-1: #FFFFFF;
+    --main-color-1: #FFFFFF;
+    --page-border-color: #000000;
+    --nav-bg-color: #000000;
+ 
+    --btn-img-create-gifo: url(../images/CTA-crear-gifo-modo-noc.svg);
+    --btn-img-create-gifo-hover: url(../images/CTA-crear-gifo-hover-modo-noc.svg);
+
+    --icon-close: url(../images/close-modo-noct.svg);
+    --icon-hamburguer: url(../images/burger-modo-noct.svg);
+    --icon-search: url(../images/icon-search-mod-noc.svg);
+
+    --icon-fb-hover: url(../images/icon_facebook_noc.svg);
+    --icon-tw-hover: url(../images/icon_twitter_noc.svg);
+    --icon-ig-hover: url(../images/icon_instagram_noc.svg);
+
+    --icon-left-arrow: url(../images/button-slider-left-md-noct.svg);
+    --icon-left-arrow-hover: url(../images/button-slider-left-dark-hover.svg);
+    --icon-right-arrow: url(../images/button-slider-right-md-noct.svg); 
+    --icon-right-arrow-hover: url(../images/Button-Slider-right-dark-hover.svg); 
+
+
+    ///Acá cambio todo lo demás tmbn...
+}

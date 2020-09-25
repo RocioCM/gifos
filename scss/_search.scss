@@ -27,23 +27,31 @@ h1 {
     width: auto; 
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 0 12px;
 }
 .search-input {
     font: 400 16px / 19px var(--main-font-1);
-    color: #000000;
+    color: var(--font-color-1);
     text-align: left;
     padding: 1rem 0.5rem 1rem 2rem;
     border: none;
     background-color: #FFFFFF00;
     width: 90%;
 }
-.search-button, .clear-search-button {
-    background-color: #FFFFFF00;
-    border: none;
+.search-button {
+    width: 20px;
+    height: 20px;
+    background-image: var(--icon-search);
+    margin: 0 6px;
+}
+.search-input:focus ~ .search-button {
+    background-image: var(--icon-search-active);
 }
 .clear-search-button {
     display: none;
+    padding: 0;
+    margin-right: 8px;
 }
 
 .active-search { 
@@ -53,9 +61,6 @@ h1 {
     }
     .search-input {
         padding-left: 0;
-    }
-    .search-button {
-        padding-left: 4px;
     }
 }
 

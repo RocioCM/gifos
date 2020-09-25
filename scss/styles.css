@@ -1,5 +1,6 @@
 @charset "UTF-8";
 :root {
+  --violet: #572EE5;
   --main-color-1: #572EE5;
   --main-color-2: #50E3C2;
   --bg-color-1: #FFFFFF;
@@ -8,24 +9,160 @@
   --font-color-2: #FFFFFF;
   --main-font-1: "Roboto";
   --main-font-2: "Montserrat";
+  --page-border-color: #572EE5;
+  --nav-bg-color: rgba(87,46,229,0.9);
+  --btn-hover-font-color: #FFFFFF;
   --btn-img-create-gifo: url(../images/button-crear-gifo.svg);
   --btn-img-create-gifo-hover: url(../images/CTA-crear-gifo-hover.svg);
   --btn-img-create-gifo-active: url(../images/CTA-crear-gifo-active.svg);
+  --icon-close: url(../images/close.svg);
+  --icon-hamburguer: url(../images/burger.svg);
+  --icon-search: url(../images/icon-search.svg);
+  --icon-search-active: url(../images/icon-search-active.svg);
+  --icon-left-arrow: url(../images/button-slider-left.svg);
+  --icon-left-arrow-hover: url(../images/button-slider-left-hover.svg);
+  --icon-right-arrow: url(../images/Button-Slider-right.svg);
+  --icon-right-arrow-hover: url(../images/Button-Slider-right-hover.svg);
   --icon-fb: url(../images/icon_facebook.svg);
   --icon-fb-hover: url(../images/icon_facebook_hover.svg);
   --icon-tw: url(../images/icon-twitter.svg);
   --icon-tw-hover: url(../images/icon-twitter-hover.svg);
   --icon-ig: url(../images/icon_instagram.svg);
-  --icon-ig-hover: url(../images/icon_instagram-hover.svg);
-  --bg-dark-color-1: #37383C;
-  --bg-dark-color-2: #222326;
-  --dark-font-color: #FFFFFF;
-  --btn-img-create-gifo--dark: url(../images/CTA-crear-gifo-modo-noc.svg);
-  --btn-img-create-gifo-hover-dark: url(../images/CTA-crear-gifo-hover-modo-noc.svg);
-  --icon-fb-hover-dark: url(../images/icon_facebook_noc.svg);
-  --icon-tw-hover-dark: url(../images/icon_twitter_noc.svg);
-  --icon-ig-hover-dark: url(../images/icon_instagram_noc.svg); }
+  --icon-ig-hover: url(../images/icon_instagram-hover.svg); }
 
+.dark {
+  --bg-color-1: #37383C;
+  --bg-color-2: #222326;
+  --font-color-1: #FFFFFF;
+  --main-color-1: #FFFFFF;
+  --page-border-color: #000000;
+  --nav-bg-color: #000000;
+  --btn-img-create-gifo: url(../images/CTA-crear-gifo-modo-noc.svg);
+  --btn-img-create-gifo-hover: url(../images/CTA-crear-gifo-hover-modo-noc.svg);
+  --icon-close: url(../images/close-modo-noct.svg);
+  --icon-hamburguer: url(../images/burger-modo-noct.svg);
+  --icon-search: url(../images/icon-search-mod-noc.svg);
+  --icon-fb-hover: url(../images/icon_facebook_noc.svg);
+  --icon-tw-hover: url(../images/icon_twitter_noc.svg);
+  --icon-ig-hover: url(../images/icon_instagram_noc.svg);
+  --icon-left-arrow: url(../images/button-slider-left-md-noct.svg);
+  --icon-left-arrow-hover: url(../images/button-slider-left-dark-hover.svg);
+  --icon-right-arrow: url(../images/button-slider-right-md-noct.svg);
+  --icon-right-arrow-hover: url(../images/Button-Slider-right-dark-hover.svg); }
+
+body {
+  font-family: var(--main-font-1), var(--main-font-2), Helvetica, sans-serif;
+  text-align: center;
+  color: var(--font-color-1); }
+
+* {
+  box-sizing: border-box; }
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: #FFFFFF00; }
+
+a {
+  text-decoration: none;
+  color: initial; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color-1); }
+
+main {
+  margin-top: 15vh; }
+
+.color-aqua {
+  color: var(--main-color-2); }
+
+.color-blue {
+  color: var(--main-color-1); }
+
+.close-btn {
+  width: 14px;
+  height: 14px;
+  background-image: var(--icon-close); }
+
+#theme-switch {
+  cursor: pointer; }
+
+.fullscreen-gif {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 8vh 8vw;
+  display: grid; }
+
+.section-icon {
+  margin-top: 0.6rem; }
+
+.section-title {
+  font: 700 20px/30px var(--main-font-2);
+  margin: 0 auto 0.5rem;
+  color: var(--main-color-1); }
+
+.more-button {
+  font: 700 13px var(--main-font-2);
+  background-color: #FFFFFF00;
+  letter-spacing: 0;
+  border: 1px solid var(--main-color-1);
+  border-radius: 25px;
+  padding: 1rem 2rem;
+  color: var(--main-color-1);
+  margin: 2rem auto 5rem; }
+
+.empty-sec-msg {
+  font: 700 18px/22px var(--main-font-2);
+  margin: 2rem auto 8rem;
+  color: var(--main-color-2);
+  width: 90%;
+  max-width: 350px; }
+
+.searched-title {
+  font: 700 35px/30px var(--main-font-2);
+  margin: 3rem auto 2rem;
+  color: var(--main-color-1); }
+
+.searched-section::before {
+  content: "";
+  display: block;
+  opacity: 0.5;
+  border: 1px solid #9CAFC3;
+  width: 40%;
+  margin: auto; }
+
+@media screen and (min-width: 1024px) {
+  .more-button:hover {
+    color: var(--bg-color-1);
+    background-color: var(--main-color-1); } }
+@media screen and (min-width: 1200px) {
+  h1 {
+    font-size: 40px;
+    line-height: 50px;
+    max-width: 650px; }
+
+  .trending-h3 {
+    font-size: 18px; }
+
+  #trending-topics-ctn {
+    font-size: 16px; }
+
+  .empty-sec-msg {
+    font: 700 22px/25px var(--main-font-2);
+    max-width: 430px; } }
+/*SOLO-POR-AHORA-SETTINGS*/
+.search-button img {
+  color: red;
+  fill: red; }
+
+/*
+COMMENTS: 
+1.Conseguite un nuevo logo que sirva para dark y light a la vez.
+3. Traete los extend de flex de la Mili!
+*/
 /*---HEADER---*/
 .header-bar {
   width: 100vw;
@@ -33,7 +170,7 @@
   position: fixed;
   top: 0%;
   background-color: var(--bg-color-1);
-  border-top: 5px solid var(--main-color-1);
+  border-top: 5px solid var(--page-border-color);
   display: flex;
   justify-content: space-between;
   z-index: 10;
@@ -46,7 +183,7 @@
     display: none;
     right: -6vw;
     /*Sería 0 de no ser por el padding de su padre respecto al header.*/
-    background-color: rgba(87, 46, 229, 0.9); }
+    background-color: var(--nav-bg-color); }
   .header-bar ul {
     display: flex;
     flex-flow: column nowrap;
@@ -105,112 +242,6 @@
 .theme-switch {
   cursor: pointer; }
 
-* {
-  font-family: var(--main-font-1), var(--main-font-2), Helvetica, sans-serif;
-  box-sizing: border-box;
-  text-align: center; }
-
-button {
-  cursor: pointer; }
-
-a {
-  text-decoration: none;
-  color: initial; }
-
-body {
-  margin: 0;
-  padding: 0;
-  background-color: var(--bg-color-1); }
-
-main {
-  margin-top: 15vh; }
-
-.color-aqua {
-  color: var(--main-color-2); }
-
-.color-blue {
-  color: var(--main-color-1); }
-
-#theme-switch {
-  cursor: pointer; }
-
-.fullscreen-gif {
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
-  padding: 8vh 8vw;
-  display: grid; }
-
-.section-icon {
-  margin-top: 0.6rem; }
-
-.section-title {
-  font: 700 20px/30px var(--main-font-2);
-  margin: 0 auto 0.5rem;
-  color: var(--main-color-1); }
-
-.more-button {
-  font: 700 13px var(--main-font-2);
-  background-color: #FFFFFF00;
-  letter-spacing: 0;
-  border: 1px solid var(--main-color-1);
-  border-radius: 25px;
-  padding: 1rem 2rem;
-  color: var(--main-color-1);
-  margin: 2rem auto 5rem; }
-
-.empty-sec-msg {
-  font: 700 18px/22px var(--main-font-2);
-  margin: 2rem auto 8rem;
-  color: var(--main-color-2);
-  width: 90%;
-  max-width: 350px; }
-
-.searched-title {
-  font: 700 35px/30px var(--main-font-2);
-  margin: 3rem auto 2rem;
-  color: var(--main-color-1); }
-
-.searched-section::before {
-  content: "";
-  display: block;
-  opacity: 0.5;
-  border: 1px solid #9CAFC3;
-  width: 40%;
-  margin: auto; }
-
-@media screen and (min-width: 1024px) {
-  .more-button:hover {
-    color: var(--font-color-2);
-    background-color: var(--main-color-1); } }
-@media screen and (min-width: 1200px) {
-  h1 {
-    font-size: 40px;
-    line-height: 50px;
-    max-width: 650px; }
-
-  .trending-h3 {
-    font-size: 18px; }
-
-  #trending-topics-ctn {
-    font-size: 16px; }
-
-  .empty-sec-msg {
-    font: 700 22px/25px var(--main-font-2);
-    max-width: 430px; } }
-/*SOLO-POR-AHORA-SETTINGS*/
-.search-button img {
-  color: red;
-  fill: red; }
-
-.dark {
-  --bg-color-1: var(--bg-dark-color-1); }
-
-/*
-COMMENTS: 
-
-
-*/
 h1 {
   font: 700 25px/33px var(--main-font-2);
   width: 76vw;
@@ -235,23 +266,31 @@ h1 {
   width: auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 0 12px; }
 
 .search-input {
   font: 400 16px/19px var(--main-font-1);
-  color: #000000;
+  color: var(--font-color-1);
   text-align: left;
   padding: 1rem 0.5rem 1rem 2rem;
   border: none;
   background-color: #FFFFFF00;
   width: 90%; }
 
-.search-button, .clear-search-button {
-  background-color: #FFFFFF00;
-  border: none; }
+.search-button {
+  width: 20px;
+  height: 20px;
+  background-image: var(--icon-search);
+  margin: 0 6px; }
+
+.search-input:focus ~ .search-button {
+  background-image: var(--icon-search-active); }
 
 .clear-search-button {
-  display: none; }
+  display: none;
+  padding: 0;
+  margin-right: 8px; }
 
 .active-search {
   flex-direction: row-reverse; }
@@ -259,8 +298,6 @@ h1 {
     display: initial; }
   .active-search .search-input {
     padding-left: 0; }
-  .active-search .search-button {
-    padding-left: 4px; }
 
 .search-suggestions {
   background-color: #FFFFFF00; }
@@ -309,16 +346,6 @@ h1 {
   font: 400 16px/23px var(--main-font-1);
   margin: auto 11vw 2rem; }
 
-@media screen and (min-width: 1200px) {
-  .aside-trendings {
-    padding-bottom: 10rem; }
-
-  .aside-trendings > .section-title {
-    font-size: 30px;
-    line-height: 60px; }
-
-  .aside-p {
-    font-size: 18px; } }
 #trending-cards-ctn {
   display: flex;
   height: 190px;
@@ -341,7 +368,7 @@ h1 {
   overflow: scroll hidden; }
 
 .footer {
-  border-bottom: 5px solid var(--main-color-1); }
+  border-bottom: 5px solid var(--page-border-color); }
   .footer nav {
     width: 100px;
     display: flex;
@@ -415,8 +442,8 @@ h1 {
     .create-gifo-btn:hover {
       background-image: var(--btn-img-create-gifo-hover); }
     .create-gifo-btn:active {
-      background-image: var(--btn-img-create-gifo-active); } }
-@media screen and (min-width: 1024px) {
+      background-image: var(--btn-img-create-gifo-active); }
+
   #trending-cards-ctn {
     height: 35vh;
     min-height: 190px;
@@ -425,7 +452,7 @@ h1 {
   .filter {
     width: 100%;
     height: 100%;
-    background-color: var(--main-color-1);
+    background-color: var(--violet);
     opacity: 0.6;
     position: absolute;
     top: 0;
@@ -461,6 +488,16 @@ h1 {
   .gif-title {
     font: 500 16px var(--main-font-1); }
 
+  .aside-trendings {
+    padding-bottom: 10rem; }
+
+  .aside-trendings > .section-title {
+    font-size: 30px;
+    line-height: 60px; }
+
+  .aside-p {
+    font-size: 18px; }
+
   .scrollable {
     width: 78vw;
     overflow: hidden; }
@@ -475,8 +512,19 @@ h1 {
   .gif-card {
     margin-right: 2vw; }
 
-  .arrow-right:hover, .arrow-left:hover {
-    background-color: #FFFFFF; } }
+  .arrow-right, .arrow-left {
+    width: 40px;
+    height: 40px; }
+
+  .arrow-left {
+    background-image: var(--icon-left-arrow); }
+    .arrow-left:hover {
+      background-image: var(--icon-left-arrow-hover); }
+
+  .arrow-right {
+    background-image: var(--icon-right-arrow); }
+    .arrow-right:hover {
+      background-image: var(--icon-right-arrow-hover); } }
 .hidden {
   display: none; }
 

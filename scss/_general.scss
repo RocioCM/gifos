@@ -1,12 +1,17 @@
 //---GENERAL-SETTINGS---//
 
-* {
+body {
     font-family: var(--main-font-1), var(--main-font-2), Helvetica, sans-serif;
-    box-sizing: border-box;
     text-align: center;
+    color: var(--font-color-1); 
+}
+* {
+    box-sizing: border-box;
 }
 button {
     cursor: pointer;
+    border: none;
+    background-color: #FFFFFF00;
 }
 a {
     text-decoration: none;
@@ -28,6 +33,11 @@ main {
     color: var(--main-color-1);
 }
 
+.close-btn {
+    width: 14px;
+    height: 14px;
+    background-image: var(--icon-close);
+}
 
 
 
@@ -89,7 +99,7 @@ main {
 
 @media screen and (min-width: 1024px) {
     .more-button:hover {
-        color: var(--font-color-2);
+        color: var(--bg-color-1);
         background-color: var(--main-color-1); 
     }
 }
@@ -135,16 +145,10 @@ main {
 
 
 
-.dark { //Podría desde JS agregarle esta clase al body cuando el darkMode se activa.
-    --bg-color-1: var(--bg-dark-color-1);
-    ///Acá cambio todo lo demás tmbn...
-}
-
-
 
 
 /*
 COMMENTS: 
-
-
+1.Conseguite un nuevo logo que sirva para dark y light a la vez.
+3. Traete los extend de flex de la Mili!
 */

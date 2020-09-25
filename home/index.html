@@ -24,7 +24,7 @@
                     <li>Modo Nocturno</li>
                     <li>Favoritos</li>
                     <li>Mis GIFOS</li>
-                    <li class="btn-create mobile-hidden"><a class="create-gifo-btn" href="create/index.html"><!--<img src="../images/button-crear-gifo.svg" alt="Crear GIFO">--></a></li>
+                    <li class="btn-create mobile-hidden"><a class="create-gifo-btn" href="create/index.html"></a></li>
                 </ul>
             </nav>
         </div>
@@ -36,9 +36,9 @@
         <img class="heading-img" src="../images/ilustra_header.svg" alt="Felices personas buscando gifos">
         <div id="search-ctn">
             <label for="search" class="search-bar" id="search-bar"> 
-                <button class="clear-search-button"><img src="../images/close.svg" alt="Clear"></button>
+                <button class="clear-search-button close-btn"></button>
                 <input class="search-input" type="text" name="search" id="search" placeholder="Busca GIFOS y más"> 
-                <button class="search-button"><img src="../images/icon-search.svg" alt="search"></button>
+                <button class="search-button"></button>
             </label>
             <div class="search-suggestions">
                 <template>
@@ -103,7 +103,7 @@
         <h2 class="section-title">Trending GIFOS:</h2>
         <p class="aside-p">Mirá los últimos GIFOS de nuestra comunidad</p>
         <div class="flex-row">
-            <img class="arrow-left mobile-hidden" src="../images/button-slider-left.svg" alt="slide left">
+            <button class="arrow-left mobile-hidden"></button>
             <div class="scrollable">
                 <div id="trending-cards-ctn">
                     <template id="trending-cards-template">
@@ -123,7 +123,7 @@
                     </template>
                 </div>
             </div>
-            <img class="arrow-right mobile-hidden" src="../images/Button-Slider-right.svg" alt="slider right">
+            <button class="arrow-right mobile-hidden"></button>
         </div>
         <section class="fullscreen-gif hidden">
             <template>

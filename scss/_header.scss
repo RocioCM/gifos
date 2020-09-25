@@ -6,7 +6,7 @@
     position: fixed;
     top: 0%;
     background-color: var(--bg-color-1);
-    border-top: 5px solid var(--main-color-1);
+    border-top: 5px solid var(--page-border-color);
     display: flex;
     justify-content: space-between;
     z-index: 10;  
@@ -19,7 +19,7 @@
         position: absolute;
         display: none;
         right: -6vw; /*Sería 0 de no ser por el padding de su padre respecto al header.*/
-        background-color: rgba(87,46,229,0.9);
+        background-color: var(--nav-bg-color);
     }
     ul {
         display: flex;
