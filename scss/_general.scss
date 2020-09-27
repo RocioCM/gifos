@@ -36,13 +36,12 @@ main {
     color: var(--main-color-1);
 }
 
-.close-btn {
-    width: 14px;
-    height: 14px;
-    background-image: var(--icon-close);
+.fa-times {
+    font-size: 20px;
+    color: var(--main-color-1); 
 }
 
-%behave-horizontal { //Basically: the perfect flex row. 
+%behave-horizontal { //Basically: the perfect flex row.  
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
@@ -111,7 +110,7 @@ main {
     content: "";
     display: block;
     opacity: 0.5;
-    border: 1px solid #9CAFC3;
+    border: 1px solid var(--gray);
     width: 40%;
     margin: auto;
 }

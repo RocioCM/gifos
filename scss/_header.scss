@@ -47,9 +47,7 @@
 /*---HAMBURGUER-MENU-ICONS---*/
 .header-bar {
     .hamb-icon {
-        background-image: var(--icon-hamburguer);
-        width: 15px;
-        height: 14px; 
+        color: var(--main-color-1);
     }
     .close-icon, .hamb-checkbox:checked~.hamb-icon {
         display: none;

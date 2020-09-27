@@ -40,11 +40,16 @@ h1 {
 .search-button {
     width: 20px;
     height: 20px;
-    background-image: var(--icon-search);
     margin: 0 6px;
+    color: var(--main-color-1);
+    .fa-search {
+        font-size: 22px;
+        margin-left: -8px;
+    }
 }
+
 .search-input:focus ~ .search-button {
-    background-image: var(--icon-search-active);
+    color: var(--gray);
 }
 .clear-search-button {
     display: none;
@@ -70,7 +75,7 @@ h1 {
     content: "";
     display: block;
     opacity: 0.5;
-    border: 1px solid #9CAFC3;
+    border: 1px solid var(--gray);
     width: 92%;
     margin: auto;
 }
@@ -80,15 +85,15 @@ h1 {
         background-color: rgba(128, 128, 128, 0.15);
         cursor: pointer;
     }
-    img {
+    .fa-search {
         width: 16px;
         height: 16px;
-        display: inline-block;
-        margin: 0 0.3rem 0 1.2rem;
+        margin: 0 0.2rem 0 1.3rem;
+        color: var(--gray);
     }
     p {
         font: 400 16px / 19px var(--main-font-1);
-        color: #9CAFC3;
+        color: var(--gray);
         display: inline-block;
     }
 }

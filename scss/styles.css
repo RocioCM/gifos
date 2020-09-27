@@ -1,6 +1,7 @@
 @charset "UTF-8";
 :root {
   --violet: #572EE5;
+  --gray: #9CAFC3;
   --main-color-1: #572EE5;
   --main-color-2: #50E3C2;
   --bg-color-1: #FFFFFF;
@@ -11,24 +12,7 @@
   --main-font-2: "Montserrat";
   --page-border-color: #572EE5;
   --nav-bg-color: rgba(87,46,229,0.9);
-  --btn-hover-font-color: #FFFFFF;
-  --btn-img-create-gifo: url(../images/button-crear-gifo.svg);
-  --btn-img-create-gifo-hover: url(../images/CTA-crear-gifo-hover.svg);
-  --btn-img-create-gifo-active: url(../images/CTA-crear-gifo-active.svg);
-  --icon-close: url(../images/close.svg);
-  --icon-hamburguer: url(../images/burger.svg);
-  --icon-search: url(../images/icon-search.svg);
-  --icon-search-active: url(../images/icon-search-active.svg);
-  --icon-left-arrow: url(../images/button-slider-left.svg);
-  --icon-left-arrow-hover: url(../images/button-slider-left-hover.svg);
-  --icon-right-arrow: url(../images/Button-Slider-right.svg);
-  --icon-right-arrow-hover: url(../images/Button-Slider-right-hover.svg);
-  --icon-fb: url(../images/icon_facebook.svg);
-  --icon-fb-hover: url(../images/icon_facebook_hover.svg);
-  --icon-tw: url(../images/icon-twitter.svg);
-  --icon-tw-hover: url(../images/icon-twitter-hover.svg);
-  --icon-ig: url(../images/icon_instagram.svg);
-  --icon-ig-hover: url(../images/icon_instagram-hover.svg); }
+  --btn-hover-font-color: #FFFFFF; }
 
 .dark {
   --bg-color-1: #37383C;
@@ -36,19 +20,7 @@
   --font-color-1: #FFFFFF;
   --main-color-1: #FFFFFF;
   --page-border-color: #000000;
-  --nav-bg-color: #000000;
-  --btn-img-create-gifo: url(../images/CTA-crear-gifo-modo-noc.svg);
-  --btn-img-create-gifo-hover: url(../images/CTA-crear-gifo-hover-modo-noc.svg);
-  --icon-close: url(../images/close-modo-noct.svg);
-  --icon-hamburguer: url(../images/burger-modo-noct.svg);
-  --icon-search: url(../images/icon-search-mod-noc.svg);
-  --icon-fb-hover: url(../images/icon_facebook_noc.svg);
-  --icon-tw-hover: url(../images/icon_twitter_noc.svg);
-  --icon-ig-hover: url(../images/icon_instagram_noc.svg);
-  --icon-left-arrow: url(../images/button-slider-left-md-noct.svg);
-  --icon-left-arrow-hover: url(../images/button-slider-left-dark-hover.svg);
-  --icon-right-arrow: url(../images/button-slider-right-md-noct.svg);
-  --icon-right-arrow-hover: url(../images/Button-Slider-right-dark-hover.svg); }
+  --nav-bg-color: #000000; }
 
 body {
   font-family: var(--main-font-1), var(--main-font-2), Helvetica, sans-serif;
@@ -84,10 +56,9 @@ main {
 .color-blue {
   color: var(--main-color-1); }
 
-.close-btn {
-  width: 14px;
-  height: 14px;
-  background-image: var(--icon-close); }
+.fa-times {
+  font-size: 20px;
+  color: var(--main-color-1); }
 
 .header-bar, .search-bar, .footer nav {
   display: flex;
@@ -147,7 +118,7 @@ main {
   content: "";
   display: block;
   opacity: 0.5;
-  border: 1px solid #9CAFC3;
+  border: 1px solid var(--gray);
   width: 40%;
   margin: auto; }
 
@@ -208,9 +179,7 @@ COMMENTS:
 
 /*---HAMBURGUER-MENU-ICONS---*/
 .header-bar .hamb-icon {
-  background-image: var(--icon-hamburguer);
-  width: 15px;
-  height: 14px; }
+  color: var(--main-color-1); }
 .header-bar .close-icon, .header-bar .hamb-checkbox:checked ~ .hamb-icon {
   display: none; }
 .header-bar .hamb-checkbox:checked ~ nav, .header-bar .hamb-checkbox:checked ~ .close-icon {
@@ -254,11 +223,14 @@ h1 {
 .search-button {
   width: 20px;
   height: 20px;
-  background-image: var(--icon-search);
-  margin: 0 6px; }
+  margin: 0 6px;
+  color: var(--main-color-1); }
+  .search-button .fa-search {
+    font-size: 22px;
+    margin-left: -8px; }
 
 .search-input:focus ~ .search-button {
-  background-image: var(--icon-search-active); }
+  color: var(--gray); }
 
 .clear-search-button {
   display: none;
@@ -280,7 +252,7 @@ h1 {
   content: "";
   display: block;
   opacity: 0.5;
-  border: 1px solid #9CAFC3;
+  border: 1px solid var(--gray);
   width: 92%;
   margin: auto; }
 
@@ -289,14 +261,14 @@ h1 {
   .suggestion:hover {
     background-color: rgba(128, 128, 128, 0.15);
     cursor: pointer; }
-  .suggestion img {
+  .suggestion .fa-search {
     width: 16px;
     height: 16px;
-    display: inline-block;
-    margin: 0 0.3rem 0 1.2rem; }
+    margin: 0 0.2rem 0 1.3rem;
+    color: var(--gray); }
   .suggestion p {
     font: 400 16px/19px var(--main-font-1);
-    color: #9CAFC3;
+    color: var(--gray);
     display: inline-block; }
 
 /*--TRENDING-TOPICS-TITLES-SIZING--*/
@@ -330,7 +302,7 @@ h1 {
   margin-left: 22px; }
 
 .gif-card {
-  background-color: grey;
+  background-color: var(--gray);
   position: relative;
   height: inherit;
   width: auto;
@@ -354,18 +326,8 @@ h1 {
     font: 400 14px/20px var(--main-font-1);
     letter-spacing: 0;
     margin-top: 30px; }
-  .footer .facebook {
-    width: 8px;
-    height: 17px;
-    background-image: var(--icon-fb); }
-  .footer .twitter {
-    width: 18px;
-    height: 17px;
-    background-image: var(--icon-tw); }
-  .footer .instagram {
-    width: 18px;
-    height: 18px;
-    background-image: var(--icon-ig); }
+  .footer .fa {
+    color: #CDD6E0; }
 
 @media screen and (min-width: 600px) {
   /*--GIFS-GALLERY-RESPONSIVE--*/
@@ -385,12 +347,8 @@ h1 {
       margin: 0; }
     .footer nav {
       margin-left: 1.5rem; }
-    .footer .facebook:hover {
-      background-image: var(--icon-fb-hover); }
-    .footer .twitter:hover {
-      background-image: var(--icon-tw-hover); }
-    .footer .instagram:hover {
-      background-image: var(--icon-ig-hover); } }
+    .footer .fa:hover {
+      color: var(--main-color-1); } }
 @media screen and (min-width: 1024px) {
   /*---HEADER-BAR---*/
   .header-bar {
@@ -413,18 +371,26 @@ h1 {
     .header-bar li:not(.btn-create):hover {
       border-bottom: 2px solid var(--main-color-2); }
     .header-bar li:not(.btn-create):active, .header-bar li:not(.btn-create):active > a {
-      color: #9CAFC3;
+      color: var(--gray);
       border-bottom: none; }
 
   .create-gifo-btn {
     display: inline-block;
     height: 54px;
     width: 54px;
-    background-image: var(--btn-img-create-gifo); }
+    border: 1px solid var(--main-color-1);
+    border-radius: 50%;
+    color: var(--main-color-1);
+    padding: 18px 0; }
+    .create-gifo-btn .fa-plus {
+      font-size: 18px; }
     .create-gifo-btn:hover {
-      background-image: var(--btn-img-create-gifo-hover); }
+      color: var(--bg-color-1);
+      background-color: var(--main-color-1); }
     .create-gifo-btn:active {
-      background-image: var(--btn-img-create-gifo-active); }
+      color: var(--font-color-2);
+      background-color: var(--gray);
+      border-color: var(--gray); }
 
   /*--GIFS-GALLERY-RESPONSIVE--*/
   .gifs-ctn {
@@ -507,17 +473,14 @@ h1 {
 
   .arrow-right, .arrow-left {
     width: 40px;
-    height: 40px; }
-
-  .arrow-left {
-    background-image: var(--icon-left-arrow); }
-    .arrow-left:hover {
-      background-image: var(--icon-left-arrow-hover); }
-
-  .arrow-right {
-    background-image: var(--icon-right-arrow); }
-    .arrow-right:hover {
-      background-image: var(--icon-right-arrow-hover); }
+    height: 40px;
+    font-size: 16px;
+    color: var(--main-color-1);
+    border: 1px solid var(--main-color-1);
+    background-color: #FFFFFF00; }
+    .arrow-right:hover, .arrow-left:hover {
+      color: var(--bg-color-1);
+      background-color: var(--main-color-1); }
 
   /*-VIEW-MORE-BUTTON-*/
   .more-button:hover {
