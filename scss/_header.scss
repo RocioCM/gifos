@@ -27,7 +27,7 @@
         justify-content: space-evenly;
         list-style-type: none;
         padding: 0;
-        li {
+        li, li > a {
             font: 700 15px / 15px var(--main-font-2);
             letter-spacing: 0;
             color:#FFFFFF;

@@ -1,4 +1,4 @@
-//---SEARCH-SECTION-STYLING--//
+/*---SEARCH-SECTION-STYLING---*/
 
 h1 {
     font: 700 25px / 33px var(--main-font-2);
@@ -12,7 +12,7 @@ h1 {
     margin: auto;
 }
 
-//-SEARCH-BAR-//
+/*--SEARCH-BAR--*/
 
 #search-ctn {
     border: 2px solid var(--main-color-1);
@@ -62,7 +62,7 @@ h1 {
     }
 }
 
-//-SEARCH-SUGGESTIONS-//
+/*--SEARCH-SUGGESTIONS--*/
 .search-suggestions {
     background-color: #FFFFFF00;
 }
@@ -77,7 +77,7 @@ h1 {
 .suggestion {
     text-align: start;
     &:hover {
-        background-color: #F2F4F7E6;
+        background-color: rgba(128, 128, 128, 0.15);
         cursor: pointer;
     }
     img {
@@ -93,7 +93,7 @@ h1 {
     }
 }
 
-//-TRENDING-TOPICS-TITLES-SIZING-//
+/*--TRENDING-TOPICS-TITLES-SIZING--*/
 #trending-topics-ctn {
     font: 500 14px / 25px var(--main-font-2);
     max-width: 60vw;

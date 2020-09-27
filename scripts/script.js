@@ -1,6 +1,11 @@
 const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
+if(!localStorage.getItem("favGifs")) localStorage.setItem("favGifs","[]"); //Inicializa los favoritos.
+
+
 
 //0. Links del header funcionales.
+const headerMenuSwitch = document.getElementById("burguer-switch");
+const homeLogo = document.getElementById("home-logo");
 const navBar = document.getElementById("header-links");
 const hiddenSections = document.querySelectorAll(".hidden-section");
 //Datos: hiddenSection[0] y [1] trae a search-section y searched-section respectivamente.
@@ -10,36 +15,79 @@ const hiddenSections = document.querySelectorAll(".hidden-section");
 navBar.children[0].addEventListener("click", themeSwitch);
 navBar.children[1].addEventListener("click", openFavorites);
 navBar.children[2].addEventListener("click", openMyGifos);
+homeLogo.addEventListener("click",displayHomescreen);
+
+if (localStorage.getItem("darkMode")) themeSwitch();
 
 function themeSwitch() {
+    headerMenuSwitch.checked = false;
     const root = document.documentElement
     if (root.classList.contains("dark")) {
-        this.textContent = "Modo Nocturno"
+        this.textContent = "Modo Nocturno";
         root.classList.remove("dark");
+        localStorage.removeItem("darkMode");
         return;
     }
     this.textContent = "Modo Diurno";
     root.classList.add("dark");
+    localStorage.setItem("darkMode","on");
 }
 
 function openFavorites() {
+    headerMenuSwitch.checked = false;
     const favoritesSection = hiddenSections[2];
     hiddenSections.forEach(section => section.classList.add("hidden")); //Oculta todas las secciones.
     favoritesSection.classList.remove("hidden") //Muestra sólo la sección deseada.
-
-    ////Acá hago magia para mostrar lo que corresponde dentro de favorites.
-    //
-    //
+    
+    let favoritesGifs = JSON.parse(localStorage.getItem("favGifs"));
+    if (favoritesGifs.length !== 0) { //Muestra la galería de gifs favoritos.
+        favoritesSection.children[2].classList.remove("hidden");
+        favoritesSection.children[3].classList.add("hidden");
+        displaySectionGifs(favoritesGifs, favoritesSection.children[2].firstElementChild)
+    } else { //Muestra la sección de "No hay favoritos"
+        favoritesSection.children[2].classList.add("hidden");
+        favoritesSection.children[3].classList.remove("hidden");
+    }
 }
 
+
 function openMyGifos() {
+    headerMenuSwitch.checked = false;
     const myGifosSection = hiddenSections[3];
     hiddenSections.forEach(section => section.classList.add("hidden"));
-    myGifosSection.classList.remove("hidden")
+    myGifosSection.classList.remove("hidden");
 
-    ////Acá hago magia para mostrar lo que corresponde dentro de myGifos.
-    //
-    //
+    const myGifs = JSON.parse(localStorage.getItem("myGifs"));
+     
+    if(myGifs!==null && myGifs.length!==0) {//Muestra la galería de "Mis gifs".
+        myGifosSection.children[2].classList.remove("hidden");
+        myGifosSection.children[3].classList.add("hidden");
+        displaySectionGifs(myGifs, myGifosSection.children[2].firstElementChild);
+    } else { //Muestra la sección de "No hay Gifos"
+        myGifosSection.children[2].classList.add("hidden");
+        myGifosSection.children[3].classList.remove("hidden");
+    }
+}
+
+
+function displaySectionGifs(gifsIds, gifsCtn) {//Muestra en gifsCtn los gifs cuyos ids están en el array gifsIds.
+    gifsCtn.innerHTML = "";
+    gifsIds.forEach(async (gifId) => {
+        try {
+        let gif = await fetch(`https://api.giphy.com/v1/gifs/${gifId}?api_key=${apiKey}`);
+        gif = await gif.json();
+        gif = gif.data;
+        addGifToDOM(gif,gifsCtn);
+        } catch (error) {
+            console.log(error);
+        }
+    });
+}
+
+function displayHomescreen() {
+    const searchSection = hiddenSections[0];
+    hiddenSections.forEach(section => section.classList.add("hidden")); //Oculta todas las secciones.
+    searchSection.classList.remove("hidden") //Muestra sólo la sección deseada.
 }
 
 
@@ -56,7 +104,6 @@ const clearSearchButton = searchBar.children[0];
 const searchResultsCtn = hiddenSections[1].children[1].firstElementChild; //Contenedor de los resultados de la búsqueda.
 
 
-
 //1.1. Predicción de búsqueda (suggestions).
 
 searchInput.addEventListener("keyup",getSuggestions); 
@@ -69,7 +116,7 @@ async function getSuggestions(e) { //Busca las sugerencias para la frase en sear
     };
     
     let terms = this.value.split(" ").join("+") //Une los términos para la búsqueda.
-    console.log(terms)
+    ///console.log(terms)
     let suggestions = await fetch(`https://api.giphy.com/v1/tags/related/${terms}?api_key=${apiKey}`)
     try {
         if (suggestions.status!=200) throw new Error("No se pudieron cargar sugerencias de búsqueda.");
@@ -105,7 +152,7 @@ searchBar.addEventListener("focusin", enableSearchBar);
 searchBar.addEventListener("focusout",disableSearchBar); 
 
 //b. Realizar búsqueda al apretar la lupa. >
-searchButton.addEventListener("click",makeSearch) 
+searchButton.addEventListener("mousedown",makeSearch) 
 
 //c. Funcionalidad del botón vaciar cuadro de búsqueda.
 clearSearchButton.addEventListener("mousedown",() => searchInput.value="")
@@ -123,7 +170,7 @@ function disableSearchBar() {
 async function makeSearch() {
     disableSearchBar();
     let text = searchInput.value; //Captura los términos a buscar.
-    console.log("Ahora voy a buscar esto: "+text) ///
+    ///console.log("Ahora voy a buscar esto: "+text) ///
     text = text.split(" ").join("+"); //Le da el formato correcto para el fetch.
     let results = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${text}&limit=12`);
     results = await results.json();
@@ -144,7 +191,7 @@ async function makeSearch() {
             searchResultsCtn.parentNode.parentNode.children[2].classList.remove("hidden");
             return;
         }
-        
+        searchResultsCtn.innerHTML = "";
         gifs.forEach(gif => addGifToDOM(gif,searchResultsCtn));
 
     } 
@@ -166,9 +213,9 @@ async function setTrendingTopics(trendingTopicsCtn) {
     try {
         if (topics.status!=200) throw new Error("No se pudieron cargar los trending topics");
 
-        topics = await topics.json(); ///convierte la respuesta en json (casualmente, en una promesa).
-        const topicsList = topics.data.splice(0,5); ///de la promesa, obtiene data, que tiene 20 términos y saca sólo 5.
-        topicsList.forEach((topic,index) => addTrendingTopic(topic, trendingTopicsCtn,index)); //agrega al DOM todos cada topic.
+        topics = await topics.json(); 
+        const topicsList = topics.data.splice(0,5); //De la promesa, obtiene data, que tiene 20 términos y saca sólo 5.
+        topicsList.forEach((topic,index) => addTrendingTopic(topic, trendingTopicsCtn,index)); //Agrega al DOM todos cada topic.
     }
     catch(error) {
         console.log(`Trending Topics: \n${error}`);
@@ -193,54 +240,11 @@ function addTrendingTopic(topic, topicsCtn,index) { //Agrega un topic al DOM y l
 
 
 
-//1. Busca y rellena los trending GIFs.
-
-const trendingCardsCtn = document.getElementById("trending-cards-ctn");
-const trendingCardTemplate = trendingCardsCtn.children[0].content.firstElementChild;
-displayTrendingGifs(trendingCardsCtn);
-
-
-async function displayTrendingGifs(trendingCardsCtn) {
-    let gifs = await fetch(`https://api.giphy.com/v1/gifs/trending?api_key=${apiKey}&limit=10`);
-    try {
-        if (gifs.status!=200) throw new Error("No se han podido cargar los GIFs.");
-        
-        gifs = await gifs.json();
-        gifs = gifs.data ///Ahora es un array con gifs en toda regla.
-        gifs.forEach(gif => addGifToDOM(gif,trendingCardsCtn)); //Crea cada card y la agrega al DOM.
-    }
-    catch(error) {
-        console.log(`Trending Gifs: \n${error}`);
-    } 
-}
-
-function addGifToDOM(gif, gifsCtn) {
-    let ctn = trendingCardTemplate.cloneNode(true);
-    //ctn.id = gif.id; /////EEEEEh, NO PUEDO HACER ESOOOOO. Podrían repetirse. Para tener el id del gif a mano cuando lo quiera guardar en favoritos.
-    ctn.children[0].src = gif.images.fixed_height_small.url; //Setea el gif. Que para variar no se muestra >:c
-    ctn.children[0].alt = gif.title;
-    let gifData = gif.title.split("GIF by "); //Obtiene el título del gif y el usuario.
-    ctn.children[2].children[0].textContent = gifData[1]; //Setea el usuario.
-    ctn.children[2].children[1].textContent = gifData[0]; //Setea el título.
-    gifsCtn.appendChild(ctn);
-
-    ///Agregar event Listeners a los botoneeeees!
-}
-
-//Funcionalidad del carrusel.
-const carrouselCtn = trendingCardsCtn.parentElement.parentElement;
-///console.log(carrouselCtn);
-carrouselCtn.firstElementChild.addEventListener("click",()=> console.log("move left"));
-carrouselCtn.lastElementChild.addEventListener("click",()=> console.log("move right"));
-
-
-
 ////EEEEEEPA: DETALLES
 //3. En addTrendingGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
 //4. Para mover el carrousel en desktop hay que usar JS. Y creo que va a funcionar usar: transform: translateX(-...px); (Y así hacer que se mueva.)
-//9. Agregar event listeners a los botones en addTrendingGifToDOM.
-//10. Completar funcionalidad en openMyGifosSection y openFavoritesSection.
-//11. Che, y hasta cierto punto no podría parametrizar las dos funciones del item anterior para los containers por parámetro y usar la misma función para ambos, así como "openSection"??
+//9. Arreglar/completar event listeners de los botones en addTrendingGifToDOM.
+//10. Hacer que se muestre el cartel de lolamento en la búsqueda sólo si no hay results.
 
 ///ESTÁS HACIENDO EL MAKESEARCH.
 //Fijate la cochinada que estás haciendo en makeSearch.

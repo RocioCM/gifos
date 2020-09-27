@@ -11,7 +11,7 @@
 <body>
 
     <header class="header-bar">
-        <a class="logo" href="">
+        <a class="logo" href="#" id="home-logo">
             <picture>
                 <source media="(max-width: 1199px)" srcset="../images/logo-mobile.svg">
                 <img src="../images/logo-desktop.svg" alt="logo">
@@ -23,8 +23,8 @@
         <nav>
             <ul id="header-links">
                 <li>Modo Nocturno</li>
-                <li>Favoritos</li>
-                <li>Mis GIFOS</li>
+                <li><a href="#">Favoritos</a></li>
+                <li><a href="#">Mis GIFOS</a></li>
                 <li class="btn-create mobile-hidden"><a class="create-gifo-btn" href="create/index.html"></a></li>
             </ul>
         </nav>
@@ -111,8 +111,8 @@
                             <img src="" alt="">
                             <div class="card-buttons-ctn">
                                 <img src="../images/icon-fav-hover.svg" alt="favorite">
-                                <img src="../images/icon-download-hover.svg" alt="download">
-                                <a href=""><img src="../images/icon-max-hover.svg" alt="fullscreen"></a>
+                                <a download="img" href=""><img src="../images/icon-download-hover.svg" alt="download"></a>
+                                <img src="../images/icon-max-hover.svg" alt="fullscreen">
                             </div>
                             <div class="gif-data">
                                 <p class="gif-user"></p>
@@ -152,8 +152,18 @@
         <p>&copy; GIFOS 2020 All Rights Reserved.</p>
     </footer>
     <script src="../scripts/script.js"></script>
+    <script src="../scripts/carrousel.js"></script>
 </body>
 </html>
+
+
+<!-- <script src="https://kit.fontawesome.com/3e257e7947.js" crossorigin="anonymous"></script>  -->
+
+<!-- <nav>
+    <a href="https://twitter.com/giphy?lang=es" target="_blank"><i class="fa fa-facebook"></i></a>
+    <a href="https://www.instagram.com/giphy/?hl=es-la" target="_blank"><i class="fa fa-twitter"></i></a>
+    <a href="https://es-la.facebook.com/GIPHY/" target="_blank"><i class="fa fa-instagram"></i></a>
+</nav> -->
 
 
 <!-- El gif del gatito en moto: -->

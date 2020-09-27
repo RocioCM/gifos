@@ -1,6 +1,17 @@
 
+@media screen and(min-width: 600px) {
+    /*--GIFS-GALLERY-RESPONSIVE--*/
+    .gifs-ctn {
+        grid-template-columns: repeat(3,1fr);
+        article {
+            height: 20vw;
+        }
+    }
+}
+
+
 @media screen and (min-width: 720px) {
-    //---FOOTER---//
+    /*---FOOTER---¨*/
     .footer {
         display: flex;
         justify-content: space-between;
@@ -27,7 +38,7 @@
 
 
 @media screen and (min-width: 1024px) { 
-    //---HEADER-BAR---//
+    /*---HEADER-BAR---*/
     .header-bar {
         height: 12vh;
         nav {
@@ -40,7 +51,7 @@
         ul {
             flex-flow: row nowrap;
             justify-content: space-between;
-            li {
+            li, li > a {
                 color: var(--main-color-1);
                 text-transform: uppercase;
                 margin: auto;
@@ -51,10 +62,9 @@
         }
         li:not(.btn-create) {
             &:hover {
-                line-height: 15px;
                 border-bottom: 2px solid var(--main-color-2);
             }
-            &:active {
+            &:active, &:active > a {
                 color: #9CAFC3;
                 border-bottom: none;
             }
@@ -74,13 +84,23 @@
     }
 
 
-    //---ASIDE-TRENDING-GIFS---//
+    /*--GIFS-GALLERY-RESPONSIVE--*/
+    .gifs-ctn {
+        width: 80vw;
+        grid-template-columns: repeat(4,1fr);
+        grid-gap: 2vw;
+        article {
+            height: 15vw;
+        }
+    }
+
+    /*---ASIDE-TRENDING-GIFS---¨*/
     #trending-cards-ctn {
         height: 35vh;
         min-height: 190px;
-        margin-left: 0; ///
+        margin-left: 0; 
     }
-    //---GIF-HOVER-SETTINGS---//
+    /*---GIF-HOVER-SETTINGS---*/
     .filter {
         width: 100%;
         height: 100%;
@@ -126,7 +146,7 @@
         font: 500 16px var(--main-font-1);
     }
 
-    //--ASIDE-FONTS--//
+    /*--ASIDE-FONTS--*/
     .aside-trendings {
         padding-bottom: 10rem;
     }
@@ -138,7 +158,7 @@
         font-size: 18px;
     }
 
-    //--CARROUSEL--//
+    /*--CARROUSEL--*/
     .scrollable {
         width: 78vw;
         overflow: hidden
@@ -170,7 +190,7 @@
         }
     }
 
-    //-VIEW-MORE-BUTTON-//
+    /*-VIEW-MORE-BUTTON-*/
     .more-button:hover {
         color: var(--bg-color-1);
         background-color: var(--main-color-1); 
@@ -179,7 +199,7 @@
 
 
 @media screen and (min-width: 1200px) {
-    //---TITLES-RESIZING--//
+    /*---TITLES-RESIZING--*/
     h1 {
         font-size: 40px;
         line-height: 50px;

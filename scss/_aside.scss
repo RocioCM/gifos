@@ -1,4 +1,4 @@
-//---ASIDE-TITLES-SETTINGS---//
+/*---ASIDE-TITLES-SETTINGS---*/
 
 .aside-trendings {
     background-color: var(--bg-color-2);
@@ -10,20 +10,21 @@
     margin: auto 11vw 2rem;
 }
 
-//----TRENDING-GIFS-SETTINGS----//
+/*----TRENDING-GIFS-SETTINGS----*/
 
 #trending-cards-ctn {
     display: flex;
     height: 190px;
     width: max-content;
-    margin-left: 22px; ///
+    margin-left: 22px;
 }
 
 .gif-card {
+    background-color: grey;
     position: relative;
     height: inherit;
     width: auto;
-    margin-right: 22px; ///
+    margin-right: 22px;
     img {
         height: inherit;
     }
