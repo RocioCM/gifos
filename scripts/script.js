@@ -44,6 +44,7 @@ function openFavorites() {
         favoritesSection.children[2].classList.remove("hidden");
         favoritesSection.children[3].classList.add("hidden");
         displaySectionGifs(favoritesGifs, favoritesSection.children[2].firstElementChild)
+        if (favoritesGifs.length <= 12) favoritesSection.children[2].lastElementChild.classList.add("hidden"); //Esconde el botón ver más.
     } else { //Muestra la sección de "No hay favoritos"
         favoritesSection.children[2].classList.add("hidden");
         favoritesSection.children[3].classList.remove("hidden");
@@ -63,6 +64,7 @@ function openMyGifos() {
         myGifosSection.children[2].classList.remove("hidden");
         myGifosSection.children[3].classList.add("hidden");
         displaySectionGifs(myGifs, myGifosSection.children[2].firstElementChild);
+        if (myGifs.length <= 12) myGifosSection.children[2].lastElementChild.classList.add("hidden");
     } else { //Muestra la sección de "No hay Gifos"
         myGifosSection.children[2].classList.add("hidden");
         myGifosSection.children[3].classList.remove("hidden");
@@ -183,14 +185,20 @@ async function makeSearch() {
         const sectionTitle = searchResultsCtn.parentNode.parentNode.firstElementChild;
         sectionTitle.textContent = searchInput.value; 
 
-        //Cuidate, que saqué temporalmente varios hidden de los containers en HTML.
         
-        hiddenSections[1].classList.remove("hidden"); //Muestra la sección de searched-gifs.
-        if (gifs.length===0) {
-            searchResultsCtn.parentNode.classList.add("hidden");
-            searchResultsCtn.parentNode.parentNode.children[2].classList.remove("hidden");
+        const resultsSection = hiddenSections[1];
+        resultsSection.classList.remove("hidden"); //Muestra la sección de searched-gifs.
+        
+        if (gifs.length === 0) { //Muestra la sección de "No se encontraron resultados".
+            resultsSection.children[1].classList.add("hidden");
+            resultsSection.children[2].classList.remove("hidden");
             return;
         }
+        //Muestra la galería de gifs encontrados.
+        resultsSection.children[1].classList.remove("hidden");
+        resultsSection.children[2].classList.add("hidden");
+        if (gifs.length < 12) resultsSection.children[1].lastElementChild.classList.add("hidden"); //Esconde el botón ver más.
+        
         searchResultsCtn.innerHTML = "";
         gifs.forEach(gif => addGifToDOM(gif,searchResultsCtn));
 

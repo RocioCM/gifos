@@ -81,8 +81,8 @@ main {
       width: 100%;
       height: 100%; }
 
-.section-icon {
-  margin-top: 0.6rem; }
+.hidden-section:not(.search-section) {
+  margin: 0.6rem auto 5rem; }
 
 .section-title {
   font: 700 20px/30px var(--main-font-2);
@@ -97,17 +97,17 @@ main {
   border-radius: 25px;
   padding: 1rem 2rem;
   color: var(--main-color-1);
-  margin: 2rem auto 5rem; }
+  margin: 2rem auto; }
 
 .empty-sec-msg {
   font: 700 18px/22px var(--main-font-2);
-  margin: 2rem auto;
+  margin: 2rem auto 0;
   color: var(--main-color-2);
   width: 90%;
   max-width: 350px; }
 
 .empty-favorites, .empty-my-gifos {
-  margin: 6.5rem auto; }
+  margin: 6.5rem auto 0; }
 
 .searched-title {
   font: 700 35px/30px var(--main-font-2);
@@ -137,7 +137,7 @@ main {
 /*
 COMMENTS: 
 1.Conseguite un nuevo logo que sirva para dark y light a la vez.
-
+2.Cambiar los px del texto por rem y ajustar el rem en 1024 y 1200 tipo en 14px y 16px;
 */
 /*---HEADER---*/
 .header-bar {
@@ -381,7 +381,7 @@ h1 {
     border: 1px solid var(--main-color-1);
     border-radius: 50%;
     color: var(--main-color-1);
-    padding: 18px 0; }
+    padding: 16px 0; }
     .create-gifo-btn .fa-plus {
       font-size: 18px; }
     .create-gifo-btn:hover {
