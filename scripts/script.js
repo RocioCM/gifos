@@ -34,40 +34,31 @@ function themeSwitch() {
 }
 
 function openFavorites() {
-    headerMenuSwitch.checked = false;
     const favoritesSection = hiddenSections[2];
-    hiddenSections.forEach(section => section.classList.add("hidden")); //Oculta todas las secciones.
-    favoritesSection.classList.remove("hidden") //Muestra sólo la sección deseada.
-    
-    let favoritesGifs = JSON.parse(localStorage.getItem("favGifs"));
-    if (favoritesGifs.length !== 0) { //Muestra la galería de gifs favoritos.
-        favoritesSection.children[2].classList.remove("hidden");
-        favoritesSection.children[3].classList.add("hidden");
-        displaySectionGifs(favoritesGifs, favoritesSection.children[2].firstElementChild)
-        if (favoritesGifs.length <= 12) favoritesSection.children[2].lastElementChild.classList.add("hidden"); //Esconde el botón ver más.
-    } else { //Muestra la sección de "No hay favoritos"
-        favoritesSection.children[2].classList.add("hidden");
-        favoritesSection.children[3].classList.remove("hidden");
-    }
+    const favoritesGifs = JSON.parse(localStorage.getItem("favGifs"));
+    displayGifsByIdGallery(favoritesGifs,favoritesSection);
+}
+function openMyGifos() {
+    const myGifosSection = hiddenSections[3];
+    const myGifs = JSON.parse(localStorage.getItem("myGifs"));
+    displayGifsByIdGallery(myGifs,myGifosSection);
 }
 
+function displayGifsByIdGallery(gifsIds,gallerySection) {
 
-function openMyGifos() {
     headerMenuSwitch.checked = false;
-    const myGifosSection = hiddenSections[3];
     hiddenSections.forEach(section => section.classList.add("hidden"));
-    myGifosSection.classList.remove("hidden");
-
-    const myGifs = JSON.parse(localStorage.getItem("myGifs"));
+    gallerySection.classList.remove("hidden");
      
-    if(myGifs!==null && myGifs.length!==0) {//Muestra la galería de "Mis gifs".
-        myGifosSection.children[2].classList.remove("hidden");
-        myGifosSection.children[3].classList.add("hidden");
-        displaySectionGifs(myGifs, myGifosSection.children[2].firstElementChild);
-        if (myGifs.length <= 12) myGifosSection.children[2].lastElementChild.classList.add("hidden");
-    } else { //Muestra la sección de "No hay Gifos"
-        myGifosSection.children[2].classList.add("hidden");
-        myGifosSection.children[3].classList.remove("hidden");
+    if(gifsIds!==null && gifsIds.length!==0) {//Muestra la galería.
+        gallerySection.children[2].classList.remove("hidden");
+        gallerySection.children[3].classList.add("hidden");
+        displaySectionGifs(gifsIds, gallerySection.children[2].firstElementChild);
+        if (gifsIds.length <= 12) {gallerySection.children[2].lastElementChild.classList.add("hidden")}
+        else {gallerySection.children[2].lastElementChild.classList.remove("hidden")};
+    } else { //Muestra la sección de "No hay Gifos".
+        gallerySection.children[2].classList.add("hidden");
+        gallerySection.children[3].classList.remove("hidden");
     }
 }
 
@@ -197,8 +188,8 @@ async function makeSearch() {
         //Muestra la galería de gifs encontrados.
         resultsSection.children[1].classList.remove("hidden");
         resultsSection.children[2].classList.add("hidden");
-        if (gifs.length < 12) resultsSection.children[1].lastElementChild.classList.add("hidden"); //Esconde el botón ver más.
-        
+        if (gifs.length < 12) {resultsSection.children[1].lastElementChild.classList.add("hidden")} //Esconde el botón ver más.
+        else {resultsSection.children[1].lastElementChild.classList.remove("hidden")};
         searchResultsCtn.innerHTML = "";
         gifs.forEach(gif => addGifToDOM(gif,searchResultsCtn));
 
@@ -252,9 +243,3 @@ function addTrendingTopic(topic, topicsCtn,index) { //Agrega un topic al DOM y l
 //3. En addTrendingGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
 //4. Para mover el carrousel en desktop hay que usar JS. Y creo que va a funcionar usar: transform: translateX(-...px); (Y así hacer que se mueva.)
 //9. Arreglar/completar event listeners de los botones en addTrendingGifToDOM.
-//10. Hacer que se muestre el cartel de lolamento en la búsqueda sólo si no hay results.
-
-///ESTÁS HACIENDO EL MAKESEARCH.
-//Fijate la cochinada que estás haciendo en makeSearch.
-//8. Implementá la búsqueda en la función search.
-//Bah, en realidad es darle estilos al container y solucionar el tema de que usas el mismo addtodom para todas y tienen estilos distintos, capaz lo podés solucionar desde css dandole estilos distintos dependiendo de (anidado en) el metacontainer (el container más superior)
