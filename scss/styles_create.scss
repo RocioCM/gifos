@@ -2,18 +2,25 @@
 @import 'general';
 @import 'header';
 @import 'footer';
+@import 'medias';
 
-body {
-    height: 100vh;
+.header-bar .create-gifo-btn {
+    color: var(--font-color-2);
+    background-color: var(--gray);
+    border-color: var(--gray); 
 }
-.main {
-    height: auto;
+
+main {
+    height: 72vh;
+}
+.hidden {
+    display: none;
 }
 .mobile-hidden {
     display: none;
 }
 
-@media screen and (min-width: 1024px) { //En realidad podría ser a 1200, pero por ahora lo dejo en 1024.
+@media screen and (min-width: 1024px) {
     .mobile-hidden {
         display: initial;
     }

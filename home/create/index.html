@@ -1,41 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIFOS</title>
     <link rel="icon" href="../../images/logo-mobile-modo-noct.svg">
     <link rel="stylesheet" href="../../scss/styles_create.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500&display=swap" > 
-
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500&display=swap">
+    <script src="https://kit.fontawesome.com/3e257e7947.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header class="header-bar">
-        <picture class="logo">
-            <source media="(max-width: 1199px)" srcset="../../images/logo-mobile.svg">
-            <a href="../../index.html"><img src="../../images/logo-desktop.svg" alt="logo"></a>
-        </picture>
-        <div class="menu">
-            <input type="checkbox" class="hamb-checkbox desktop-hidden">
-            <img class="hamb-icon desktop-hidden" src="../../images/burger.svg" alt="Burguer Menu icon">
-            <img class="close-icon desktop-hidden" src="../../images/close.svg" alt="Close Menu icon">
-            <nav>
-                <ul>
-                    <li><label class="theme-switch" for="theme-switch">Modo Nocturno</label><input type="checkbox" id="theme-switch"></li>
-                    <li><a href="#">Favoritos</a></li>
-                    <li><a href="#">Mis GIFOS</a></li>
-                    <li class="btn-create mobile-hidden"><a href="#"><img src="../../images/CTA-crear-gifo-active.svg" alt="Crear GIFO"></a></li>
-                </ul>
-            </nav>
-        </div>
+        <a class="logo" href="../" id="home-logo">
+            <img src="../../images/logo-mobile.svg" alt="logo">
+        </a>
+        <input type="checkbox" class="hamb-checkbox hidden" id="burguer-switch">
+        <label class="hamb-icon desktop-hidden" for="burguer-switch"><i class="fas fa-bars"></i></label>
+        <label class="close-icon desktop-hidden" for="burguer-switch"><i class="fas fa-times"></i></label>
+        <nav>
+            <ul id="header-links">
+                <li>Modo Nocturno</li>
+                <li><a href="#">Favoritos</a></li>
+                <li><a href="#">Mis GIFOS</a></li>
+                <li class="btn-create mobile-hidden">
+                    <a class="create-gifo-btn" href=""><i class="fas fa-plus"></i></a>
+                </li>
+            </ul>
+        </nav>
     </header>
 
 
 
     <main>
-        <h1>Holi, acá vas a poder crear un Gifo :D</h1>
+        <div>Cámara</div>
+        <div>
+            <div>
+                <h2 class="color-blue">Aquí podrás crear tus propios <span class="color-aqua">GIFOS</span></h2>
+                <p>¡Crea tu GIFO en sólo 3 pasos! (sólo necesitas una cámara para grabar un video)</p>
+            </div>
+            <div>
+                <h2 class="color-blue">¿Nos das acceso a tu cámara?</h2>
+                <p>El acceso a tu camara será válido sólo por el tiempo en el que estés creando el GIFO.</p>
+            </div>
+        </div>
+        <div>Rollo</div>
+
+        <div class="steps-ctn">
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+        </div>
+        <div>
+            <h3 class="time-count">00:01:03</h3>
+            <h3>Repetir captura</h3>
+        </div>
+        <div class="horizontal-line"></div>
+        <button class="more-button">Comenzar</button>
     </main>
-    
+
 
 
     <footer class="footer">
@@ -47,7 +72,7 @@
         </nav>
         <p>&copy; GIFOS 2020 All Rights Reserved.</p>
     </footer>
-    <script src="https://kit.fontawesome.com/3e257e7947.js" crossorigin="anonymous"></script>
-    
+
 </body>
+
 </html>

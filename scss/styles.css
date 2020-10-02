@@ -36,7 +36,8 @@ button {
   cursor: pointer;
   border: none;
   background-color: transparent;
-  color: var(--main-color-1); }
+  color: var(--main-color-1);
+  text-transform: uppercase; }
 
 label {
   cursor: pointer; }
