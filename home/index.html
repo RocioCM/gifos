@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIFOS</title>
     <link rel="icon" href="../images/logo-mobile-modo-noct.svg">
     <link rel="stylesheet" href="../scss/styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500&display=swap" > 
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Roboto:wght@400;500&display=swap">
     <script src="https://kit.fontawesome.com/3e257e7947.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
     <header class="header-bar">
         <a class="logo" href="#" id="home-logo">
-            <picture>
-                <source media="(max-width: 1199px)" srcset="../images/logo-mobile.svg">
-                <img src="../images/logo-desktop.svg" alt="logo">
-            </picture>
+            <img src="../images/logo-mobile.svg" alt="logo">
         </a>
         <input type="checkbox" class="hamb-checkbox hidden" id="burguer-switch">
         <label class="hamb-icon desktop-hidden" for="burguer-switch"><i class="fas fa-bars"></i></label>
@@ -26,77 +26,80 @@
                 <li>Modo Nocturno</li>
                 <li><a href="#">Favoritos</a></li>
                 <li><a href="#">Mis GIFOS</a></li>
-                <li class="btn-create mobile-hidden"><a class="create-gifo-btn" href="create/index.html"><i class="fas fa-plus"></i></a></li>
+                <li class="btn-create mobile-hidden">
+                    <a class="create-gifo-btn" href="create/index.html"><i class="fas fa-plus"></i></a>
+                </li>
             </ul>
         </nav>
     </header>
 
     <main>
-    <section class="search-section hidden-section">
-        <h1 class="color-blue">Inspírate, busca, guarda y crea los mejores <span class="color-aqua">GIFOS</span></h1>
-        <img class="heading-img" src="../images/ilustra_header.svg" alt="Felices personas buscando gifos">
-        <div id="search-ctn">
-            <div class="search-bar" id="search-bar"> 
-                <button class="clear-search-button"><i class="fas fa-times"></i></button>
-                <input class="search-input" type="text" name="search" id="search" placeholder="Busca GIFOS y más"> 
-                <button class="search-button"><i class="fas fa-search"></i></button>
+        <section class="search-section hidden-section">
+            <h1 class="color-blue">Inspírate, busca, guarda y crea los mejores <span class="color-aqua">GIFOS</span>
+            </h1>
+            <img class="heading-img" src="../images/ilustra_header.svg" alt="Felices personas buscando gifos">
+            <div id="search-ctn">
+                <div class="search-bar" id="search-bar">
+                    <button class="clear-search-button"><i class="fas fa-times"></i></button>
+                    <input class="search-input" type="text" name="search" id="search" placeholder="Busca GIFOS y más">
+                    <button class="search-button"><i class="fas fa-search"></i></button>
+                </div>
+                <div class="search-suggestions">
+                    <template>
+                        <article class="suggestion">
+                            <i class="fas fa-search"></i>
+                            <p></p>
+                        </article>
+                    </template>
+                </div>
             </div>
-            <div class="search-suggestions">
-                <template>
-                    <article class="suggestion">
-                        <i class="fas fa-search"></i>
-                        <p></p>
-                    </article>
-                </template>
+            <h3 class="color-blue trending-h3">Trending:</h3>
+            <p class="color-blue" id="trending-topics-ctn"></p>
+        </section>
+
+        <section class="searched-section hidden-section hidden">
+            <h2 class="searched-title">SearchedTerms</h2>
+            <div>
+                <div id="search-results-ctn" class="search-results-ctn gifs-ctn">
+
+                </div>
+                <button class="more-button">VER MÁS</button>
             </div>
-        </div>
-        <h3 class="color-blue trending-h3">Trending:</h3>
-        <p class="color-blue" id="trending-topics-ctn"></p>
-    </section>
-
-    <section class="searched-section hidden-section hidden">
-        <h2 class="searched-title">SearchedTerms</h2>
-        <div>
-            <div id="search-results-ctn" class="search-results-ctn gifs-ctn">
-
+            <div class="search-no-results">
+                <img src="../images/icon-busqueda-sin-resultado.svg" alt="busqueda sin resultados">
+                <h3 class="empty-sec-msg">Intenta con otra búsqueda</h3>
             </div>
-            <button class="more-button">VER MÁS</button>
-        </div>
-        <div class="search-no-results"> 
-            <img src="../images/icon-busqueda-sin-resultado.svg" alt="busqueda sin resultados">
-            <h3 class="empty-sec-msg">Intenta con otra búsqueda</h3>
-        </div>
-    </section>
+        </section>
 
-    <section class="favorites-section hidden-section hidden">
-        <img class="section-icon" src="../images/icon-favoritos.svg" alt="ícono">
-        <h2 class="section-title">Favoritos</h2>
-        <div>   
-            <div class="favorites-ctn gifs-ctn">
+        <section class="favorites-section hidden-section hidden">
+            <img class="section-icon" src="../images/icon-favoritos.svg" alt="ícono">
+            <h2 class="section-title">Favoritos</h2>
+            <div>
+                <div class="favorites-ctn gifs-ctn">
 
+                </div>
+                <button class="more-button">VER MÁS</button>
             </div>
-            <button class="more-button">VER MÁS</button>
-        </div> 
-        <div class="empty-favorites">
-            <img src="../images/icon-fav-sin-contenido.svg" alt="Favoritos vacío">
-            <h3 class="empty-sec-msg">¡Guarda tu primer GIFO en Favoritos para que se muestre aquí!</h3>
-        </div>
-    </section>
-
-    <section class="my-gifos-section hidden-section hidden">
-        <img class="section-icon" src="../images/icon-mis-gifos.svg"  alt="ícono">
-        <h2 class="section-title" >Mis GIFOS</h2>
-        <div>
-            <div class="my-gifos-ctn gifs-ctn">
-
+            <div class="empty-favorites">
+                <img src="../images/icon-fav-sin-contenido.svg" alt="Favoritos vacío">
+                <h3 class="empty-sec-msg">¡Guarda tu primer GIFO en Favoritos para que se muestre aquí!</h3>
             </div>
-            <button class="more-button">VER MÁS</button>
-        </div>
-        <div class="empty-my-gifos">
-            <img src="../images/icon-mis-gifos-sin-contenido.svg" alt="Mis Gifos vacío">
-            <h3 class="empty-sec-msg">¡Anímate a crear tu primer GIFO!</h3>
-        </div>
-    </section>
+        </section>
+
+        <section class="my-gifos-section hidden-section hidden">
+            <img class="section-icon" src="../images/icon-mis-gifos.svg" alt="ícono">
+            <h2 class="section-title">Mis GIFOS</h2>
+            <div>
+                <div class="my-gifos-ctn gifs-ctn">
+
+                </div>
+                <button class="more-button">VER MÁS</button>
+            </div>
+            <div class="empty-my-gifos">
+                <img src="../images/icon-mis-gifos-sin-contenido.svg" alt="Mis Gifos vacío">
+                <h3 class="empty-sec-msg">¡Anímate a crear tu primer GIFO!</h3>
+            </div>
+        </section>
     </main>
 
 
@@ -111,9 +114,9 @@
                         <article class="gif-card">
                             <img src="" alt="">
                             <div class="card-buttons-ctn">
-                                <img src="../images/icon-fav-hover.svg" alt="favorite">
-                                <a download="img" href=""><img src="../images/icon-download-hover.svg" alt="download"></a>
-                                <img src="../images/icon-max-hover.svg" alt="fullscreen">
+                                <i class="far fa-heart"></i>
+                                <a download="img" href=""><i class="fas fa-download"></i></a>
+                                <i class="fas fa-expand-alt"></i>
                             </div>
                             <div class="gif-data">
                                 <p class="gif-user"></p>
@@ -126,22 +129,9 @@
             </div>
             <button class="arrow-right mobile-hidden"><i class="fas fa-chevron-right"></i></button>
         </div>
-
-        <section class="fullscreen-gif hidden">
-            <template>
-                <i class="fas fa-times"></i>
-                <img src="" alt="">
-                <div>
-                    <p>User</p>
-                    <h3>Título GIFO</h3>
-                    <i>Corazom</i>
-                    <i>Download button</i>
-                </div>
-            </template>
-        </section>
     </aside>
 
-
+    <section class="fullscreen hidden-section hidden"></section>
 
     <footer class="footer">
         <p>Compartir en:</p>
@@ -155,6 +145,7 @@
     <script src="../scripts/script.js"></script>
     <script src="../scripts/carrousel.js"></script>
 </body>
+
 </html>
 
 

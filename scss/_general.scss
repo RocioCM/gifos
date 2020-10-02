@@ -11,7 +11,8 @@ body {
 button {
     cursor: pointer;
     border: none;
-    background-color: #FFFFFF00;
+    background-color: transparent;
+    color: var(--main-color-1); 
 }
 label {
     cursor: pointer;
@@ -40,6 +41,13 @@ main {
     font-size: 20px;
     color: var(--main-color-1); 
 }
+
+
+html.theme-transition * {
+    transition: all 500ms !important;
+    transition-delay: 0 !important;
+}
+
 
 %behave-horizontal { //Basically: the perfect flex row.  
     display: flex;
@@ -70,7 +78,7 @@ main {
         }
     }
 }
-.hidden-section:not(.search-section) {
+.searched-section, .favorites-section, .my-gifos-section {
     margin: 0.6rem auto 5rem;
 }
 
@@ -82,7 +90,7 @@ main {
 }
 .more-button {
     font: 700 13px var(--main-font-2);
-    background-color: #FFFFFF00;
+    background-color: transparent;
     letter-spacing: 0;
     border: 1px solid var(--main-color-1);
     border-radius: 25px;
@@ -120,18 +128,104 @@ main {
 
 /*SOLO-POR-AHORA-SETTINGS*/
 
-.fullscreen-gif {
+.fullscreen {
+    background-color: var(--fullscreen-bg-color);
+    position: fixed;
     height: 100vh;
     width: 100vw;
-    margin: 0;
-    padding: 8vh 8vw;
-    display: grid;
+    top: 0;
+    left: 0;
+    z-index: 10;
 }
 
-.search-button img { //Neither works.
-    color: red;
-    fill: red;
+#on-fullscreen-gif {
+    z-index:11;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 10%;
+    background-color: initial;
+    height: 100vh;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    justify-content: center;
+    > img {
+        max-width: 85vw;
+        width: 100%;
+        height: auto;
+        max-height: 50vh;
+    }
+    .filter {
+        display: initial;
+        opacity: 0;
+    } 
+    .gif-data {
+        position: initial;
+        display: initial;
+        align-self: flex-start;
+        color: var(--font-color-1);
+    }
+    .card-buttons-ctn {
+        display: initial;
+        height: 32px;
+        right: 0;
+        i {
+            color: var(--main-color-1);
+            background-color: transparent;
+        }
+    } 
 }
+
+
+.filter {
+    width: 100%;
+    height: 100%;
+    background-color: var(--violet);
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;    
+}
+.card-buttons-ctn {
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+    z-index: 1;
+    i {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        opacity: 0.7;
+        color: var(--violet);
+        background-color: #FFFFFF;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+}
+.gif-data {
+    color: var(--font-color-2);
+    position: absolute;
+    left: 5%;
+    bottom: 10%;
+    z-index: 1;
+    p {
+        text-align: left;
+        margin: 0.3rem 0 0;
+    }
+}
+.gif-user {
+    font: 400 15px var(--main-font-1);
+}
+.gif-title {
+    font: 500 16px var(--main-font-1);
+}
+
+
+
+
+
 // #search-ctn {  ///Solo se mantiene en sticky hasta llegar al aside.
 //     position: sticky;
 //     top: 2vh;
@@ -143,4 +237,5 @@ main {
 COMMENTS: 
 1.Conseguite un nuevo logo que sirva para dark y light a la vez.
 2.Cambiar los px del texto por rem y ajustar el rem en 1024 y 1200 tipo en 14px y 16px;
+3. Tarea en la linea 189
 */

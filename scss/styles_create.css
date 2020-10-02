@@ -1,30 +1,300 @@
+@charset "UTF-8";
+:root {
+  --violet: #572EE5;
+  --gray: #9CAFC3;
+  --main-color-1: #572EE5;
+  --main-color-2: #50E3C2;
+  --bg-color-1: #FFFFFF;
+  --bg-color-2: #F3F5F8;
+  --font-color-1: #000000;
+  --font-color-2: #FFFFFF;
+  --main-font-1: "Roboto";
+  --main-font-2: "Montserrat";
+  --page-border-color: #572EE5;
+  --nav-bg-color: rgba(87,46,229,0.9);
+  --btn-hover-font-color: #FFFFFF;
+  --fullscreen-bg-color: rgba(255, 255, 255, 0.9); }
+
+.dark {
+  --bg-color-1: #37383C;
+  --bg-color-2: #222326;
+  --font-color-1: #FFFFFF;
+  --main-color-1: #FFFFFF;
+  --page-border-color: #000000;
+  --nav-bg-color: #000000;
+  --fullscreen-bg-color: rgba(0, 0, 0, 0.95); }
+
+body {
+  font-family: var(--main-font-1), var(--main-font-2), Helvetica, sans-serif;
+  text-align: center;
+  color: var(--font-color-1); }
+
+* {
+  box-sizing: border-box; }
+
+button {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: var(--main-color-1); }
+
+label {
+  cursor: pointer; }
+
+a {
+  text-decoration: none;
+  color: initial; }
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color-1); }
+
+main {
+  margin-top: 15vh; }
+
+.color-aqua {
+  color: var(--main-color-2); }
+
+.color-blue {
+  color: var(--main-color-1); }
+
+.fa-times {
+  font-size: 20px;
+  color: var(--main-color-1); }
+
+html.theme-transition * {
+  transition: all 500ms !important;
+  transition-delay: 0 !important; }
+
+.header-bar, .footer nav {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center; }
+
+.gifs-ctn {
+  margin: auto;
+  width: 90vw;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 1rem; }
+  .gifs-ctn article {
+    width: 100%;
+    height: 30vw;
+    margin: 0; }
+    .gifs-ctn article > img {
+      width: 100%;
+      height: 100%; }
+
+.searched-section, .favorites-section, .my-gifos-section {
+  margin: 0.6rem auto 5rem; }
+
+.section-title {
+  font: 700 20px/30px var(--main-font-2);
+  margin: 0 auto 0.5rem;
+  color: var(--main-color-1); }
+
+.more-button {
+  font: 700 13px var(--main-font-2);
+  background-color: transparent;
+  letter-spacing: 0;
+  border: 1px solid var(--main-color-1);
+  border-radius: 25px;
+  padding: 1rem 2rem;
+  color: var(--main-color-1);
+  margin: 2rem auto; }
+
+.empty-sec-msg {
+  font: 700 18px/22px var(--main-font-2);
+  margin: 2rem auto 0;
+  color: var(--main-color-2);
+  width: 90%;
+  max-width: 350px; }
+
+.empty-favorites, .empty-my-gifos {
+  margin: 6.5rem auto 0; }
+
+.searched-title {
+  font: 700 35px/30px var(--main-font-2);
+  margin: 3rem auto 2rem;
+  color: var(--main-color-1); }
+
+.searched-section::before {
+  content: "";
+  display: block;
+  opacity: 0.5;
+  border: 1px solid var(--gray);
+  width: 40%;
+  margin: auto; }
+
+/*SOLO-POR-AHORA-SETTINGS*/
+.fullscreen {
+  background-color: var(--fullscreen-bg-color);
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 10; }
+
+#on-fullscreen-gif {
+  z-index: 11;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 10%;
+  background-color: initial;
+  height: 100vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center; }
+  #on-fullscreen-gif > img {
+    max-width: 85vw;
+    width: 100%;
+    height: auto;
+    max-height: 50vh; }
+  #on-fullscreen-gif .filter {
+    display: initial;
+    opacity: 0; }
+  #on-fullscreen-gif .gif-data {
+    position: initial;
+    display: initial;
+    align-self: flex-start;
+    color: var(--font-color-1); }
+  #on-fullscreen-gif .card-buttons-ctn {
+    display: initial;
+    height: 32px;
+    right: 0; }
+    #on-fullscreen-gif .card-buttons-ctn i {
+      color: var(--main-color-1);
+      background-color: transparent; }
+
+.filter {
+  width: 100%;
+  height: 100%;
+  background-color: var(--violet);
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.card-buttons-ctn {
+  position: absolute;
+  top: 1vh;
+  right: 1vh;
+  z-index: 1; }
+  .card-buttons-ctn i {
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    opacity: 0.7;
+    color: var(--violet);
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    cursor: pointer; }
+
+.gif-data {
+  color: var(--font-color-2);
+  position: absolute;
+  left: 5%;
+  bottom: 10%;
+  z-index: 1; }
+  .gif-data p {
+    text-align: left;
+    margin: 0.3rem 0 0; }
+
+.gif-user {
+  font: 400 15px var(--main-font-1); }
+
+.gif-title {
+  font: 500 16px var(--main-font-1); }
+
 /*
-Sass::SyntaxError: ".header-bar" failed to @extend "%behave-horizontal".
-The selector "%behave-horizontal" was not found.
-Use "@extend %behave-horizontal !optional" if the extend should be able to fail.
-
-
-Backtrace:
-D:/DWFS/Proyectos/Proyecto II - GifOS/gifos/scss/_header.scss:4
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/extend.rb:56:in `block in check_extends_fired!'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/util/subset_map.rb:105:in `block in each_value'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/util/subset_map.rb:105:in `each'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/util/subset_map.rb:105:in `each_value'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/extend.rb:51:in `check_extends_fired!'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/visitors/extend.rb:16:in `visit'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:39:in `css_tree'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/engine.rb:307:in `render_with_sourcemap'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:391:in `run'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/sass_scss.rb:63:in `process_result'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:52:in `parse'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/lib/sass/exec/base.rb:19:in `parse!'
-C:/Program Files/Koala/rubygems/gems/sass-3.5.2/bin/sass:13:in `<top (required)>'
-C:/Program Files/Koala/bin/sass:22:in `load'
-C:/Program Files/Koala/bin/sass:22:in `<main>'
+COMMENTS: 
+1.Conseguite un nuevo logo que sirva para dark y light a la vez.
+2.Cambiar los px del texto por rem y ajustar el rem en 1024 y 1200 tipo en 14px y 16px;
+3. Tarea en la linea 189
 */
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Sass::SyntaxError: \".header-bar\" failed to @extend \"%behave-horizontal\".\A The selector \"%behave-horizontal\" was not found.\A Use \"@extend %behave-horizontal !optional\" if the extend should be able to fail.\A "; }
+/*---HEADER---*/
+.header-bar {
+  width: 100%;
+  height: 15vh;
+  position: fixed;
+  top: 0;
+  background-color: var(--bg-color-1);
+  border-top: 5px solid var(--page-border-color);
+  z-index: 10;
+  padding: 0 6vw;
+  /*---HEADER-MENÚ---*/ }
+  .header-bar .logo {
+    height: 70%; }
+    .header-bar .logo > img {
+      height: 100%; }
+  .header-bar nav {
+    width: 100vw;
+    height: 90vh;
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 100%;
+    background-color: var(--nav-bg-color); }
+  .header-bar ul {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0; }
+    .header-bar ul li, .header-bar ul li > a {
+      font: 700 15px/15px var(--main-font-2);
+      letter-spacing: 0;
+      color: #FFFFFF;
+      cursor: pointer; }
+    .header-bar ul li::after {
+      content: "";
+      display: block;
+      opacity: 0.5;
+      border: 1px solid #FFFFFF;
+      width: 40px;
+      margin: 1rem auto; }
+
+/*---HAMBURGUER-MENU-ICONS---*/
+.header-bar .hamb-icon {
+  color: var(--main-color-1); }
+.header-bar .close-icon, .header-bar .hamb-checkbox:checked ~ .hamb-icon {
+  display: none; }
+.header-bar .hamb-checkbox:checked ~ nav, .header-bar .hamb-checkbox:checked ~ .close-icon {
+  display: initial; }
+
+.footer {
+  border-bottom: 5px solid var(--page-border-color); }
+  .footer nav {
+    width: 100px;
+    margin: auto; }
+  .footer p {
+    font: 400 14px/20px var(--main-font-1);
+    letter-spacing: 0;
+    margin-top: 30px; }
+  .footer .fa {
+    color: #CDD6E0; }
+
+body {
+  height: 100vh; }
+
+.main {
+  height: auto; }
+
+.mobile-hidden {
+  display: none; }
+
+@media screen and (min-width: 1024px) {
+  .mobile-hidden {
+    display: initial; }
+
+  .desktop-hidden {
+    display: none; } }
+
+/*# sourceMappingURL=styles_create.css.map */

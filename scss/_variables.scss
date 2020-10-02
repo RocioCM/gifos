@@ -12,13 +12,15 @@
     --page-border-color: #572EE5;
     --nav-bg-color: rgba(87,46,229,0.9);
     --btn-hover-font-color: #FFFFFF;
+    --fullscreen-bg-color: rgba(255, 255, 255, 0.9);
 }
 
-.dark { //Desde JS agrego esta clase al body cuando el darkMode se activa.
+.dark { //Desde JS agrego esta clase al html cuando el darkMode se activa.
     --bg-color-1: #37383C;
     --bg-color-2: #222326;
     --font-color-1: #FFFFFF;
     --main-color-1: #FFFFFF;
     --page-border-color: #000000;
     --nav-bg-color: #000000;
+    --fullscreen-bg-color: rgba(0, 0, 0, 0.95);
 }
