@@ -429,7 +429,7 @@ main {
   width: 55vw;
   height: 0.5rem;
   background-color: var(--main-color-1);
-  border-radius: 5px;
+  border-radius: 0.3rem;
   margin: auto; }
 
 .main-ctn {
@@ -444,8 +444,8 @@ main {
   margin: auto; }
 
 .corner-right, .corner-left {
-  height: 25px;
-  width: 27px;
+  height: 1.6rem;
+  width: 1.7rem;
   display: inline-block;
   position: absolute; }
 
@@ -466,7 +466,7 @@ main {
   bottom: 2vw; }
 
 .step-number {
-  font: 500 18px/1.8rem var(--main-font-1);
+  font: 500 1.2rem/1.8rem var(--main-font-1);
   color: var(--main-color-1);
   width: 2rem;
   height: 2rem;
@@ -475,12 +475,16 @@ main {
   display: inline-block;
   margin: 2rem 0.8rem; }
 
+.current-step {
+  color: var(--bg-color-1);
+  background-color: var(--main-color-1); }
+
 .create-video-title {
-  font: 700 25px/35px var(--main-font-2);
+  font: 700 1.6rem/2.2rem var(--main-font-2);
   max-width: 350px; }
 
 .create-video-subtitle {
-  font: 400 16px/29px var(--main-font-1);
+  font: 400 1rem/1.8rem var(--main-font-1);
   max-width: 450px; }
 
 .video-element {
@@ -490,6 +494,27 @@ main {
 figure {
   position: absolute; }
 
+.camera-ctn {
+  width: max-content; }
+
+.camera {
+  width: 9vw; }
+
+.camera-light {
+  width: 5.7vw;
+  translate: -0.4vw -1vw;
+  animation: blinking 5s infinite; }
+
+@keyframes blinking {
+  0% {
+    opacity: 1; }
+  50% {
+    opacity: 0; }
+  100% {
+    opacity: 1; } }
+@media (max-width: 1200px) {
+  :root {
+    font-size: 14px; } }
 .hidden {
   display: none; }
 

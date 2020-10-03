@@ -35,12 +35,12 @@
 
 
     <main>
-        <figure>
-            <img src="../../images/camara.svg" alt="camera">
-            <img src="../../images/element-luz-camara.svg" alt="camera light">
+        <figure class="camera-ctn">
+            <img class="camera" src="../../images/camara.svg" alt="camera">
+            <img class="camera-light" src="../../images/element-luz-camara.svg" alt="camera light">
         </figure>
         <figure>
-            <img src="../../images/pelicula.svg" alt="Movie roll">
+            <img class="hidden" src="../../images/pelicula.svg" alt="Movie roll">
         </figure>
         <div id="video-ctn" class="main-ctn">
             <span class="corner-left corner-top"></span>
@@ -67,8 +67,8 @@
                 <span class="step-number">2</span>
                 <span class="step-number">3</span>
             </div>
-            <h3 class="time-count">00:01:03</h3>
-            <h3 class="hidden">Repetir captura</h3>
+            <h3 class="time-count hidden">00:01:03</h3>
+            <h3 id="restart-record-btn" class="hidden">Repetir captura</h3>
         </div>
         <div class="horizontal-line"></div>
         <button id="confirm-btn" class="more-button">Comenzar</button>
