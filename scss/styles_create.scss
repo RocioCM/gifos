@@ -3,16 +3,8 @@
 @import 'header';
 @import 'footer';
 @import 'medias';
+@import 'create'; 
 
-.header-bar .create-gifo-btn {
-    color: var(--font-color-2);
-    background-color: var(--gray);
-    border-color: var(--gray); 
-}
-
-main {
-    height: 72vh;
-}
 .hidden {
     display: none;
 }

@@ -1,6 +1,7 @@
 const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
-if (!localStorage.getItem("favGifs")) localStorage.setItem("favGifs", "[]"); //Inicializa los favoritos.
 
+//Inicializa los favoritos.
+if (!localStorage.getItem("favGifs")) localStorage.setItem("favGifs", "[]");
 
 
 //0. Links del header funcionales.
@@ -13,35 +14,16 @@ const hiddenSections = Array.from(document.querySelectorAll(".hidden-section"));
 //Y [4] es la pantalla de fullscreen gif.
 const fullscreen = hiddenSections.pop()
 
-navBar.children[0].addEventListener("click", themeSwitch);
-navBar.children[0].addEventListener("click", themeTransition);
+//Si el usuario proviene de CreateGifo desde los links del headerNav:
+if (window.location.hash === "#favorites") {
+    openFavorites();
+} else if (window.location.hash === "#gifos") {
+    openMyGifos();
+};
+
 navBar.children[1].addEventListener("click", openFavorites);
 navBar.children[2].addEventListener("click", openMyGifos);
 homeLogo.addEventListener("click", displayHomescreen);
-
-if (localStorage.getItem("darkMode")) themeSwitch();
-
-function themeSwitch() {
-    headerMenuSwitch.checked = false;
-    const root = document.documentElement;
-    const switchBtn = navBar.children[0];
-    if (root.classList.contains("dark")) {
-        switchBtn.textContent = "Modo Nocturno";
-        root.classList.remove("dark");
-        localStorage.removeItem("darkMode");
-        return;
-    }
-    switchBtn.textContent = "Modo Diurno";
-    root.classList.add("dark");
-    localStorage.setItem("darkMode", "on");
-}
-function themeTransition() {
-    const root = document.documentElement;
-    root.classList.add("theme-transition");
-    window.setTimeout(() => {
-        root.classList.remove("theme-transition")
-    }, 1000);
-}
 
 
 function openFavorites() {
@@ -255,3 +237,4 @@ function addTrendingTopic(topic, topicsCtn, index) { //Agrega un topic al DOM y 
 //3. En addTrendingGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
 //4. Para mover el carrousel en desktop hay que usar JS. Y creo que va a funcionar usar: transform: translateX(-...px); (Y así hacer que se mueva.)
 //9. Arreglar/completar event listeners de los botones en addTrendingGifToDOM.
+//10. Hacé el llamado posta de la línea 4.

@@ -1,0 +1,81 @@
+.header-bar .create-gifo-btn {
+  color: var(--font-color-2);
+  background-color: var(--gray);
+  border-color: var(--gray); 
+}
+
+main {
+  height: 72vh;
+}
+
+.horizontal-line {
+  width: 55vw;
+  height: 0.5rem;
+  background-color: var(--main-color-1);
+  border-radius: 5px;
+  margin: auto;
+}
+
+.main-ctn {
+  width: 48vw;
+  height: 27vw;
+  border: 1px solid var(--main-color-1);
+  position: relative;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.corner-right, .corner-left {
+  height: 25px;
+  width: 27px;
+  display: inline-block;
+  position: absolute;
+}
+.corner-right {
+  border-right: 1px solid var(--main-color-2);
+  right: 2vw;
+}
+.corner-left {
+  border-left: 1px solid var(--main-color-2);
+  left: 2vw;
+}
+.corner-top {
+  border-top: 1px solid var(--main-color-2);
+  top: 2vw;
+}
+.corner-bottom {
+  border-bottom: 1px solid var(--main-color-2);
+  bottom: 2vw;
+}
+
+.step-number {
+  font: 500 18px / 1.8rem var(--main-font-1);
+  color: var(--main-color-1);
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--main-color-1);
+  border-radius: 50%;
+  display: inline-block;
+  margin: 2rem 0.8rem;
+}
+
+.create-video-title {
+  font: 700 25px / 35px var(--main-font-2);
+  max-width: 350px;
+}
+.create-video-subtitle {
+  font: 400 16px / 29px var(--main-font-1);
+  max-width: 450px;
+}
+
+.video-element {
+  max-width: 80%;
+  height: 80%;
+}
+
+figure {
+  position: absolute;
+}
