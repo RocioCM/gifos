@@ -3,10 +3,12 @@ const videoCtnContents = Array.from(videoCtn.children).splice(4, 3);
 const video = videoCtnContents[2];
 const steps = document.querySelectorAll(".step-number");
 const confirmBtn = document.getElementById("confirm-btn");
-const
-  let currentStep = 0;
+const restartRecBtn = document.getElementById("restart-record-btn");
+const timer = restartRecBtn.previousElementSibling;
+let currentStep = 0;
 
 confirmBtn.addEventListener("click", recordNextStep);
+restartRecBtn.addEventListener("click", restartRecord);
 
 function recordNextStep() {
   switch (currentStep) {
@@ -30,19 +32,23 @@ function recordNextStep() {
     case (2): //El usuario presionó en "Grabar".
       confirmBtn.textContent = "Finalizar";
       //1. Comenzar la grabación.
-      //2. Mostrar el time counter.
+      timer.classList.remove("hidden");
+      //2. Setear el time counter para que funcione.
       currentStep++;
       return;
     case (3): //El usuario presionó en "Finalizar".
       confirmBtn.textContent = "Subir Gifo";
       //1. Detener la grabación.
-      //2. Remplazar el time counter por el botón de reiniciar.
+      //2. Parar el time counter (sí, remover el interval es necesario porque sigue corriendo).
+      timer.classList.add("hidden");
+      restartRecBtn.classList.remove("hidden");
       currentStep++;
       return;
     case (4): //El usuario presionó "Subir Gifo".
       confirmBtn.classList.add("hidden");
       steps[1].classList.remove("current-step");
       steps[2].classList.add("current-step");
+      restartRecBtn.classList.add("hidden");
       //1. Mostrar el cargando y el filter violeta.
       //2. Subir gif a Giphy.
       //3. Mostrar el "subido" y los botoncitos en la esquinita.
@@ -51,7 +57,12 @@ function recordNextStep() {
   }
 }
 
+function restartRecord() {
+  currentStep = 2;
+  confirmBtn.textContent = "Grabar";
+  restartRecBtn.classList.add("hidden");
 
+}
 
 
 
