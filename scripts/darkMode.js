@@ -1,5 +1,5 @@
 //Depending on the page the script is imported, the switch button could already been fetched.
-const switchBtn = (typeof navBar !== "undefined") ? navBar.children[0] : document.querySelector("#theme-switch");
+const switchBtn = (typeof navLinks !== "undefined") ? navLinks[0] : document.querySelector("#theme-switch");
 
 //Verifies if the user has already set darkMode on a previous session.
 if (localStorage.getItem("darkMode")) themeSwitch();

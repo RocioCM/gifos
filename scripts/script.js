@@ -1,84 +1,5 @@
 const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
 
-//Inicializa los favoritos.
-if (!localStorage.getItem("favGifs")) localStorage.setItem("favGifs", "[]");
-
-
-//0. Links del header funcionales.
-const headerMenuSwitch = document.getElementById("burguer-switch");
-const homeLogo = document.getElementById("home-logo");
-const navBar = document.getElementById("header-links");
-const hiddenSections = Array.from(document.querySelectorAll(".hidden-section"));
-//Datos: hiddenSection[0] y [1] trae a search-section y searched-section respectivamente.
-//Y [2] y [3] se corresponden a las secciones de favoritos y myGifos respectivamente.
-//Y [4] es la pantalla de fullscreen gif.
-const fullscreen = hiddenSections.pop()
-
-//Si el usuario proviene de CreateGifo desde los links del headerNav:
-if (window.location.hash === "#favorites") {
-    openFavorites();
-} else if (window.location.hash === "#gifos") {
-    openMyGifos();
-};
-
-navBar.children[1].addEventListener("click", openFavorites);
-navBar.children[2].addEventListener("click", openMyGifos);
-homeLogo.addEventListener("click", displayHomescreen);
-
-
-function openFavorites() {
-    const favoritesSection = hiddenSections[2];
-    const favoritesGifs = JSON.parse(localStorage.getItem("favGifs"));
-    displayGifsByIdGallery(favoritesGifs, favoritesSection);
-}
-function openMyGifos() {
-    const myGifosSection = hiddenSections[3];
-    const myGifs = JSON.parse(localStorage.getItem("myGifs"));
-    displayGifsByIdGallery(myGifs, myGifosSection);
-}
-
-function displayGifsByIdGallery(gifsIds, gallerySection) {
-
-    headerMenuSwitch.checked = false;
-    hiddenSections.forEach(section => section.classList.add("hidden"));
-    gallerySection.classList.remove("hidden");
-
-    if (gifsIds !== null && gifsIds.length !== 0) {//Muestra la galería.
-        gallerySection.children[2].classList.remove("hidden");
-        gallerySection.children[3].classList.add("hidden");
-        displaySectionGifs(gifsIds, gallerySection.children[2].firstElementChild);
-        if (gifsIds.length <= 12) { gallerySection.children[2].lastElementChild.classList.add("hidden") }
-        else { gallerySection.children[2].lastElementChild.classList.remove("hidden") };
-    } else { //Muestra la sección de "No hay Gifos".
-        gallerySection.children[2].classList.add("hidden");
-        gallerySection.children[3].classList.remove("hidden");
-    }
-}
-
-
-function displaySectionGifs(gifsIds, gifsCtn) {//Muestra en gifsCtn los gifs cuyos ids están en el array gifsIds.
-    gifsCtn.innerHTML = "";
-    gifsIds.forEach(async (gifId) => {
-        try {
-            let gif = await fetch(`https://api.giphy.com/v1/gifs/${gifId}?api_key=${apiKey}`);
-            gif = await gif.json();
-            gif = gif.data;
-            addGifToDOM(gif, gifsCtn);
-        } catch (error) {
-            console.log(error);
-        }
-    });
-}
-
-function displayHomescreen() {
-    const searchSection = hiddenSections[0];
-    hiddenSections.forEach(section => section.classList.add("hidden")); //Oculta todas las secciones.
-    searchSection.classList.remove("hidden") //Muestra sólo la sección deseada.
-}
-
-
-
-
 //1. Funcionalidad de búsqueda.
 const searchCtn = document.getElementById("search-ctn"); //Contenedor de la barra y las sugerencias.
 const suggestionsCtn = searchCtn.children[1]; //Contenedor de todas las sugerencias.
@@ -103,7 +24,7 @@ async function getSuggestions(e) { //Busca las sugerencias para la frase en sear
 
     let terms = this.value.split(" ").join("+") //Une los términos para la búsqueda.
     ///console.log(terms)
-    let suggestions = await fetch(`https://api.giphy.com/v1/tags/related/${terms}?api_key=${apiKey}`)
+    let suggestions = await fetch(`https://api.giphy.com/v1/tags/related/${terms}?api_key=${apiKey}&lang=es`)
     try {
         if (suggestions.status != 200) throw new Error("No se pudieron cargar sugerencias de búsqueda.");
         suggestions = await suggestions.json();
@@ -158,7 +79,7 @@ async function makeSearch() {
     let text = searchInput.value; //Captura los términos a buscar.
     ///console.log("Ahora voy a buscar esto: "+text) ///
     text = text.split(" ").join("+"); //Le da el formato correcto para el fetch.
-    let results = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${text}&limit=12`);
+    let results = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${text}&limit=12&lang=es`);
     results = await results.json();
     try {
         if (results.message) throw new Error(results.message);
@@ -237,4 +158,3 @@ function addTrendingTopic(topic, topicsCtn, index) { //Agrega un topic al DOM y 
 //3. En addTrendingGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
 //4. Para mover el carrousel en desktop hay que usar JS. Y creo que va a funcionar usar: transform: translateX(-...px); (Y así hacer que se mueva.)
 //9. Arreglar/completar event listeners de los botones en addTrendingGifToDOM.
-//10. Hacé el llamado posta de la línea 4.

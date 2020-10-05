@@ -61,10 +61,7 @@ function restartRecord() {
   currentStep = 2;
   confirmBtn.textContent = "Grabar";
   restartRecBtn.classList.add("hidden");
-
 }
-
-
 
 
 
@@ -73,25 +70,21 @@ function getVideo() {
     navigator.webkitGetUserMedia ||
     navigator.mozGetUserMedia ||
     navigator.msGetUserMedia);
-  navigator.getUserMedia(
 
+  navigator.getUserMedia(
     // constraints
     {
       video: true,
       audio: false
     },
-
     // successCallback
     function (localMediaStream) {
-
       video.srcObject = localMediaStream;
       recordNextStep();
     },
-
     // errorCallback
     function (err) {
-      console.log("Ocurrió el siguiente error: " + err);
+      console.log("No se puede capturar video. Ocurrió el siguiente error: \n" + err);
     }
-
   );
 }

@@ -1,16 +1,37 @@
 .footer {
-    border-bottom: 5px solid var(--page-border-color);
+    border-bottom: 0.3rem solid var(--page-border-color);
     nav {
         @extend %behave-horizontal;
-        width: 100px; 
+        width: 6.3rem; 
         margin: auto;
     }
     p {
-        font: 400 14px / 20px var(--main-font-1);
+        font: 400 0.9rem / 1.2rem var(--main-font-1);
         letter-spacing: 0;
-        margin-top: 30px;
+        margin-top: 1.9rem;
     }
     .fa {
         color: #CDD6E0;
     }
+}
+
+
+@media screen and (min-width: 720px) {
+    /*---FOOTER---¨*/
+    .footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 13vh;
+        padding: 0 11vw;
+        p {
+            margin: 0;
+        }
+        nav {
+            margin-left: 1.5rem;
+        }
+        .fa:hover {
+            color: var(--main-color-1);
+        }
+    } 
 }

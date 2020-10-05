@@ -5,27 +5,30 @@
 }
 
 main {
-  height: 72vh;
+  height: 75vh;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .horizontal-line {
   width: 55vw;
-  height: 0.5rem;
+  height: 0.4rem;
   background-color: var(--main-color-1);
   border-radius: 0.3rem;
-  margin: auto;
 }
 
 .main-ctn {
-  width: 48vw;
-  height: 27vw;
+  width: 47vw;
+  height: 25vw;
   border: 1px solid var(--main-color-1);
   position: relative;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  margin-top: 1rem;
 }
 
 .corner-right, .corner-left {
@@ -59,7 +62,7 @@ main {
   border: 1px solid var(--main-color-1);
   border-radius: 50%;
   display: inline-block;
-  margin: 2rem 0.8rem;
+  margin: 1rem 0.6rem;
 }
 
 .current-step {
@@ -103,8 +106,30 @@ figure {
   100% {opacity: 1;}
 }
 
-@media (max-width: 1200px) {
+
+.bottom-btn {
+  @extend .more-button;
+  margin: 1rem auto 0;
+  &:hover {
+    color: var(--bg-color-1);
+    background-color: var(--main-color-1);
+  }
+}
+
+
+@media (min-width: 1024px) {
   :root {
     font-size: 14px;
   }
+  main {
+    margin-top: 12vh;
+  }
 }
+@media (min-width: 1200px) {
+  :root {
+    font-size: 16px;
+  }
+}
+
+
+//SOLO POR AHORA SETTINGS.

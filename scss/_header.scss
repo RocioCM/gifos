@@ -7,7 +7,7 @@
     position: fixed;
     top: 0;
     background-color: var(--bg-color-1);
-    border-top: 5px solid var(--page-border-color);
+    border-top: 0.3rem solid var(--page-border-color);
     z-index: 10;  
     padding: 0 6vw;
     .logo {
@@ -34,7 +34,7 @@
         list-style-type: none;
         padding: 0;
         li, li > a {
-            font: 700 15px / 15px var(--main-font-2);
+            font: 700 0.9rem / 0.9rem var(--main-font-2);
             letter-spacing: 0;
             color:#FFFFFF;
             cursor: pointer
@@ -44,7 +44,7 @@
             display: block;
             opacity: 0.5;
             border: 1px solid #FFFFFF;
-            width: 40px;
+            width: 2.5rem;
             margin: 1rem auto;
         }
     }
@@ -61,6 +61,64 @@
     .hamb-checkbox:checked ~ {
         nav, .close-icon {
             display: initial;
+        }
+    }
+}
+
+
+@media screen and (min-width: 1024px) {
+
+    /*---HEADER-BAR---*/
+    .header-bar {
+        height: 12vh;
+        nav {
+            height: min-content;
+            width: 40vw;
+            display: initial;
+            position: initial;
+            background-color: initial;
+        }
+        ul {
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            li, li > a {
+                color: var(--main-color-1);
+                text-transform: uppercase;
+                margin: auto;
+            }
+            li::after {
+                display: none;
+            }
+        }
+        li:not(.btn-create) {
+            &:hover {
+                border-bottom: 2px solid var(--main-color-2);
+            }
+            &:active, &:active > a, &.active-link > a {
+                color: var(--gray);
+                border-bottom: none;
+            }
+        }
+    }
+    .create-gifo-btn {
+        display: inline-block;
+        height: 3.4rem;
+        width: 3.4rem;
+        border: 1px solid var(--main-color-1);
+        border-radius: 50%;
+        color: var(--main-color-1);
+        .fa-plus {
+            font-size: 1.2rem;
+            line-height: 3.4rem;
+        }
+        &:hover {
+            color: var(--bg-color-1);
+            background-color: var(--main-color-1);
+        }
+        &:active {
+            color: var(--font-color-2);
+            background-color: var(--gray);
+            border-color: var(--gray); 
         }
     }
 }
