@@ -12,8 +12,6 @@ const navLinks = Array.from(document.getElementById("header-links").children);
 const hiddenSections = Array.from(document.querySelectorAll(".hidden-section"));
 //Datos: hiddenSection[0] y [1] trae a search-section y searched-section respectivamente.
 //Y [2] y [3] se corresponden a las secciones de favoritos y myGifos respectivamente.
-//Y [4] es la pantalla de fullscreen gif.
-const fullscreen = hiddenSections.pop()
 
 //Si el usuario proviene de CreateGifo desde los links del headerNav:
 if (window.location.hash === "#favorites") {

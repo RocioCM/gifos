@@ -80,8 +80,7 @@ main {
 }
 
 .video-element {
-  max-width: 80%;
-  height: 80%;
+  height: 100%;
 }
 
 figure {
@@ -106,6 +105,14 @@ figure {
   100% {opacity: 1;}
 }
 
+.loading-icon {
+  animation: rotation 2s linear infinite;
+}
+
+@keyframes rotation {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(360deg);}
+}
 
 .bottom-btn {
   @extend .more-button;
@@ -133,3 +140,27 @@ figure {
 
 
 //SOLO POR AHORA SETTINGS.
+
+.btn-hidden {
+  opacity: 0;
+  z-index: -100;
+}
+
+.video-ctn {
+  max-width: 80%;
+  width: auto;
+  height: 80%;
+  position: relative;
+}
+
+.processing-video-panel {
+  width: 100%;
+  height: 100%; 
+  background-color: #572EE599;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}

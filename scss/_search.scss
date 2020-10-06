@@ -1,7 +1,7 @@
 /*---SEARCH-SECTION-STYLING---*/
 
 h1 {
-    font: 700 25px / 33px var(--main-font-2);
+    font: 700 1.6rem / 2.1rem var(--main-font-2);
     width: 76vw;
     max-width: 440px;
     margin: 0.5rem auto 2rem;
@@ -29,7 +29,7 @@ h1 {
     padding: 0 12px;
 }
 .search-input {
-    font: 400 16px / 19px var(--main-font-1);
+    font: 400 1rem / 1.3rem var(--main-font-1);
     color: var(--font-color-1);
     text-align: left;
     padding: 1rem 0.5rem 1rem 2rem;
@@ -92,7 +92,7 @@ h1 {
         color: var(--gray);
     }
     p {
-        font: 400 16px / 19px var(--main-font-1);
+        font: 400 1rem / 1.2rem var(--main-font-1);
         color: var(--gray);
         display: inline-block;
     }
@@ -100,7 +100,7 @@ h1 {
 
 /*--TRENDING-TOPICS-TITLES-SIZING--*/
 #trending-topics-ctn {
-    font: 500 14px / 25px var(--main-font-2);
+    font: 500 0.9rem / 1.5rem var(--main-font-2);
     max-width: 60vw;
     margin: 0 auto 3rem;
     text-transform: capitalize;
@@ -109,6 +109,6 @@ h1 {
     }
 }
 .trending-h3 {
-    font: 700 16px / 25px var(--main-font-2);
+    font: 700 1rem / 1.5rem var(--main-font-2);
     margin: 2rem auto 0;
 }

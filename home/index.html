@@ -110,19 +110,20 @@
             <button class="arrow-left mobile-hidden"><i class="fas fa-chevron-left"></i></button>
             <div class="scrollable">
                 <div id="trending-cards-ctn">
-                    <template id="trending-cards-template">
+                    <template id="gif-card-template">
                         <article class="gif-card">
                             <img src="" alt="">
-                            <div class="card-buttons-ctn">
-                                <i class="far fa-heart"></i>
-                                <a download="img" href=""><i class="fas fa-download"></i></a>
-                                <i class="fas fa-expand-alt"></i>
+                            <div class="card-hover-panel">
+                                <div class="card-buttons-ctn">
+                                    <i class="far fa-heart"></i>
+                                    <a download="img" href=""><i class="fas fa-download"></i></a>
+                                    <i class="fas fa-expand-alt"></i>
+                                </div>
+                                <div class="gif-data">
+                                    <p class="gif-user"></p>
+                                    <p class="gif-title"></p>
+                                </div>
                             </div>
-                            <div class="gif-data">
-                                <p class="gif-user"></p>
-                                <p class="gif-title"></p>
-                            </div>
-                            <div class="filter"></div>
                         </article>
                     </template>
                 </div>
@@ -130,8 +131,6 @@
             <button class="arrow-right mobile-hidden"><i class="fas fa-chevron-right"></i></button>
         </div>
     </aside>
-
-    <section class="fullscreen hidden-section hidden"></section>
 
     <footer class="footer">
         <p>Compartir en:</p>
@@ -145,7 +144,7 @@
     <script src="../scripts/windowSwitch.js"></script>
     <script src="../scripts/script.js"></script>
     <script src="../scripts/darkMode.js"></script>
-    <script src="../scripts/carrousel.js"></script>
+    <script src="../scripts/trendings.js"></script>
 
 </body>
 

@@ -116,45 +116,7 @@ async function makeSearch() {
 
 
 
-
-//2. Rellena el campo de trending topics. 
-
-setTrendingTopics(document.getElementById("trending-topics-ctn"))
-
-async function setTrendingTopics(trendingTopicsCtn) {
-    let topics = await fetch(`https://api.giphy.com/v1/trending/searches?api_key=${apiKey}`);
-    try {
-        if (topics.status != 200) throw new Error("No se pudieron cargar los trending topics");
-
-        topics = await topics.json();
-        const topicsList = topics.data.splice(0, 5); //De la promesa, obtiene data, que tiene 20 términos y saca sólo 5.
-        topicsList.forEach((topic, index) => addTrendingTopic(topic, trendingTopicsCtn, index)); //Agrega al DOM todos cada topic.
-    }
-    catch (error) {
-        console.log(`Trending Topics: \n${error}`);
-    }
-}
-
-function addTrendingTopic(topic, topicsCtn, index) { //Agrega un topic al DOM y le pone un Listener para lanzar el search cuando se lo clickea.
-    let ctn = document.createElement("span");
-    ctn.textContent = topic;
-
-    ctn.textContent += (index !== 4) ? ", " : "  ";
-
-    ctn.addEventListener("click", () => {
-        searchInput.value = ctn.textContent.slice(0, -2); //Lo busca sin la coma.
-        makeSearch()
-    }
-    );
-    topicsCtn.appendChild(ctn); //Agrega la palabra al párrafo en el DOM.
-}
-
-
-
-
-
-
 ////EEEEEEPA: DETALLES
 //3. En addTrendingGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
-//4. Para mover el carrousel en desktop hay que usar JS. Y creo que va a funcionar usar: transform: translateX(-...px); (Y así hacer que se mueva.)
 //9. Arreglar/completar event listeners de los botones en addTrendingGifToDOM.
+//10. Ponerle los límites a los botones para mover el carrusel.

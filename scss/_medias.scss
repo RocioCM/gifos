@@ -45,7 +45,7 @@
         opacity: 1; 
     }
     .gif-card:hover {
-        > .filter, > .card-buttons-ctn, > .gif-data {
+        > .card-hover-panel {
             display: initial;
         }
     }
@@ -55,11 +55,11 @@
         padding-bottom: 10rem;
     }
     .aside-trendings > .section-title {
-        font-size: 30px;
-        line-height: 60px;
+        font-size: 1.9rem;
+        line-height: 3.7rem;
     } 
     .aside-p {
-        font-size: 18px;
+        font-size: 1.2rem;
     }
 
     /*--CARROUSEL--*/
@@ -78,9 +78,9 @@
     }
 
     .arrow-right, .arrow-left {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1rem;
         color: var(--main-color-1);
         border: 1px solid var(--main-color-1);
         background-color: transparent;
@@ -103,18 +103,18 @@
 
     /*---TITLES-RESIZING--*/
     h1 {
-        font-size: 40px;
-        line-height: 50px;
+        font-size: 2.5rem;
+        line-height: 3.1rem;
         max-width: 650px;
     }
     .trending-h3 {
-        font-size: 18px;
+        font-size: 1.1rem;
     }
     #trending-topics-ctn {
-        font-size: 16px;
+        font-size: 1rem;
     }
     .empty-sec-msg {
-        font: 700 22px / 25px var(--main-font-2);
+        font: 700 1.3rem / 1.5rem var(--main-font-2);
         max-width: 430px;
     }
 }
