@@ -37,7 +37,10 @@
     #trending-cards-ctn {
         height: 35vh;
         min-height: 190px;
-        margin-left: 0; 
+        margin: 0; 
+    }
+    .gif-card:last-child {
+        margin-right: 0;
     }
     
     /*---GIF-HOVER-SETTINGS---*/
@@ -65,7 +68,7 @@
     /*--CARROUSEL--*/
     .scrollable {
         width: 78vw;
-        overflow: hidden
+        overflow: hidden;
     }
     .carrousel-ctn {
         display: flex;

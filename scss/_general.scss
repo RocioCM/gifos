@@ -115,6 +115,7 @@ html.theme-transition * {
     font: 700 2.2rem / 1.9rem var(--main-font-2);
     margin: 3rem auto 2rem;
     color: var(--main-color-1);
+    hyphens: auto;
 }
 .searched-section::before {
     content: "";

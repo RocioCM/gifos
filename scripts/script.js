@@ -119,4 +119,5 @@ async function makeSearch() {
 ////EEEEEEPA: DETALLES
 //3. En addTrendingGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
 //9. Arreglar/completar event listeners de los botones en addTrendingGifToDOM.
-//10. Ponerle los límites a los botones para mover el carrusel.
+//10. Hacer la compatibilidad del carrousel scroll entre mobile y desktop:
+//Capaz te sirva: https://stackoverflow.com/questions/4096863/how-to-get-and-set-the-current-web-page-scroll-position

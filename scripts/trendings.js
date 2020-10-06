@@ -146,12 +146,14 @@ const carrouselCtn = trendingCardsCtn.parentElement.parentElement;
 let carrouselScroll = 0;
 
 carrouselCtn.firstElementChild.addEventListener('mousedown', () => {
-	carrouselScroll += 180;
+	carrouselScroll = (carrouselScroll < -180) ? carrouselScroll + 180 : 0;
 	trendingCardsCtn.style.translate = `${carrouselScroll}px`;
 });
 
 carrouselCtn.lastElementChild.addEventListener('mousedown', () => {
-	carrouselScroll -= 180;
+	const width = trendingCardsCtn.offsetWidth;
+	const ctnWidth = trendingCardsCtn.parentElement.offsetWidth;
+	carrouselScroll = (carrouselScroll > -(width - ctnWidth - 180)) ? carrouselScroll - 180 : -(width - ctnWidth);
 	trendingCardsCtn.style.translate = `${carrouselScroll}px`;
 }
 );
