@@ -14,7 +14,7 @@ main {
 
 .horizontal-line {
   width: 55vw;
-  height: 0.4rem;
+  min-height: 0.3rem;
   background-color: var(--main-color-1);
   border-radius: 0.3rem;
 }
@@ -28,7 +28,7 @@ main {
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 }
 
 .corner-right, .corner-left {
@@ -39,19 +39,19 @@ main {
 }
 .corner-right {
   border-right: 1px solid var(--main-color-2);
-  right: 2vw;
+  right: 1.5vw;
 }
 .corner-left {
   border-left: 1px solid var(--main-color-2);
-  left: 2vw;
+  left: 1.5vw;
 }
 .corner-top {
   border-top: 1px solid var(--main-color-2);
-  top: 2vw;
+  top: 1.5vw;
 }
 .corner-bottom {
   border-bottom: 1px solid var(--main-color-2);
-  bottom: 2vw;
+  bottom: 1.5vw;
 }
 
 .step-number {
@@ -105,7 +105,7 @@ figure {
   100% {opacity: 1;}
 }
 
-.loading-icon {
+.rotate {
   animation: rotation 2s linear infinite;
 }
 
@@ -123,6 +123,55 @@ figure {
   }
 }
 
+.time-count, .restart-record {
+  font: 700 0.9rem / 1.1rem var(--main-font-2);
+  letter-spacing: 0;
+  text-transform: uppercase;
+  position: absolute; 
+  right: 0;
+}
+.restart-record:hover {
+  border-bottom: 2px solid var(--main-color-2);
+  cursor: pointer;
+}
+
+.controls-ctn {
+  position: relative;
+  width: 47vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.upload-msg {
+  font: 700 1rem var(--main-font-2);
+  color: var(--font-color-2);
+}
+
+.btns-ctn {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.6rem;
+  z-index: 1;
+  button {
+    padding: 0;
+  }
+  i {
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.1rem;
+    line-height: 2rem;
+    opacity: 0.7;
+    color: var(--violet);
+    background-color: #FFFFFF;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
 
 @media (min-width: 1024px) {
   :root {

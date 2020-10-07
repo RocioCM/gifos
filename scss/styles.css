@@ -402,6 +402,7 @@ h1 {
   .card-buttons-ctn i {
     width: 2rem;
     height: 2rem;
+    font-size: 1rem;
     line-height: 2rem;
     opacity: 0.7;
     color: var(--violet);
@@ -443,7 +444,8 @@ h1 {
     letter-spacing: 0;
     margin-top: 1.9rem; }
   .footer .fa {
-    color: #CDD6E0; }
+    color: #CDD6E0;
+    font-size: 1rem; }
 
 @media screen and (min-width: 720px) {
   /*---FOOTER---¨*/

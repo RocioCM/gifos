@@ -55,6 +55,7 @@ function recordNextStep() {
       restartRecBtn.classList.add("hidden");
       processingVideoPanel.classList.remove("hidden");
       //2. Subir gif a Giphy.
+      doThis();
       //3. Mostrar el "subido" y los botoncitos en la esquinita.
       //3. Agregar el id del gif a la lista de mis gifos.
       return;
@@ -113,13 +114,27 @@ function uploadGif(gif) {
 //3. Hacer la misma pantalla para el case "no se pudo subir".
 // setTimeout(3000);
 // //Case ok:
+// processingVideoPanel.firstElementChild.classList.remove("rotate");
 // processingVideoPanel.firstElementChild.src = "../../images/check.svg";
 // processingVideoPanel.lastElementChild.textContent = "GIFO subido con éxito";
 
 
 
+function doThis() {
+  setTimeout(() => {
+    //Case ok:
+    processingVideoPanel.firstElementChild.classList.remove("hidden");
+    processingVideoPanel.children[1].classList.remove("rotate");
+    processingVideoPanel.children[1].src = "../../images/check.svg";
+    processingVideoPanel.lastElementChild.textContent = "GIFO subido con éxito";
+  }, 5000);
+
+
+}
+
+
 ///PENDIENTE:
-//1.Sacarle la ficha a la cámara y su position (y al rollo también).
+//1.Sacarle la ficha al dibujito de la cámara y su position (y al rollo también).
 //2.Darle estilos al repetir y el timer y posicionarlos.
 //3.Todo lo de los comentarios del nextStep() y lo de acá arriba de subir gifo.
 //4.Estilos mobile-friendly.
