@@ -9,6 +9,9 @@ const searchInput = searchBar.children[1];
 const searchButton = searchBar.children[2];
 const clearSearchButton = searchBar.children[0];
 const searchResultsCtn = hiddenSections[1].children[1].firstElementChild; //Contenedor de los resultados de la búsqueda.
+const searchMoreBtn = searchResultsCtn.nextElementSibling; //Botón de 'Ver más'.
+const searchResultsTitle = searchResultsCtn.parentNode.previousElementSibling;
+
 
 
 //1.1. Predicción de búsqueda (suggestions).
@@ -23,7 +26,7 @@ async function getSuggestions(e) { //Busca las sugerencias para la frase en sear
     };
 
     let terms = this.value.split(" ").join("+") //Une los términos para la búsqueda.
-    ///console.log(terms)
+
     let suggestions = await fetch(`https://api.giphy.com/v1/tags/related/${terms}?api_key=${apiKey}&lang=es`)
     try {
         if (suggestions.status != 200) throw new Error("No se pudieron cargar sugerencias de búsqueda.");
@@ -54,16 +57,18 @@ function addSuggestionToDOM(suggestion, containerTemplate) {
 
 //1.2. Barra, Búsqueda y display de resultados.
 
-//a. Dar vuelta los botones. >
+//a. Acomodar los botones cuando se activa la barra de búsqueda. >
 searchBar.addEventListener("focusin", enableSearchBar);
 searchBar.addEventListener("focusout", disableSearchBar);
 
 //b. Realizar búsqueda al apretar la lupa. >
-searchButton.addEventListener("mousedown", makeSearch)
+searchButton.addEventListener("mousedown", makeSearch);
 
-//c. Funcionalidad del botón vaciar cuadro de búsqueda.
-clearSearchButton.addEventListener("mousedown", () => searchInput.value = "")
+//c. Vaciar cuadro de búsqueda al apretar la cruz.
+clearSearchButton.addEventListener("mousedown", () => searchInput.value = "");
 
+//d. Funcionalidad del botón 'Ver más'. >
+searchMoreBtn.addEventListener("click", addSearchResults);
 
 
 //>a. Cambia el orden de los íconos en la search-bar.
@@ -74,50 +79,61 @@ function disableSearchBar() {
 };
 
 //>b. Realiza la búsqueda de las palabras en searchInput.
-async function makeSearch() {
+let searchShownPages = 0; //Contador de las veces que se presionó el botón 'Ver Más'
+function makeSearch() {
+    searchShownPages = 0; //Borra el estado de la búsqueda previa,
     disableSearchBar();
-    let text = searchInput.value; //Captura los términos a buscar.
-    ///console.log("Ahora voy a buscar esto: "+text) ///
+    searchResultsTitle.textContent = searchInput.value;
+    addSearchResults(); //Muestra en la galería hasta 12 resultados de búsqueda.
+}
+
+
+//>d. Carga resultados de búsqueda. Llamado desde makeSearch() o al presionar el botón 'Ver más'.
+async function addSearchResults() {
+
+    let text = searchResultsTitle.textContent;
     text = text.split(" ").join("+"); //Le da el formato correcto para el fetch.
-    let results = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${text}&limit=12&lang=es`);
+
+    let results = await fetch(`https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${text}&offset=${searchShownPages * 12}&limit=12&lang=es`);
     results = await results.json();
     try {
         if (results.message) throw new Error(results.message);
-        if (results.data.lenght == 0) throw new Error("No se han encontrado coincidencias con la búsqueda.")
 
         const gifs = results.data;
-        //console.log(hiddenSections[1]) //Es el contenedor .searched-section
-        const sectionTitle = searchResultsCtn.parentNode.parentNode.firstElementChild;
-        sectionTitle.textContent = searchInput.value;
 
+        if (searchShownPages === 0) { //Sets sólo si carga los resultados por primera vez (invocado desde makeSearch).
+            const resultsSection = hiddenSections[1];
+            resultsSection.classList.remove("hidden"); //Muestra la sección de searched-gifs.
 
-        const resultsSection = hiddenSections[1];
-        resultsSection.classList.remove("hidden"); //Muestra la sección de searched-gifs.
-
-        if (gifs.length === 0) { //Muestra la sección de "No se encontraron resultados".
-            resultsSection.children[1].classList.add("hidden");
-            resultsSection.children[2].classList.remove("hidden");
-            return;
+            if (gifs.length === 0) { //Muestra la sección de "No se encontraron resultados".
+                resultsSection.children[1].classList.add("hidden");
+                resultsSection.children[2].classList.remove("hidden");
+                return;
+            }
+            //Muestra la galería de resultados.
+            resultsSection.children[1].classList.remove("hidden");
+            resultsSection.children[2].classList.add("hidden");
+            searchResultsCtn.innerHTML = "";
+            if (gifs.length === 12) searchMoreBtn.classList.remove("hidden");
         }
-        //Muestra la galería de gifs encontrados.
-        resultsSection.children[1].classList.remove("hidden");
-        resultsSection.children[2].classList.add("hidden");
-        if (gifs.length < 12) { resultsSection.children[1].lastElementChild.classList.add("hidden") } //Esconde el botón ver más.
-        else { resultsSection.children[1].lastElementChild.classList.remove("hidden") };
-        searchResultsCtn.innerHTML = "";
+
+        if (gifs.length < 12) searchMoreBtn.classList.add("hidden");
+
         gifs.forEach(gif => addGifToDOM(gif, searchResultsCtn));
 
-    }
-    catch (error) {
+    } catch (error) {
         console.log(`Search failed: \n${error}`);
     }
+
+    searchShownPages++; //Para el correcto funcionamiento del botón 'Ver más'.
 }
 
 
 
 
 ////EEEEEEPA: DETALLES
-//3. En addTrendingGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
-//9. Arreglar/completar event listeners de los botones en addTrendingGifToDOM.
+//3. En addGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
+//9. Arreglar/completar event listeners de los botones en addGifToDOM.
 //10. Hacer la compatibilidad del carrousel scroll entre mobile y desktop:
 //Capaz te sirva: https://stackoverflow.com/questions/4096863/how-to-get-and-set-the-current-web-page-scroll-position
+//11. Hacer que funcione el botón de 'Ver más' en mis gifos y favorites.
