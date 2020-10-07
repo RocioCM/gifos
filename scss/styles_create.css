@@ -182,7 +182,7 @@ COMMENTS:
   padding: 0 6vw;
   /*---HEADER-MENÚ---*/ }
   .header-bar .logo {
-    height: 70%; }
+    height: 30%; }
     .header-bar .logo > img {
       height: 100%; }
   .header-bar nav {
@@ -224,6 +224,8 @@ COMMENTS:
   /*---HEADER-BAR---*/
   .header-bar {
     height: 12vh; }
+    .header-bar .logo {
+      height: 60%; }
     .header-bar nav {
       height: min-content;
       width: 40vw;

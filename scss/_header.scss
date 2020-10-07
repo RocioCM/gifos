@@ -11,7 +11,7 @@
     z-index: 10;  
     padding: 0 6vw;
     .logo {
-        height: 70%;
+        height: 30%;
         > img {
             height: 100%;
         }
@@ -71,6 +71,9 @@
     /*---HEADER-BAR---*/
     .header-bar {
         height: 12vh;
+        .logo {
+            height: 60%;
+        }
         nav {
             height: min-content;
             width: 40vw;

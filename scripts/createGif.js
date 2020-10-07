@@ -132,7 +132,6 @@ function doThis() {
 
 }
 
-
 ///PENDIENTE:
 //1.Sacarle la ficha al dibujito de la cámara y su position (y al rollo también).
 //2.Darle estilos al repetir y el timer y posicionarlos.
