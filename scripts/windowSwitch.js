@@ -20,9 +20,25 @@ if (window.location.hash === "#favorites") {
   openMyGifos();
 };
 
+//Funcionalidad de los links del header.
 navLinks[1].addEventListener("click", openFavorites);
 navLinks[2].addEventListener("click", openMyGifos);
 homeLogo.addEventListener("click", displayHomescreen);
+
+
+//Funcionalidad de los botones de 'Ver más' en Favoritos y Mis Gifos.
+const favMoreBtn = hiddenSections[2].children[2].lastElementChild;
+const myGifosMoreBtn = hiddenSections[3].children[2].lastElementChild;
+let galleryPagesShown = 0;
+
+favMoreBtn.addEventListener("click", () =>
+  loadMoreGifs(JSON.parse(localStorage.getItem("favGifs")), hiddenSections[2])
+);
+
+myGifosMoreBtn.addEventListener("click", () =>
+  loadMoreGifs(JSON.parse(localStorage.getItem("myGifs")), hiddenSections[3])
+);
+
 
 
 function openFavorites() {
@@ -40,7 +56,9 @@ function openMyGifos() {
   displayGifsByIdGallery(myGifs, myGifosSection);
 }
 
-function displayGifsByIdGallery(gifsIds, gallerySection) {
+
+function displayGifsByIdGallery(gifsIds, gallerySection) {//Muestra la galería correspondiente (o el mensaje de galería vacía) y manda a cargar los primeros 12 gifs.
+  galleryPagesShown = 0;
   headerMenuSwitch.checked = false;
   hiddenSections.forEach(section => section.classList.add("hidden"));
   gallerySection.classList.remove("hidden");
@@ -48,18 +66,28 @@ function displayGifsByIdGallery(gifsIds, gallerySection) {
   if (gifsIds !== null && gifsIds.length !== 0) {//Muestra la galería.
     gallerySection.children[2].classList.remove("hidden");
     gallerySection.children[3].classList.add("hidden");
-    displaySectionGifs(gifsIds, gallerySection.children[2].firstElementChild);
-    if (gifsIds.length <= 12) { gallerySection.children[2].lastElementChild.classList.add("hidden") }
-    else { gallerySection.children[2].lastElementChild.classList.remove("hidden") };
+    gallerySection.children[2].firstElementChild.innerHTML = ""; //Vacía la galería de gifs previos.
+
+    loadMoreGifs(gifsIds, gallerySection); //Carga los gifs en la galería.
   } else { //Muestra la sección de "No hay Gifs".
     gallerySection.children[2].classList.add("hidden");
     gallerySection.children[3].classList.remove("hidden");
   }
 }
 
+function loadMoreGifs(gifsIds, gallerySection) {//Manda a cargar hasta 12 gifs de gifsIds en el contenedor de GallerySection.
+  gifsIds = gifsIds.splice(galleryPagesShown * 12, 12);
+
+  displaySectionGifs(gifsIds, gallerySection.children[2].firstElementChild);
+
+  const moreBtn = gallerySection.children[2].lastElementChild;
+  if (gifsIds.length < 12) { moreBtn.classList.add("hidden") }
+  else { moreBtn.classList.remove("hidden") };
+
+  galleryPagesShown++;
+}
 
 async function displaySectionGifs(gifsIds, gifsCtn) {//Muestra en gifsCtn los gifs cuyos ids están en el array gifsIds.
-  gifsCtn.innerHTML = "";
   gifsIds = gifsIds.join(); //Formatea los ids al formato que la API requiere.
 
   try {
