@@ -1,11 +1,12 @@
 //FUNCIONALIDAD DE LINKS DEL HEADER-NAV, DISPLAY DE SECCIÓN DE FAVORITOS Y MIS GIFOS.
-
+const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
 
 //Inicializa los favoritos.
 if (!localStorage.getItem("favGifs")) localStorage.setItem("favGifs", "[]");
 
 
 //0. Links del header funcionales.
+let galleryPagesShown = 0;
 const headerMenuSwitch = document.getElementById("burguer-switch");
 const homeLogo = document.getElementById("home-logo");
 const navLinks = Array.from(document.getElementById("header-links").children);
@@ -29,7 +30,6 @@ homeLogo.addEventListener("click", displayHomescreen);
 //Funcionalidad de los botones de 'Ver más' en Favoritos y Mis Gifos.
 const favMoreBtn = hiddenSections[2].children[2].lastElementChild;
 const myGifosMoreBtn = hiddenSections[3].children[2].lastElementChild;
-let galleryPagesShown = 0;
 
 favMoreBtn.addEventListener("click", () =>
   loadMoreGifs(JSON.parse(localStorage.getItem("favGifs")), hiddenSections[2])

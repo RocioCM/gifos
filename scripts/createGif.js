@@ -3,13 +3,14 @@ const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
 const videoCtn = document.getElementById("video-ctn");
 const videoCtnContents = Array.from(videoCtn.children).splice(4, 3);
 const video = videoCtnContents[2].firstElementChild;
-console.log(video)
 const processingVideoPanel = videoCtnContents[2].lastElementChild;
 const steps = document.querySelectorAll(".step-number");
 const confirmBtn = document.getElementById("confirm-btn");
 const restartRecBtn = document.getElementById("restart-record-btn");
 const timer = restartRecBtn.previousElementSibling;
+let recorder = null;
 let currentStep = 0;
+
 
 confirmBtn.addEventListener("click", recordNextStep);
 restartRecBtn.addEventListener("click", restartRecord);
@@ -35,14 +36,16 @@ function recordNextStep() {
       return;
     case (2): //El usuario presionó en "Grabar".
       confirmBtn.textContent = "Finalizar";
-      //1. Comenzar la grabación.
-      timer.classList.remove("hidden");
+      recorder.startRecording();
       //2. Setear el time counter para que funcione.
+      timer.classList.remove("hidden");
+
       currentStep++;
       return;
     case (3): //El usuario presionó en "Finalizar".
       confirmBtn.textContent = "Subir Gifo";
-      //1. Detener la grabación.
+      recorder.stopRecording()
+      //1. Parar la cámara.
       //2. Parar el time counter (sí, remover el interval es necesario porque sigue corriendo).
       timer.classList.add("hidden");
       restartRecBtn.classList.remove("hidden");
@@ -55,7 +58,10 @@ function recordNextStep() {
       restartRecBtn.classList.add("hidden");
       processingVideoPanel.classList.remove("hidden");
       //2. Subir gif a Giphy.
-      doThis();
+      let form = new FormData();
+      form.append('file', recorder.getBlob(), "myGif.gif")
+      console.log(form.get("file")); ///
+      uploadGif(form);
       //3. Mostrar el "subido" y los botoncitos en la esquinita.
       //3. Agregar el id del gif a la lista de mis gifos.
       return;
@@ -78,12 +84,20 @@ function getVideo() {
 
   navigator.getUserMedia(
     {
-      video: true,
+      video: { width: 720, height: 480 },
       audio: false
     },
     // successCallback
     function (localMediaStream) {
       video.srcObject = localMediaStream;
+      video.play();
+      recorder = RecordRTC(localMediaStream, {
+        type: 'gif',
+        frameRate: 30,
+        quality: 10,
+        width: 360,
+        hidden: 240,
+      })
       recordNextStep();
     },
     // errorCallback
@@ -99,11 +113,23 @@ function getVideo() {
 function uploadGif(gif) {
 
   //COMPLETE THIIIIIS.
-  fetch(`https://upload.giphy.com/v1/gifs?api_key=${apiKey}&file=${gif}`) ///Es fetch lo que tengo que usar?
-    .then(
+  fetch(`https://upload.giphy.com/v1/gifs?api_key=${apiKey}&file=${gif}`, {
+    method: 'POST',
+    body: gif,
+    json: true
+  }) ///Es fetch lo que tengo que usar?
+    .then((res) => res.json()
       //Handle successfully uploaded file.
     )
+    .then(res => {
+      let myGifs = JSON.parse(localStorage.getItem("myGifs"));
+      if (myGifs === null) myGifs = [];
+      myGifs.push(res.data.id);
+      console.log(myGifs);
+      localStorage.setItem("myGifs", JSON.stringify(myGifs));
+    })
     .catch(
+      (err) => console.log("uy " + err)
       //Handle failed upload.
     )
 }
@@ -137,3 +163,6 @@ function doThis() {
 //2.Darle estilos al repetir y el timer y posicionarlos.
 //3.Todo lo de los comentarios del nextStep() y lo de acá arriba de subir gifo.
 //4.Estilos mobile-friendly.
+
+///Te puede servir para el timer: https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript .
+///Te puede servir para parar el video: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream .

@@ -1,4 +1,3 @@
-const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
 
 //1. Funcionalidad de búsqueda.
 const searchCtn = document.getElementById("search-ctn"); //Contenedor de la barra y las sugerencias.

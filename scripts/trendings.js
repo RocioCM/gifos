@@ -147,13 +147,13 @@ let carrouselScroll = 0;
 
 carrouselCtn.firstElementChild.addEventListener('mousedown', () => {
 	carrouselScroll = (carrouselScroll < -180) ? carrouselScroll + 180 : 0;
-	trendingCardsCtn.style.translate = `${carrouselScroll}px`;
+	trendingCardsCtn.style.marginLeft = `${carrouselScroll}px`;
 });
 
 carrouselCtn.lastElementChild.addEventListener('mousedown', () => {
 	const width = trendingCardsCtn.offsetWidth;
 	const ctnWidth = trendingCardsCtn.parentElement.offsetWidth;
 	carrouselScroll = (carrouselScroll > -(width - ctnWidth - 180)) ? carrouselScroll - 180 : -(width - ctnWidth);
-	trendingCardsCtn.style.translate = `${carrouselScroll}px`;
+	trendingCardsCtn.style.marginLeft = `${carrouselScroll}px`;
 }
 );
