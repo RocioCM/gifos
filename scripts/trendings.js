@@ -66,6 +66,7 @@ async function displayTrendingGifs(trendingCardsCtn) {
 }
 
 function addGifToDOM(gif, gifsCtn, isMyGifo) {
+	console.log(gif);
 	const ctn = gifCardTemplate.cloneNode(true);
 
 	ctn.children[0].src = gif.images.fixed_height_small.url; //Setea el gif.
@@ -96,8 +97,6 @@ function addGifToDOM(gif, gifsCtn, isMyGifo) {
 		firstBtn.addEventListener("click", deleteMyGifo);
 	}
 
-	///1. Agregar if container es el de mis gifos, cambiar corazon por tacho y afectar en el local al migifos y no al favoritos.
-
 	//b. Funcionalidad de descarga.
 	btnCtn.children[1].addEventListener("click", downloadGif)
 
@@ -124,12 +123,28 @@ function addFavorite() {
 	this.classList.add("far");
 	favorites = favorites.filter((favorite) => favorite != this.gifId);
 	localStorage.setItem("favGifs", JSON.stringify(favorites));
+	//Elimina la tarjeta del DOM si estamos en la sección de favoritos.
+	const gifElement = this.parentElement.parentElement.parentElement;
+	if (gifElement.parentElement.classList.contains("favorites-ctn")) {
+		removeGifCardFromDOM(gifElement)
+	}
 }
 
 function deleteMyGifo() {
 	let myGifos = JSON.parse(localStorage.getItem("myGifs"));
 	myGifos = myGifos.filter((gifo) => gifo != this.gifId);
 	localStorage.setItem("myGifs", JSON.stringify(myGifos));
+	const gifCard = this.parentElement.parentElement.parentElement
+	removeGifCardFromDOM(gifCard)
+}
+
+function removeGifCardFromDOM(gifCard) {
+	const ctn = gifCard.parentElement;
+	gifCard.remove();
+	if (ctn.children.length === 0) {
+		ctn.parentElement.classList.add("hidden");
+		ctn.parentElement.nextElementSibling.classList.remove("hidden");
+	}
 }
 
 function downloadGif() {

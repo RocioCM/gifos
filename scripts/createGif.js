@@ -45,25 +45,22 @@ function recordNextStep() {
     case (3): //El usuario presionó en "Finalizar".
       confirmBtn.textContent = "Subir Gifo";
       recorder.stopRecording()
-      //1. Parar la cámara.
       //2. Parar el time counter (sí, remover el interval es necesario porque sigue corriendo).
       timer.classList.add("hidden");
       restartRecBtn.classList.remove("hidden");
       currentStep++;
       return;
     case (4): //El usuario presionó "Subir Gifo".
+      video.srcObject.stop();
       confirmBtn.classList.add("btn-hidden");
       steps[1].classList.remove("current-step");
       steps[2].classList.add("current-step");
       restartRecBtn.classList.add("hidden");
       processingVideoPanel.classList.remove("hidden");
-      //2. Subir gif a Giphy.
+      //Subir gif a Giphy:
       let form = new FormData();
       form.append('file', recorder.getBlob(), "myGif.gif")
-      console.log(form.get("file")); ///
       uploadGif(form);
-      //3. Mostrar el "subido" y los botoncitos en la esquinita.
-      //3. Agregar el id del gif a la lista de mis gifos.
       return;
   }
 }
@@ -80,14 +77,15 @@ function getVideo() {
   navigator.getUserMedia = (navigator.getUserMedia ||
     navigator.webkitGetUserMedia ||
     navigator.mozGetUserMedia ||
-    navigator.msGetUserMedia);
+    navigator.msGetUserMedia ||
+    navigator.mediaDevices.getUserMedia);
 
   navigator.getUserMedia(
     {
       video: { width: 720, height: 480 },
       audio: false
     },
-    // successCallback
+    //Success Callback
     function (localMediaStream) {
       video.srcObject = localMediaStream;
       video.play();
@@ -100,69 +98,63 @@ function getVideo() {
       })
       recordNextStep();
     },
-    // errorCallback
+    //Error Callback
     function (err) {
       console.log("No se puede capturar video. Ocurrió el siguiente error: \n" + err);
+      ///Poner pantalla de failed y reload option.
     }
   );
 }
 
 
-//TESTING ZONE
-
 function uploadGif(gif) {
 
-  //COMPLETE THIIIIIS.
-  fetch(`https://upload.giphy.com/v1/gifs?api_key=${apiKey}&file=${gif}`, {
+  fetch(`https://upload.giphy.com/v1/gifs?file=${gif}&api_key=${apiKey}`, {
     method: 'POST',
     body: gif,
-    json: true
-  }) ///Es fetch lo que tengo que usar?
-    .then((res) => res.json()
-      //Handle successfully uploaded file.
-    )
+    json: true,
+    mode: 'cors'
+  })
+    .then((res) => res.json())
     .then(res => {
+      //Agrega el gif a favoritos.
       let myGifs = JSON.parse(localStorage.getItem("myGifs"));
       if (myGifs === null) myGifs = [];
       myGifs.push(res.data.id);
       console.log(myGifs);
       localStorage.setItem("myGifs", JSON.stringify(myGifs));
+
+      //Funcionalidad de los botones.
+      const btnsCtn = processingVideoPanel.firstElementChild;
+      const link = `https://giphy.com/gifs/${res.data.id}` ///
+      btnsCtn.firstElementChild.addEventListener("click", downloadGif);
+      btnsCtn.lastElementChild.url = link; ///
+      btnsCtn.lastElementChild.addEventListener("click", copyToClipboard);
+
+      //Cambia de la pantalla de loading a la de success.
+      btnsCtn.classList.remove("hidden");
+      processingVideoPanel.children[1].classList.remove("rotate");
+      processingVideoPanel.children[1].src = "../../images/check.svg";
+      processingVideoPanel.lastElementChild.textContent = "GIFO subido con éxito";
     })
     .catch(
-      (err) => console.log("uy " + err)
-      //Handle failed upload.
+      (err) => console.log(err)
+      ///Handle failed upload. Show failed screen.
     )
 }
 
-////Para cambiar la pantalla de "subiendo gifo" a "gifo subido". Falta:
-//1. Darle estilo a la tipografía.
-//2. Sacarle la animación giratoria al iconito cuando cambia.
-//3. Hacer la misma pantalla para el case "no se pudo subir".
-// setTimeout(3000);
-// //Case ok:
-// processingVideoPanel.firstElementChild.classList.remove("rotate");
-// processingVideoPanel.firstElementChild.src = "../../images/check.svg";
-// processingVideoPanel.lastElementChild.textContent = "GIFO subido con éxito";
-
-
-
-function doThis() {
-  setTimeout(() => {
-    //Case ok:
-    processingVideoPanel.firstElementChild.classList.remove("hidden");
-    processingVideoPanel.children[1].classList.remove("rotate");
-    processingVideoPanel.children[1].src = "../../images/check.svg";
-    processingVideoPanel.lastElementChild.textContent = "GIFO subido con éxito";
-  }, 5000);
-
-
+function copyToClipboard() {
+  console.log("Copiar Link"); ///
 }
+
+////Para cambiar la pantalla de "subiendo gifo" a "gifo subido". Falta:
+//3. Hacer la misma pantalla para el case "no se pudo subir".
+
 
 ///PENDIENTE:
 //1.Sacarle la ficha al dibujito de la cámara y su position (y al rollo también).
 //3.Ordenar y embellecer el código.
 //4.Estilos mobile-friendly.
-//5.Llamar los cambios de estilo cuando el gif ya se subió.
 //6. Poner pantalla de error cuando el gif no se pudo subir. Y reintentar.
 ///Te puede servir para el timer: https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript .
 ///Te puede servir para parar el video: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream .
