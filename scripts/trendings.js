@@ -44,7 +44,7 @@ function addTrendingTopic(topic, topicsCtn, index) {
 
 //1.a. Busca y rellena los trending GIFs.
 
-const trendingCardsCtn = document.getElementById('trending-cards-ctn');
+const trendingCardsCtn = document.getElementById("trending-cards-ctn");
 const gifCardTemplate =
 	trendingCardsCtn.children[0].content.firstElementChild;
 displayTrendingGifs(trendingCardsCtn);
@@ -55,73 +55,92 @@ async function displayTrendingGifs(trendingCardsCtn) {
 	);
 	try {
 		if (gifs.status != 200)
-			throw new Error('No se han podido cargar los GIFs.');
+			throw new Error("No se han podido cargar los GIFs.");
 
 		gifs = await gifs.json();
 		gifs = gifs.data; ///Ahora es un array con gifs en toda regla.
-		gifs.forEach((gif) => addGifToDOM(gif, trendingCardsCtn)); //Crea cada card y la agrega al DOM.
+		gifs.forEach((gif) => addGifToDOM(gif, trendingCardsCtn, false)); //Crea cada card y la agrega al DOM.
 	} catch (error) {
 		console.log(`Trending Gifs: \n${error}`);
 	}
 }
 
-function addGifToDOM(gif, gifsCtn) {
+function addGifToDOM(gif, gifsCtn, isMyGifo) {
 	const ctn = gifCardTemplate.cloneNode(true);
 
 	ctn.children[0].src = gif.images.fixed_height_small.url; //Setea el gif.
 	ctn.children[0].alt = gif.title;
 
-	const gifData = gif.title.split('GIF by '); //Obtiene el título del gif y el usuario.
+	const gifData = gif.title.split("GIF by "); //Obtiene el título del gif y el usuario.
 	const gifCardInfo = ctn.children[1];
 	gifCardInfo.children[1].children[0].textContent = gifData[1]; //Setea el usuario.
 	gifCardInfo.children[1].children[1].textContent = gifData[0]; //Setea el título.
 
 	//Funcionalidad de los botones:
-	//a. Funcionalidad de favorito / borrar de mis gifos (depende del container).
 	const btnCtn = gifCardInfo.children[0]; //Trae la botonera.
-	let favorites = JSON.parse(localStorage.getItem('favGifs'));
-	if (favorites.includes(gif.id)) {
-		btnCtn.children[0].classList.remove("far");
-		btnCtn.children[0].classList.add("fas");
+
+	//a. Funcionalidad de favorito / borrar de mis gifos (depende del container).
+	const firstBtn = btnCtn.children[0];
+	firstBtn.gifId = gif.id;
+
+	if (!isMyGifo) { //El primer botón permite agregar/borrar favorito.
+		const favorites = JSON.parse(localStorage.getItem("favGifs"));
+		if (favorites.includes(gif.id)) {
+			firstBtn.classList.remove("far");
+			firstBtn.classList.add("fas");
+		}
+		firstBtn.addEventListener("click", addFavorite);
+	} else { //El primer botón permite eliminar un gif de "Mis gifos".
+		firstBtn.classList.remove("fa-heart");
+		firstBtn.classList.add("fa-trash-alt");
+		firstBtn.addEventListener("click", deleteMyGifo);
 	}
-	btnCtn.children[0].gifId = gif.id; ///No sé si ponerlo en el botón fav o en la botonera completa.
-	btnCtn.children[0].addEventListener('click', addFavorite);
+
 	///1. Agregar if container es el de mis gifos, cambiar corazon por tacho y afectar en el local al migifos y no al favoritos.
 
 	//b. Funcionalidad de descarga.
-	btnCtn.children[1].href = "#trending-cards-ctn"; ///gif.images.original.url;
-	console.log("Downloading GIF") ///
-	///btnCtn.children[1].download = gif.title
-	///2. Arreglar la funcionalidad de descarga.
+	btnCtn.children[1].addEventListener("click", downloadGif)
 
 	//c. Funcionalidad de fullscreen.
-	btnCtn.children[2].addEventListener('click', displayFullScreen); //Le pone el listener al botón de fullscreen. (desktop)
-	ctn.children[0].addEventListener('click', displayFullScreen); //Le pone el listener a la imagen. (mobile)
+	btnCtn.children[2].addEventListener("click", displayFullScreen); //Le pone el listener al botón de fullscreen. (desktop)
+	ctn.children[0].addEventListener("click", displayFullScreen); //Le pone el listener a la imagen. (mobile)
 
 	gifsCtn.appendChild(ctn);
 }
 
 function addFavorite() {
 	///Puede que en toda la funciónno tenga que ser this.gifId sino this.parent.gifId
-	let favorites = JSON.parse(localStorage.getItem('favGifs'));
+	let favorites = JSON.parse(localStorage.getItem("favGifs"));
 	if (!favorites.includes(this.gifId)) {
 		//a. Se agrega el gif a favoritos.
 		this.classList.remove("far");
 		this.classList.add("fas");
 		favorites.push(this.gifId);
-		localStorage.setItem('favGifs', JSON.stringify(favorites));
+		localStorage.setItem("favGifs", JSON.stringify(favorites));
 		return;
 	}
 	//b. El gif ya estaba en favoritos y se elimina:
 	this.classList.remove("fas");
 	this.classList.add("far");
 	favorites = favorites.filter((favorite) => favorite != this.gifId);
-	localStorage.setItem('favGifs', JSON.stringify(favorites));
+	localStorage.setItem("favGifs", JSON.stringify(favorites));
 }
 
+function deleteMyGifo() {
+	let myGifos = JSON.parse(localStorage.getItem("myGifs"));
+	myGifos = myGifos.filter((gifo) => gifo != this.gifId);
+	localStorage.setItem("myGifs", JSON.stringify(myGifos));
+}
+
+function downloadGif() {
+	//this.href = "#trending-cards-ctn"; ///gif.images.original.url;
+	console.log("Downloading GIF") ///
+	///btnCtn.children[1].download = gif.title
+	///2. Arreglar la funcionalidad de descarga.
+}
 function displayFullScreen() {
 	let gif = this.parentElement; //Si se llegó presionando la imagen (mobile).
-	if (!gif.classList.contains('gif-card')) {
+	if (!gif.classList.contains("gif-card")) {
 		gif = gif.parentElement.parentElement; //Si se llegó presionando el botón (desktop).
 	}
 
@@ -129,14 +148,14 @@ function displayFullScreen() {
 	if (gif.id !== "on-fullscreen-gif") {
 		gif.children[1].children[0].lastElementChild.classList.remove("fa-download");
 		gif.children[1].children[0].lastElementChild.classList.add("fa-times");
-		gif.setAttribute('id', 'on-fullscreen-gif');
+		gif.setAttribute("id", "on-fullscreen-gif");
 		return;
 	}
 
 	//b. El usuario quiere salir de modo fullscreen.
 	gif.children[1].children[0].lastElementChild.classList.remove("fa-times");
 	gif.children[1].children[0].lastElementChild.classList.add("fa-download");
-	gif.setAttribute('id', '');
+	gif.setAttribute("id", "");
 
 }
 
@@ -145,12 +164,12 @@ function displayFullScreen() {
 const carrouselCtn = trendingCardsCtn.parentElement.parentElement;
 let carrouselScroll = 0;
 
-carrouselCtn.firstElementChild.addEventListener('mousedown', () => {
+carrouselCtn.firstElementChild.addEventListener("mousedown", () => {
 	carrouselScroll = (carrouselScroll < -180) ? carrouselScroll + 180 : 0;
 	trendingCardsCtn.style.marginLeft = `${carrouselScroll}px`;
 });
 
-carrouselCtn.lastElementChild.addEventListener('mousedown', () => {
+carrouselCtn.lastElementChild.addEventListener("mousedown", () => {
 	const width = trendingCardsCtn.offsetWidth;
 	const ctnWidth = trendingCardsCtn.parentElement.offsetWidth;
 	carrouselScroll = (carrouselScroll > -(width - ctnWidth - 180)) ? carrouselScroll - 180 : -(width - ctnWidth);

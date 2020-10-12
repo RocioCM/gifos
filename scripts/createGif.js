@@ -160,9 +160,9 @@ function doThis() {
 
 ///PENDIENTE:
 //1.Sacarle la ficha al dibujito de la cámara y su position (y al rollo también).
-//2.Darle estilos al repetir y el timer y posicionarlos.
-//3.Todo lo de los comentarios del nextStep() y lo de acá arriba de subir gifo.
+//3.Ordenar y embellecer el código.
 //4.Estilos mobile-friendly.
-
+//5.Llamar los cambios de estilo cuando el gif ya se subió.
+//6. Poner pantalla de error cuando el gif no se pudo subir. Y reintentar.
 ///Te puede servir para el timer: https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript .
 ///Te puede servir para parar el video: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream .

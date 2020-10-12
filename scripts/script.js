@@ -118,7 +118,7 @@ async function addSearchResults() {
 
         if (gifs.length < 12) searchMoreBtn.classList.add("hidden");
 
-        gifs.forEach(gif => addGifToDOM(gif, searchResultsCtn));
+        gifs.forEach(gif => addGifToDOM(gif, searchResultsCtn, false));
 
     } catch (error) {
         console.log(`Search failed: \n${error}`);
@@ -132,7 +132,6 @@ async function addSearchResults() {
 
 ////EEEEEEPA: DETALLES
 //3. En addGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
-//9. Arreglar/completar event listeners de los botones en addGifToDOM.
+//9. Download button functionalityyyyyyy.
 //10. Hacer la compatibilidad del carrousel scroll entre mobile y desktop:
 //Capaz te sirva: https://stackoverflow.com/questions/4096863/how-to-get-and-set-the-current-web-page-scroll-position
-//11. Hacer que funcione el botón de 'Ver más' en mis gifos y favorites.

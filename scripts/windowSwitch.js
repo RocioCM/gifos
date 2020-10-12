@@ -32,11 +32,11 @@ const favMoreBtn = hiddenSections[2].children[2].lastElementChild;
 const myGifosMoreBtn = hiddenSections[3].children[2].lastElementChild;
 
 favMoreBtn.addEventListener("click", () =>
-  loadMoreGifs(JSON.parse(localStorage.getItem("favGifs")), hiddenSections[2])
+  loadMoreGifs(JSON.parse(localStorage.getItem("favGifs")), hiddenSections[2], false)
 );
 
 myGifosMoreBtn.addEventListener("click", () =>
-  loadMoreGifs(JSON.parse(localStorage.getItem("myGifs")), hiddenSections[3])
+  loadMoreGifs(JSON.parse(localStorage.getItem("myGifs")), hiddenSections[3], true)
 );
 
 
@@ -46,18 +46,18 @@ function openFavorites() {
   navLinks[2].classList.remove("active-link");
   const favoritesSection = hiddenSections[2];
   const favoritesGifs = JSON.parse(localStorage.getItem("favGifs"));
-  displayGifsByIdGallery(favoritesGifs, favoritesSection);
+  displayGifsByIdGallery(favoritesGifs, favoritesSection, false);
 }
 function openMyGifos() {
   navLinks[2].classList.add("active-link");
   navLinks[1].classList.remove("active-link");
   const myGifosSection = hiddenSections[3];
   const myGifs = JSON.parse(localStorage.getItem("myGifs"));
-  displayGifsByIdGallery(myGifs, myGifosSection);
+  displayGifsByIdGallery(myGifs, myGifosSection, true);
 }
 
 
-function displayGifsByIdGallery(gifsIds, gallerySection) {//Muestra la galería correspondiente (o el mensaje de galería vacía) y manda a cargar los primeros 12 gifs.
+function displayGifsByIdGallery(gifsIds, gallerySection, isMyGifos) {//Muestra la galería correspondiente (o el mensaje de galería vacía) y manda a cargar los primeros 12 gifs.
   galleryPagesShown = 0;
   headerMenuSwitch.checked = false;
   hiddenSections.forEach(section => section.classList.add("hidden"));
@@ -68,17 +68,17 @@ function displayGifsByIdGallery(gifsIds, gallerySection) {//Muestra la galería 
     gallerySection.children[3].classList.add("hidden");
     gallerySection.children[2].firstElementChild.innerHTML = ""; //Vacía la galería de gifs previos.
 
-    loadMoreGifs(gifsIds, gallerySection); //Carga los gifs en la galería.
+    loadMoreGifs(gifsIds, gallerySection, isMyGifos); //Carga los gifs en la galería.
   } else { //Muestra la sección de "No hay Gifs".
     gallerySection.children[2].classList.add("hidden");
     gallerySection.children[3].classList.remove("hidden");
   }
 }
 
-function loadMoreGifs(gifsIds, gallerySection) {//Manda a cargar hasta 12 gifs de gifsIds en el contenedor de GallerySection.
+function loadMoreGifs(gifsIds, gallerySection, isMyGifos) {//Manda a cargar hasta 12 gifs de gifsIds en el contenedor de GallerySection.
   gifsIds = gifsIds.splice(galleryPagesShown * 12, 12);
 
-  displaySectionGifs(gifsIds, gallerySection.children[2].firstElementChild);
+  displaySectionGifs(gifsIds, gallerySection.children[2].firstElementChild, isMyGifos);
 
   const moreBtn = gallerySection.children[2].lastElementChild;
   if (gifsIds.length < 12) { moreBtn.classList.add("hidden") }
@@ -87,14 +87,14 @@ function loadMoreGifs(gifsIds, gallerySection) {//Manda a cargar hasta 12 gifs d
   galleryPagesShown++;
 }
 
-async function displaySectionGifs(gifsIds, gifsCtn) {//Muestra en gifsCtn los gifs cuyos ids están en el array gifsIds.
+async function displaySectionGifs(gifsIds, gifsCtn, isMyGifos) {//Muestra en gifsCtn los gifs cuyos ids están en el array gifsIds.
   gifsIds = gifsIds.join(); //Formatea los ids al formato que la API requiere.
 
   try {
     let gifs = await fetch(`https://api.giphy.com/v1/gifs?api_key=${apiKey}&ids=${gifsIds}`);
     gifs = await gifs.json();
     gifs = gifs.data;
-    gifs.forEach(gif => addGifToDOM(gif, gifsCtn));
+    gifs.forEach(gif => addGifToDOM(gif, gifsCtn, isMyGifos));
   } catch (error) {
     console.log("No se ha podido cargar el gif: " + error);
   }
