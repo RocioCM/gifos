@@ -1,7 +1,7 @@
 const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
 
 const videoCtn = document.getElementById("video-ctn");
-const videoCtnContents = Array.from(videoCtn.children).splice(4, 3);
+const videoCtnContents = Array.from(videoCtn.children).splice(5, 3);
 const video = videoCtnContents[2].firstElementChild;
 const processingVideoPanel = videoCtnContents[2].lastElementChild;
 const steps = document.querySelectorAll(".step-number");
@@ -107,10 +107,9 @@ function getVideo() { //Pide acceso a la cámara y comienza a mostrar el video p
       })
       recordNextStep();
     },
-    //Error Callback
+    //Error Callback. Media Access Denied.
     function (err) {
       console.log("No se puede capturar video. Ocurrió el siguiente error: \n" + err);
-      ///Poner pantalla de failed y reload option.
     }
   );
 }
@@ -126,17 +125,16 @@ function uploadGif(gif) { //Sube el gif a giphy y lo agrega a la lista de 'Mis G
   })
     .then((res) => res.json())
     .then(res => {
-      //Agrega el gif a favoritos.
+      //Agrega el gif a 'Mis Gifos'.
       let myGifs = JSON.parse(localStorage.getItem("myGifs"));
       if (myGifs === null) myGifs = [];
       myGifs.push(res.data.id);
-      console.log(myGifs);
       localStorage.setItem("myGifs", JSON.stringify(myGifs));
 
       //Funcionalidad de los botones.
       const btnsCtn = processingVideoPanel.firstElementChild;
       btnsCtn.firstElementChild.href = window.URL.createObjectURL(recorder);
-      btnsCtn.firstElementChild.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
+      btnsCtn.firstElementChild.dataset.downloadurl = ['application/octet-stream', 'myGifo.gif', btnsCtn.firstElementChild.href].join(':');
 
       btnsCtn.lastElementChild.dataset.url = `https://giphy.com/gifs/${res.data.id}`;
       btnsCtn.lastElementChild.addEventListener("click", copyToClipboard);
@@ -147,20 +145,17 @@ function uploadGif(gif) { //Sube el gif a giphy y lo agrega a la lista de 'Mis G
       processingVideoPanel.children[1].src = "../../images/check.svg";
       processingVideoPanel.lastElementChild.textContent = "GIFO subido con éxito";
     })
-    .catch(
-      (err) => console.log(err)
-      ///Handle failed upload. Show failed screen.
+    .catch( //Handle failed upload.
+      (err) => console.log("No se pudo subir el gif a Giphy. \n" + err)
     )
 }
 
 function copyToClipboard() { //Copia al cortapapeles el link del gif en Giphy.
-  console.log("Copiar Link"); ///
+  var input = document.createElement('input');
+  document.body.appendChild(input)
+  input.value = this.dataset.url;
+  input.select();
+  document.execCommand("copy");
+  input.remove();
 }
 
-
-
-
-///PENDIENTE:
-//1.Sacarle la ficha al dibujito de la cámara y su position (y al rollo también).
-//4.Estilos mobile-friendly. Nah.
-//6. Poner pantalla de error cuando el gif no se pudo subir. Y reintentar. Y cuando no se pudo obtener acceso a la cámara.

@@ -1,9 +1,22 @@
+/*--VARIABLES--*/
+:root {
+  --img-roll: url(../images/pelicula.svg);
+  --img-camera: url(../images/camara.svg);
+  --img-camera-light: url(../images/element-luz-camara.svg);
+}
+.dark {
+  --img-roll: url(../images/pelicula-modo-noc.svg);
+  --img-camera: url(../images/camara-modo-noc.svg);
+}
+
+/*-ACTIVE-HEADER-BUTTON-*/
 .header-bar .create-gifo-btn {
   color: var(--font-color-2);
   background-color: var(--gray);
   border-color: var(--gray); 
 }
 
+/*---CONTAINERS---*/
 main {
   height: 75vh;
   display: flex;
@@ -11,14 +24,6 @@ main {
   align-items: center;
   justify-content: space-between;
 }
-
-.horizontal-line {
-  width: 55vw;
-  min-height: 0.3rem;
-  background-color: var(--main-color-1);
-  border-radius: 0.3rem;
-}
-
 .main-ctn {
   width: 47vw;
   height: 25vw;
@@ -29,6 +34,44 @@ main {
   justify-content: center;
   align-items: center;
   margin-top: 0.5rem;
+}
+.video-ctn {
+  max-width: 80%;
+  width: auto;
+  height: 80%;
+  position: relative;
+}
+.controls-ctn {
+  position: relative;
+  width: 47vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*--VIDEO--*/
+.video-element {
+  height: 100%;
+}
+.processing-video-panel {
+  width: 100%;
+  height: 100%; 
+  background-color: #572EE599;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+/*--FIGURES-STYLING--*/
+
+.horizontal-line {
+  width: 55vw;
+  min-height: 0.3rem;
+  background-color: var(--main-color-1);
+  border-radius: 0.3rem;
 }
 
 .corner-right, .corner-left {
@@ -70,6 +113,38 @@ main {
   background-color: var(--main-color-1);
 }
 
+figure {
+  position: absolute;
+}
+.camera-ctn {
+  width: 214px;
+  height: 162px;
+  display: flex;
+  align-items: center;
+  left: -22vw;
+}
+.camera {
+  width: 123px;
+  height: 162px;
+  background-image: var(--img-camera);
+}
+.camera-light {
+  width: 76px;
+  height: 128px;
+  margin-top: 5px;
+  background-image: var(--img-camera-light);
+  animation: blinking 5s infinite;
+}
+.movie-roll {
+  width: 142px;
+  height: 88px;
+  right: -300px;
+  background-image: var(--img-roll);
+}
+
+
+/*--TITLES-AND-FONT-SIZING--*/
+
 .create-video-title {
   font: 700 1.6rem / 2.2rem var(--main-font-2);
   max-width: 350px;
@@ -77,50 +152,6 @@ main {
 .create-video-subtitle {
   font: 400 1rem/ 1.8rem var(--main-font-1);
   max-width: 450px;
-}
-
-.video-element {
-  height: 100%;
-}
-
-figure {
-  position: absolute;
-}
-
-.camera-ctn {
-  width: max-content;
-}
-.camera {
-  width: 9vw;
-}
-.camera-light {
-  width: 5.7vw;
-  translate: -0.4vw -1vw;
-  animation: blinking 5s infinite;
-}
-
-@keyframes blinking {
-  0% {opacity: 1;}
-  50% {opacity: 0;}
-  100% {opacity: 1;}
-}
-
-.rotate {
-  animation: rotation 2s linear infinite;
-}
-
-@keyframes rotation {
-  0% {transform: rotate(0deg)}
-  100% {transform: rotate(360deg);}
-}
-
-.bottom-btn {
-  @extend .more-button;
-  margin: 1rem auto 0;
-  &:hover {
-    color: var(--bg-color-1);
-    background-color: var(--main-color-1);
-  }
 }
 
 .time-count, .restart-record {
@@ -135,20 +166,12 @@ figure {
   cursor: pointer;
 }
 
-.controls-ctn {
-  position: relative;
-  width: 47vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
 .upload-msg {
   font: 700 1rem var(--main-font-2);
   color: var(--font-color-2);
 }
 
+/*-BUTTONS-*/
 .btns-ctn {
   position: absolute;
   top: 0.6rem;
@@ -173,6 +196,22 @@ figure {
   }
 }
 
+.bottom-btn {
+  @extend .more-button;
+  margin: 1rem auto 0;
+  &:hover {
+    color: var(--bg-color-1);
+    background-color: var(--main-color-1);
+  }
+}
+.btn-hidden {
+  opacity: 0;
+  z-index: -100;
+}
+
+
+/*-FONTS-RESIZING-*/
+
 @media (min-width: 1024px) {
   :root {
     font-size: 14px;
@@ -187,43 +226,18 @@ figure {
   }
 }
 
-
-//SOLO POR AHORA SETTINGS.
-
-.btn-hidden {
-  opacity: 0;
-  z-index: -100;
+/*-ANIMATIONS-*/
+.rotate {
+  animation: rotation 2s linear infinite;
 }
 
-.video-ctn {
-  max-width: 80%;
-  width: auto;
-  height: 80%;
-  position: relative;
+@keyframes rotation {
+  0% {transform: rotate(0deg)}
+  100% {transform: rotate(360deg);}
 }
 
-.processing-video-panel {
-  width: 100%;
-  height: 100%; 
-  background-color: #572EE599;
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
+@keyframes blinking {
+  0% {opacity: 1;}
+  50% {opacity: 0;}
+  100% {opacity: 1;}
 }
-
-
-// @media screen and (max-width: 1023px) {
-//   .main-ctn {
-//     width: 95%;
-//     height: 60%;
-//   }
-//   .steps-ctn {
-//     width: 100%;
-//   }
-//   main {
-//     height: initial;
-//   }
-// }

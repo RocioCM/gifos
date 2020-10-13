@@ -32,14 +32,11 @@
         </nav>
     </header>
     <main>
-        <figure class="camera-ctn hidden">
-            <img class="camera" src="../../images/camara.svg" alt="camera">
-            <img class="camera-light" src="../../images/element-luz-camara.svg" alt="camera light">
-        </figure>
-        <figure>
-            <img class="hidden" src="../../images/pelicula.svg" alt="Movie roll">
-        </figure>
         <div id="video-ctn" class="main-ctn">
+            <figure class="camera-ctn">
+                <div class="camera"></div>
+                <div class="camera-light"></div>
+            </figure>
             <span class="corner-left corner-top"></span>
             <span class="corner-right corner-top"></span>
             <span class="corner-left corner-bottom"></span>
@@ -64,7 +61,7 @@
                 </p>
             </div>
             <div class="video-ctn hidden">
-                <video class="video-element" src=""></video>
+                <video class="video-element"></video>
                 <div class="processing-video-panel hidden">
                     <div class="btns-ctn hidden">
                         <a href="" download="myGifo.gif"><i class="fas fa-download"></i></a>
@@ -83,6 +80,8 @@
             </div>
             <h3 class="time-count color-blue hidden">00:00:00</h3>
             <h3 id="restart-record-btn" class="restart-record color-blue hidden">Repetir captura</h3>
+            <figure class="movie-roll">
+            </figure>
         </div>
         <div class="horizontal-line"></div>
         <button id="confirm-btn" class="bottom-btn">Comenzar</button>
