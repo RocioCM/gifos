@@ -1,4 +1,5 @@
-//FUNCIONALIDAD DE LINKS DEL HEADER-NAV, DISPLAY DE SECCIÓN DE FAVORITOS Y MIS GIFOS.
+//FUNCIONALIDAD DE LINKS DEL HEADER-NAV, DISPLAY DE SECCIÓN DE FAVORITOS Y DE MIS GIFOS//
+
 const apiKey = "VZ4N6ebz6BSdgrhUNiKAAU0dNYws5GSn";
 
 //Inicializa los favoritos.
@@ -14,7 +15,7 @@ const hiddenSections = Array.from(document.querySelectorAll(".hidden-section"));
 //Datos: hiddenSection[0] y [1] trae a search-section y searched-section respectivamente.
 //Y [2] y [3] se corresponden a las secciones de favoritos y myGifos respectivamente.
 
-//Si el usuario proviene de CreateGifo desde los links del headerNav:
+//Si el usuario proviene de CreateGifo desde los links del headerNav, muestra la sección correspondiente:
 if (window.location.hash === "#favorites") {
   openFavorites();
 } else if (window.location.hash === "#gifos") {
