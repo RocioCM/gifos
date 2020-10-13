@@ -84,21 +84,24 @@ function addGifToDOM(gif, gifsCtn, isMyGifo) {
 	const firstBtn = btnCtn.children[0];
 	firstBtn.gifId = gif.id;
 
-	if (!isMyGifo) { //El primer botón permite agregar/borrar favorito.
+	if (!isMyGifo) { //El primer botón permitirá agregar/borrar favorito.
 		const favorites = JSON.parse(localStorage.getItem("favGifs"));
 		if (favorites.includes(gif.id)) {
 			firstBtn.classList.remove("far");
 			firstBtn.classList.add("fas");
 		}
 		firstBtn.addEventListener("click", addFavorite);
-	} else { //El primer botón permite eliminar un gif de "Mis gifos".
+	} else { //El primer botón permitirá eliminar un gif de "Mis gifos".
 		firstBtn.classList.remove("fa-heart");
 		firstBtn.classList.add("fa-trash-alt");
 		firstBtn.addEventListener("click", deleteMyGifo);
 	}
 
 	//b. Funcionalidad de descarga.
-	btnCtn.children[1].addEventListener("click", downloadGif)
+	const downloadBtn = btnCtn.children[1];
+	downloadBtn.dataset.gifUrl = gif.images.original.url;
+	downloadBtn.dataset.title = gif.title;
+	downloadBtn.addEventListener("click", downloadGif);
 
 	//c. Funcionalidad de fullscreen.
 	btnCtn.children[2].addEventListener("click", displayFullScreen); //Le pone el listener al botón de fullscreen. (desktop)
@@ -147,12 +150,16 @@ function removeGifCardFromDOM(gifCard) {
 	}
 }
 
-function downloadGif() {
-	//this.href = "#trending-cards-ctn"; ///gif.images.original.url;
-	console.log("Downloading GIF") ///
-	///btnCtn.children[1].download = gif.title
-	///2. Arreglar la funcionalidad de descarga.
+async function downloadGif() {
+	const a = document.createElement('a');
+	const response = await fetch(this.dataset.gifUrl);
+	const file = await response.blob();
+	a.download = `${this.dataset.title}.gif`;
+	a.href = window.URL.createObjectURL(file);
+	a.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
+	a.click()
 }
+
 function displayFullScreen() {
 	let gif = this.parentElement; //Si se llegó presionando la imagen (mobile).
 	if (!gif.classList.contains("gif-card")) {
