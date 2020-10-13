@@ -59,7 +59,8 @@ function recordNextStep() {
       processingVideoPanel.classList.remove("hidden");
       //Subir gif a Giphy:
       let form = new FormData();
-      form.append('file', recorder.getBlob(), "myGif.gif")
+      recorder = recorder.getBlob();
+      form.append('file', recorder, "myGif.gif")
       uploadGif(form);
       return;
   }
@@ -91,7 +92,7 @@ function getVideo() {
       video.play();
       recorder = RecordRTC(localMediaStream, {
         type: 'gif',
-        frameRate: 30,
+        frameRate: 1,
         quality: 10,
         width: 360,
         hidden: 240,
@@ -126,9 +127,10 @@ function uploadGif(gif) {
 
       //Funcionalidad de los botones.
       const btnsCtn = processingVideoPanel.firstElementChild;
-      const link = `https://giphy.com/gifs/${res.data.id}` ///
-      btnsCtn.firstElementChild.addEventListener("click", downloadGif);
-      btnsCtn.lastElementChild.url = link; ///
+      btnsCtn.firstElementChild.href = window.URL.createObjectURL(recorder);
+      btnsCtn.firstElementChild.dataset.downloadurl = ['application/octet-stream', a.download, a.href].join(':');
+
+      btnsCtn.lastElementChild.dataset.url = `https://giphy.com/gifs/${res.data.id}`;
       btnsCtn.lastElementChild.addEventListener("click", copyToClipboard);
 
       //Cambia de la pantalla de loading a la de success.
