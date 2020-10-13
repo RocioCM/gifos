@@ -66,7 +66,6 @@ async function displayTrendingGifs(trendingCardsCtn) {
 }
 
 function addGifToDOM(gif, gifsCtn, isMyGifo) {
-	console.log(gif);
 	const ctn = gifCardTemplate.cloneNode(true);
 
 	ctn.children[0].src = gif.images.fixed_height_small.url; //Setea el gif.

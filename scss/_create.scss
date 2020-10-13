@@ -197,7 +197,7 @@ figure {
 }
 
 .bottom-btn {
-  @extend .more-button;
+  @extend %main-button;
   margin: 1rem auto 0;
   &:hover {
     color: var(--bg-color-1);

@@ -3,12 +3,14 @@
 @import 'header';
 @import 'search';
 @import 'aside';
+@import 'gallery';
+@import 'fullscreengif';
 @import 'footer';
 @import 'medias';
 
 
 
-//En serio necesito que estas clases sean lo último en aplicarse en la cascada.
+//Los estilos de estas clases deben ser lo último en aplicarse en la cascada.
 
 .hidden { //Elementos que se muestran/ocultan desde JS.
     display: none;
@@ -17,7 +19,7 @@
     display: none;
 }
 
-@media screen and (min-width: 1024px) { //En realidad podría ser a 1200, pero por ahora lo dejo en 1024.
+@media screen and (min-width: 1024px) {
     .mobile-hidden {
         display: initial;
     }
@@ -25,3 +27,4 @@
         display: none;
     }
 }
+ 
