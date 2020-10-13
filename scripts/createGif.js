@@ -10,10 +10,12 @@ const restartRecBtn = document.getElementById("restart-record-btn");
 const timer = restartRecBtn.previousElementSibling;
 let recorder = null;
 let currentStep = 0;
-
+let timerSet = null;
+let seconds = 0;
 
 confirmBtn.addEventListener("click", recordNextStep);
 restartRecBtn.addEventListener("click", restartRecord);
+
 
 function recordNextStep() {
   switch (currentStep) {
@@ -37,15 +39,16 @@ function recordNextStep() {
     case (2): //El usuario presionó en "Grabar".
       confirmBtn.textContent = "Finalizar";
       recorder.startRecording();
-      //2. Setear el time counter para que funcione.
+      seconds = 0;
+      timerSet = setInterval(setTimer, 1000);
       timer.classList.remove("hidden");
-
       currentStep++;
       return;
     case (3): //El usuario presionó en "Finalizar".
       confirmBtn.textContent = "Subir Gifo";
-      recorder.stopRecording()
-      //2. Parar el time counter (sí, remover el interval es necesario porque sigue corriendo).
+      recorder.stopRecording();
+      clearInterval(timerSet);
+      timer.textContent = "00:00:00";
       timer.classList.add("hidden");
       restartRecBtn.classList.remove("hidden");
       currentStep++;
@@ -66,15 +69,20 @@ function recordNextStep() {
   }
 }
 
-function restartRecord() {
+
+function setTimer() { //Actualiza el timer a un segundo más.
+  const timeValue = new Date(seconds * 1000).toISOString().substr(11, 8);
+  timer.textContent = timeValue;
+  seconds++;
+};
+
+function restartRecord() { //Vuelve la interfaz a la instancia de iniciar grabación.
   currentStep = 2;
   confirmBtn.textContent = "Grabar";
   restartRecBtn.classList.add("hidden");
 }
 
-
-
-function getVideo() {
+function getVideo() { //Pide acceso a la cámara y comienza a mostrar el video por pantalla.
   navigator.getUserMedia = (navigator.getUserMedia ||
     navigator.webkitGetUserMedia ||
     navigator.mozGetUserMedia ||
@@ -108,7 +116,7 @@ function getVideo() {
 }
 
 
-function uploadGif(gif) {
+function uploadGif(gif) { //Sube el gif a giphy y lo agrega a la lista de 'Mis Gifos'.
 
   fetch(`https://upload.giphy.com/v1/gifs?file=${gif}&api_key=${apiKey}`, {
     method: 'POST',
@@ -145,18 +153,14 @@ function uploadGif(gif) {
     )
 }
 
-function copyToClipboard() {
+function copyToClipboard() { //Copia al cortapapeles el link del gif en Giphy.
   console.log("Copiar Link"); ///
 }
 
-////Para cambiar la pantalla de "subiendo gifo" a "gifo subido". Falta:
-//3. Hacer la misma pantalla para el case "no se pudo subir".
+
 
 
 ///PENDIENTE:
 //1.Sacarle la ficha al dibujito de la cámara y su position (y al rollo también).
-//3.Ordenar y embellecer el código.
-//4.Estilos mobile-friendly.
-//6. Poner pantalla de error cuando el gif no se pudo subir. Y reintentar.
-///Te puede servir para el timer: https://stackoverflow.com/questions/5517597/plain-count-up-timer-in-javascript .
-///Te puede servir para parar el video: https://developer.mozilla.org/en-US/docs/Web/API/MediaStream .
+//4.Estilos mobile-friendly. Nah.
+//6. Poner pantalla de error cuando el gif no se pudo subir. Y reintentar. Y cuando no se pudo obtener acceso a la cámara.
