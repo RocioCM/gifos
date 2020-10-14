@@ -394,13 +394,22 @@ figure {
   opacity: 0;
   z-index: -100; }
 
-/*-FONTS-RESIZING-*/
+/*-GENERAL-*/
+.mobile-hidden {
+  display: none; }
+
 @media (min-width: 1024px) {
   :root {
     font-size: 14px; }
 
   main {
-    margin-top: 12vh; } }
+    margin-top: 12vh; }
+
+  .desktop-hidden {
+    display: none; }
+
+  .mobile-hidden {
+    display: initial; } }
 @media (min-width: 1200px) {
   :root {
     font-size: 16px; } }

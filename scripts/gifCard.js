@@ -17,7 +17,7 @@ function addGifToDOM(gif, gifsCtn, isMyGifo) {
 
 	//a. Funcionalidad de favorito / borrar de mis gifos (depende del container).
 	const firstBtn = btnCtn.children[0];
-	firstBtn.gifId = gif.id;
+	firstBtn.dataset.gifId = gif.id;
 
 	if (!isMyGifo) { //El primer botón permitirá agregar/borrar favorito.
 		const favorites = JSON.parse(localStorage.getItem("favGifs"));
@@ -47,18 +47,18 @@ function addGifToDOM(gif, gifsCtn, isMyGifo) {
 
 function addFavorite() {
 	let favorites = JSON.parse(localStorage.getItem("favGifs"));
-	if (!favorites.includes(this.gifId)) {
+	if (!favorites.includes(this.dataset.gifId)) {
 		//a. Se agrega el gif a favoritos.
 		this.classList.remove("far");
 		this.classList.add("fas");
-		favorites.push(this.gifId);
+		favorites.push(this.dataset.gifId);
 		localStorage.setItem("favGifs", JSON.stringify(favorites));
 		return;
 	}
 	//b. El gif ya estaba en favoritos y se elimina:
 	this.classList.remove("fas");
 	this.classList.add("far");
-	favorites = favorites.filter((favorite) => favorite != this.gifId);
+	favorites = favorites.filter((favorite) => favorite != this.dataset.gifId);
 	localStorage.setItem("favGifs", JSON.stringify(favorites));
 	//Elimina la tarjeta del DOM si estamos en la sección de favoritos.
 	const gifElement = this.parentElement.parentElement.parentElement;
@@ -69,7 +69,7 @@ function addFavorite() {
 
 function deleteMyGifo() {
 	let myGifos = JSON.parse(localStorage.getItem("myGifs"));
-	myGifos = myGifos.filter((gifo) => gifo != this.gifId);
+	myGifos = myGifos.filter((gifo) => gifo != this.dataset.gifId);
 	localStorage.setItem("myGifs", JSON.stringify(myGifos));
 	const gifCard = this.parentElement.parentElement.parentElement
 	removeGifCardFromDOM(gifCard)
@@ -95,6 +95,7 @@ function displayFullScreen() {
 	if (gif.id !== "on-fullscreen-gif") {
 		gif.children[1].children[0].lastElementChild.classList.remove("fa-download");
 		gif.children[1].children[0].lastElementChild.classList.add("fa-times");
+		gif.firstElementChild.removeEventListener("click", displayFullScreen);
 		gif.setAttribute("id", "on-fullscreen-gif");
 		return;
 	}
@@ -102,6 +103,7 @@ function displayFullScreen() {
 	//b. El usuario quiere salir de modo fullscreen.
 	gif.children[1].children[0].lastElementChild.classList.remove("fa-times");
 	gif.children[1].children[0].lastElementChild.classList.add("fa-download");
+	gif.firstElementChild.addEventListener("click", displayFullScreen);
 	gif.setAttribute("id", "");
 
 }

@@ -210,7 +210,11 @@ figure {
 }
 
 
-/*-FONTS-RESIZING-*/
+/*-GENERAL-*/
+
+.mobile-hidden {
+  display: none;
+}
 
 @media (min-width: 1024px) {
   :root {
@@ -218,6 +222,12 @@ figure {
   }
   main {
     margin-top: 12vh;
+  }
+  .desktop-hidden {
+    display: none;
+  }
+  .mobile-hidden {
+    display: initial;
   }
 }
 @media (min-width: 1200px) {
