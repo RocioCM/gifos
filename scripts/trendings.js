@@ -80,31 +80,3 @@ carrouselCtn.lastElementChild.addEventListener("mousedown", () => {
 	trendingCardsCtn.style.marginLeft = `${carrouselScroll}px`;
 }
 );
-
-
-
-////EEEEEEPA: DETALLES
-//3. En addGifToDOM, cuando setea el gif, también podría ser .downsized_medium.url, pesa un poco más. Pero, dato, nunca uses los still, no funcionan.
-//10. Nah. Hacer la compatibilidad del carrousel scroll entre mobile y desktop:
-//Capaz te sirva: https://stackoverflow.com/questions/4096863/how-to-get-and-set-the-current-web-page-scroll-position
-
-///CREATE-GIFO PENDIENTE:
-//4.Estilos mobile-friendly. Nah.
-//6. Poner pantalla de error cuando el gif no se pudo subir. Y reintentar. Y cuando no se pudo obtener acceso a la cámara.
-
-//Cómodo HTML:
-// <!-- <i class="fas fa-check"></i>
-//     <i class="fas fa-spinner"></i>-->
-
-//COMMENTS CSS:
-// #search-ctn {  ///Solo se mantiene en sticky hasta llegar al aside. Más info en wpp.
-//     position: sticky;
-//     top: 2vh;
-//     z-index: 10;
-// }
-/*
-COMMENTS CSS:
-2. Fijate si hay cosas para eliminar/emprolijar en los estilos de #on-fullscreen-gif.
-3. Sobre el fullscreen y la proporción: https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit .
-4. Otro más sobre el fullscreen y la proporción: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/scale.
-*/

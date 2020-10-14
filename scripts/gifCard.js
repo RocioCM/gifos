@@ -4,7 +4,7 @@
 function addGifToDOM(gif, gifsCtn, isMyGifo) {
 	const ctn = gifCardTemplate.cloneNode(true);
 
-	ctn.children[0].src = gif.images.fixed_height_small.url; //Setea el gif.
+	ctn.children[0].src = gif.images.downsized_medium.url; //Setea el gif.
 	ctn.children[0].alt = gif.title;
 
 	const gifData = gif.title.split("GIF by "); //Obtiene el título del gif y el usuario.
